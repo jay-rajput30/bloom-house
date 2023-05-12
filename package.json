@@ -1,0 +1,30 @@
+{
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "name": "bloom-house",
+  "description": "An online platform to buy gardening plants and related items",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "parcel": "^2.8.3",
+    "process": "^0.11.10"
+  },
+  "source": "src/index.html",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jay-rajput30/bloom-house.git"
+  },
+  "author": "Jay Rajput",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jay-rajput30/bloom-house/issues"
+  },
+  "homepage": "https://github.com/jay-rajput30/bloom-house#readme"
+}
