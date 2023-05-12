@@ -1,11 +1,98 @@
 @import url("https://fonts.googleapis.com/css2?family=Recursive:slnt,wght,CASL,CRSV,MONO@-15..0,300..800,0..1,0..1,0..1&display=swap");
 
-* {
+:root {
+  --primary-color: hsl(177, 100%, 14%);
+  --secondary-color: hsl(60, 100%, 100%);
+  --tertiary-color: hsl(360, 68%, 63%);
+  --color-font-text: hsl(163, 29%, 75%);
+  --color-font-label: hsl(161, 10%, 58%);
+  --color-font-disabled: hsl(162, 22%, 78%);
+  --color-button-background: hsl(36, 93%, 68%);
+  --color-button-text: hsl(178, 100%, 6%);
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 2.5rem;
+  --space-6: 3rem;
+  --space-7: 3.5rem;
+  --space-8: 4rem;
+  --font-length-sm1: 0.25rem;
+  --font-length-sm2: 0.5rem;
+  --font-length-sm3: 0.75rem;
+  --font-length-md1: 1rem;
+  --font-length-md2: 1.25rem;
+  --font-length-md3: 1.5rem;
+  --font-length-lg1: 2rem;
+  --font-length-lg2: 3rem;
+  --font-length-lg3: 4rem;
+  --font-length-xl1: 7rem;
+  --font-length-xl2: 9rem;
+  --font-length-xl3: 11rem;
+  --color-status-loading: hsl(43, 96%, 56%);
+  --color-status-error: hsl(0, 84%, 60%);
+  --color-status-success: hsl(142, 71%, 45%);
+}
+*,
+*::before,
+*::after {
   box-sizing: border-box;
-  padding: 0;
+}
+
+* {
   margin: 0;
 }
 
+html,
 body {
+  height: 100%;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--secondary-color);
+  font-variation-settings: "CRSV" 1, "MONO" 0;
+}
+body {
+  line-height: 1.5;
+  background-color: var(--primary-color);
+  color: var(--color-font-text);
   font-family: "Recursive", monospace;
+  font-variation-settings: "CRSV" 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  line-height: 0;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+#root,
+#__next {
+  isolation: isolate;
 }
