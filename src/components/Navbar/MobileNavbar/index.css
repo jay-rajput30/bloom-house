@@ -1,5 +1,5 @@
 .mobile-navbar {
-  padding: 0.5rem;
+  padding: 1rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -10,10 +10,25 @@
 .mobile-navbar h2 {
   margin-right: auto;
   margin-left: auto;
-  font-variation-settings: "CRSV" 1, "MONO" 1, "CASL" 1;
+  font-variation-settings: "CRSV" 1, "MONO" 1;
 }
 
 .icon-container {
   display: flex;
-  gap: 8px;
+  gap: 16px;
+}
+
+@media screen and (min-width: 378px) {
+  .sidenav-icon {
+    display: none;
+  }
+  .mobile-navbar {
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    display: none;
+  }
+
+  .mobile-navbar h2 {
+    margin-left: 0;
+  }
 }

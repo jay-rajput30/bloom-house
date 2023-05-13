@@ -96,8 +96,13 @@ h6 {
   overflow-wrap: break-word;
 }
 ul,
-li {
+ol {
   list-style: none;
+}
+li:hover {
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--color-button-background);
 }
 #root,
 #__next {

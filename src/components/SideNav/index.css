@@ -2,7 +2,6 @@
   position: absolute;
   top: 53px;
   left: 0px;
-  border: 2px solid orange;
   height: 100%;
   width: 60vw;
   padding: 3rem 1rem 1rem 1rem;
@@ -27,4 +26,10 @@
   border: none;
   border-radius: 4px;
   color: white;
+}
+
+@media screen and (min-width: 378px) {
+  .sidenav {
+    display: none;
+  }
 }
