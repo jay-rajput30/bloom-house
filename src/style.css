@@ -67,6 +67,7 @@ body {
   font-variation-settings: "CRSV" 0;
   -webkit-font-smoothing: antialiased;
   position: relative;
+  padding-top: 4rem;
 }
 
 img,
@@ -77,6 +78,7 @@ svg {
   display: block;
   max-width: 100%;
   line-height: 0;
+  object-fit: cover;
 }
 
 input,

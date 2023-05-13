@@ -2,7 +2,7 @@
   display: none;
 }
 
-@media screen and (min-width: 378px) {
+@media screen and (min-width: 690px) {
   .desktop-navbar {
     display: flex;
     flex-direction: row;
@@ -11,6 +11,10 @@
     gap: 24px;
     padding: 1rem;
     box-shadow: 2px 4px 4px var(--color-shadow);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background-color: var(--primary-color);
   }
   .desktop-navbar button {
     background-color: var(--color-button-background);

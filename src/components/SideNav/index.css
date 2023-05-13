@@ -1,13 +1,15 @@
 .sidenav {
   position: absolute;
-  top: 53px;
+  top: 0px;
   left: 0px;
-  height: 100%;
+  height: 100vh;
   width: 60vw;
   padding: 3rem 1rem 1rem 1rem;
   display: flex;
-  gap: 32px;
+  gap: 40px;
+  padding-top: 10rem;
   flex-direction: column;
+  justify-content: flex-start;
   background-color: var(--secondary-color);
   color: var(--primary-color);
 }
@@ -17,7 +19,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
   padding: 0;
 }
 
@@ -28,7 +30,7 @@
   color: white;
 }
 
-@media screen and (min-width: 378px) {
+@media screen and (min-width: 690px) {
   .sidenav {
     display: none;
   }

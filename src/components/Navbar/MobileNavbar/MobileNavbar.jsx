@@ -34,7 +34,7 @@ function MobileNavbar() {
         <ShoppingCart color="hsl(60, 100%, 100%)" strokeWidth="3" />
         <User color="hsl(60, 100%, 100%)" strokeWidth="3" />
       </div>
-      {sideNavActive && <SideNav />}
+      {sideNavActive && <SideNav setSideNavActive={setSideNavActive} />}
     </nav>
   );
 }

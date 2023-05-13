@@ -5,9 +5,14 @@ import SingleProduct from "./pages/SingleProduct/SingleProduct";
 import Wishlist from "./pages/Wishlist/Wishlist";
 import Cart from "./pages/Cart/Cart";
 import "./style.css";
+import MobileNavbar from "./components/Navbar/MobileNavbar/MobileNavbar";
+import DesktopNavbar from "./components/Navbar/DesktopNavbar/DesktopNavbar";
+
 export const App = () => {
   return (
     <div className="app-wrapper">
+      <MobileNavbar />
+      <DesktopNavbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<Products />} />

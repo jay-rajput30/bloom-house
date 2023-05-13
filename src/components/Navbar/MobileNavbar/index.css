@@ -5,6 +5,10 @@
   align-items: center;
   gap: 8px;
   box-shadow: 2px 4px 4px var(--color-shadow);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background-color: var(--primary-color);
 }
 
 .mobile-navbar h2 {
@@ -18,7 +22,7 @@
   gap: 16px;
 }
 
-@media screen and (min-width: 378px) {
+@media screen and (min-width: 690px) {
   .sidenav-icon {
     display: none;
   }
