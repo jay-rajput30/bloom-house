@@ -9,6 +9,7 @@
   --color-font-disabled: hsl(162, 22%, 78%);
   --color-button-background: hsl(36, 93%, 68%);
   --color-button-text: hsl(178, 100%, 6%);
+  --color-shadow: hsl(177, 63%, 12%);
   --space-1: 0.5rem;
   --space-2: 1rem;
   --space-3: 1.5rem;
@@ -33,6 +34,8 @@
   --color-status-error: hsl(0, 84%, 60%);
   --color-status-success: hsl(142, 71%, 45%);
 }
+
+/* css reset */
 *,
 *::before,
 *::after {
@@ -63,6 +66,8 @@ body {
   font-family: "Recursive", monospace;
   font-variation-settings: "CRSV" 0;
   -webkit-font-smoothing: antialiased;
+  position: relative;
+  padding-top: 4rem;
 }
 
 img,
@@ -73,6 +78,7 @@ svg {
   display: block;
   max-width: 100%;
   line-height: 0;
+  object-fit: cover;
 }
 
 input,
@@ -91,8 +97,22 @@ h5,
 h6 {
   overflow-wrap: break-word;
 }
-
+ul,
+ol {
+  list-style: none;
+}
+li:hover {
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--color-button-background);
+}
 #root,
 #__next {
   isolation: isolate;
+}
+
+/* general styles */
+
+.app-wrapper {
+  min-height: 100%;
 }
