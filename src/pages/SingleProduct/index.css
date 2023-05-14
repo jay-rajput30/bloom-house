@@ -1,0 +1,36 @@
+.product-wrapper {
+  background-color: var(--secondary-color);
+}
+.product-pricing-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.product-details {
+  padding: 0 var(--space-1) 0 var(--space-2);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.product-details {
+  padding: var(--space-2) var(--space-1) var(--space-2) var(--space-2);
+}
+
+.product-details h2,
+.product-details .discounted-price {
+  color: var(--primary-color);
+}
+
+.add-to-cart {
+  background-color: var(--color-button-background);
+  border: none;
+  padding: 0.4rem var(--space-1);
+  box-shadow: 2px 4px 4px hsl(35, 44%, 35%);
+}
+
+.add-to-wishlist {
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  /* box-shadow: 1px 2px 2px var(--color-shadow); */
+}
