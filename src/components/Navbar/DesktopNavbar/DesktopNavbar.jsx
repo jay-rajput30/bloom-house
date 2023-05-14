@@ -13,10 +13,16 @@ const activeStyles = ({ isActive }) => {
   };
 };
 
-function DesktopNavbar() {
+function DesktopNavbar({ inputChangeHandler }) {
   return (
     <nav className="desktop-navbar">
       <h2>BloomHouse</h2>
+      <input
+        type="text"
+        className="product-search"
+        placeholder="enter name to search..."
+        onChange={inputChangeHandler}
+      />
       <ul className="nav-items">
         <li>
           <NavLink to="/" style={activeStyles}>

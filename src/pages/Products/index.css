@@ -1,0 +1,8 @@
+.products-wrapper ul {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: var(--space-3);
+}
