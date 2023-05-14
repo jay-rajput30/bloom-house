@@ -1,0 +1,29 @@
+.products-wrapper ul {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: var(--space-1);
+}
+.products-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  border: 2px orange;
+}
+.mobile-product-search {
+  margin-top: var(--space-3);
+}
+
+@media screen and (min-width: 980px) {
+  .products-wrapper ul {
+    margin-top: var(--space-3);
+  }
+  .mobile-product-search {
+    align-self: center;
+    display: none;
+  }
+}

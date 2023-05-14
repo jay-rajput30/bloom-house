@@ -1,6 +1,9 @@
 .desktop-navbar {
   display: none;
 }
+.product-search {
+  display: none;
+}
 
 @media screen and (min-width: 690px) {
   .desktop-navbar {
@@ -15,6 +18,10 @@
     position: fixed;
     top: 0;
     background-color: var(--primary-color);
+  }
+  .product-search {
+    display: block;
+    margin-left: auto;
   }
   .desktop-navbar button {
     background-color: var(--color-button-background);
@@ -35,5 +42,11 @@
     justify-content: center;
     align-items: center;
     margin-left: auto;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .product-search {
+    display: none;
   }
 }

@@ -102,8 +102,6 @@ ol {
   list-style: none;
 }
 li:hover {
-  cursor: pointer;
-  font-weight: bold;
   color: var(--color-button-background);
 }
 #root,
