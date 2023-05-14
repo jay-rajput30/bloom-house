@@ -13,12 +13,13 @@ const activeStyles = ({ isActive }) => {
   };
 };
 
-function DesktopNavbar({ inputChangeHandler }) {
+function DesktopNavbar({ searchTerm, inputChangeHandler }) {
   return (
     <nav className="desktop-navbar">
       <h2>BloomHouse</h2>
       <input
         type="text"
+        value={searchTerm}
         className="product-search"
         placeholder="enter name to search..."
         onChange={inputChangeHandler}
