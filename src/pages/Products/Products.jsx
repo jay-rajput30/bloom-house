@@ -3,6 +3,7 @@ import { useProducts } from "../../context/ProductProvider";
 import Error from "../Error/Error";
 import ProductCard from "../../components/Cards/ProductCard/ProductCard";
 import "./index.css";
+import { Filter } from "react-feather";
 function Products({ searchTerm, inputChangeHandler }) {
   const { products, status, error } = useProducts();
   const filteredProducts = products?.filter((item) =>

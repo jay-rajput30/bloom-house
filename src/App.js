@@ -8,10 +8,12 @@ import "./style.css";
 import MobileNavbar from "./components/Navbar/MobileNavbar/MobileNavbar";
 import DesktopNavbar from "./components/Navbar/DesktopNavbar/DesktopNavbar";
 import { useState } from "react";
+import { Filter } from "react-feather";
+import MobileFilter from "./components/MobileFilter/MobileFilter";
 
 export const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  console.log({ searchTerm });
+  const [showFilter, setShowFilter] = useState(false);
   const inputChangeHandler = (e) => {
     setSearchTerm(e.target.value);
   };
@@ -22,6 +24,18 @@ export const App = () => {
         searchTerm={searchTerm}
         inputChangeHandler={inputChangeHandler}
       />
+      {!showFilter && (
+        <div className="filter-button">
+          <Filter
+            color="hsl(36, 93%, 68%)"
+            strokeWidth="3"
+            fill="hsl(36, 93%, 68%)"
+            size="40"
+            onClick={() => setShowFilter(true)}
+          />
+        </div>
+      )}
+      {showFilter && <MobileFilter setShowFilter={setShowFilter} />}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route
