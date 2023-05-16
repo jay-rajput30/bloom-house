@@ -1,0 +1,19 @@
+.delivery-perks-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: var(--space-2) var(--space-1);
+  background-color: hsl(160, 22%, 89%);
+}
+
+.perk-item {
+  display: flex;
+  gap: 4px;
+  flex-direction: column;
+  align-items: center;
+  font-size: var(--font-length-sm3);
+}
+.perk-item p {
+  color: var(--primary-color);
+  text-align: center;
+  max-width: fit-content;
+}

@@ -35,13 +35,4 @@ const ProductProvider = ({ children }) => {
     </productContext.Provider>
   );
 };
-
-export const useProducts = () => {
-  const { productsData, status } = useContext(productContext);
-  return {
-    products: productsData,
-    status,
-    error: status === "error" ? true : false,
-  };
-};
 export default ProductProvider;

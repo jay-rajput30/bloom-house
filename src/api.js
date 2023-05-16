@@ -12,7 +12,7 @@ export const fakeFetch = (url) => {
                 name: "Succulent Mix",
                 price: 12.99,
                 description: "A mix of three different succulents.",
-                rating: 4.5,
+                rating: 3.5,
                 category: "Plants",
                 thumbnail:
                   "https://images.unsplash.com/photo-1625582598943-2445bb7b8253?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGluZG9vciUyMHBsYW50fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
@@ -24,7 +24,7 @@ export const fakeFetch = (url) => {
                 price: 3.99,
                 description:
                   "A packet of cherry tomato seeds for home gardening.",
-                rating: 4.2,
+                rating: 3.2,
                 category: "Seeds",
                 thumbnail:
                   "https://plus.unsplash.com/premium_photo-1678722936997-92a9bcfaff0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGxhbnQlMjBzZWVkc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60",
@@ -46,7 +46,7 @@ export const fakeFetch = (url) => {
                 name: "Hand-Painted Plant Pot",
                 price: 24.99,
                 description: "A unique hand-painted ceramic plant pot.",
-                rating: 4.8,
+                rating: 3.9,
                 category: "Plant Pots",
                 thumbnail:
                   "https://images.unsplash.com/photo-1670169603920-e2d4080e22d3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aW5kb29yJTIwcGxhbnQlMjBwaXR8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60",
@@ -113,7 +113,7 @@ export const fakeFetch = (url) => {
                 price: 18.99,
                 description:
                   "A low-maintenance indoor plant that purifies the air.",
-                rating: 4.7,
+                rating: 3.7,
                 category: "Plants",
                 thumbnail:
                   "https://images.unsplash.com/photo-1625582598943-2445bb7b8253?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGluZG9vciUyMHBsYW50fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",

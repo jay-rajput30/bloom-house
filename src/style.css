@@ -68,6 +68,7 @@ body {
   -webkit-font-smoothing: antialiased;
   position: relative;
   padding-top: 4rem;
+  height: 100vh;
 }
 
 img,
@@ -113,4 +114,21 @@ li:hover {
 
 .app-wrapper {
   min-height: 100%;
+}
+
+.filter-button {
+  position: fixed;
+  bottom: 160px;
+  right: 10px;
+  border: solid var(--color-button-background);
+  padding: 0.7rem;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  cursor: pointer;
+}
+
+@media screen and (min-width: 380px) {
+  .filter-button {
+    display: none;
+  }
 }

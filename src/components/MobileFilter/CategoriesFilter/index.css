@@ -1,0 +1,12 @@
+.categories-wrapper {
+  /* margin-top: var(--space-4); */
+  display: flex;
+  gap: 8px;
+}
+
+.category-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
