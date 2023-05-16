@@ -1,15 +1,15 @@
 import React from "react";
-import { useProducts } from "../../context/ProductProvider";
+
 import Error from "../Error/Error";
 import ProductCard from "../../components/Cards/ProductCard/ProductCard";
 import "./index.css";
-import { Filter } from "react-feather";
-function Products({ searchTerm, inputChangeHandler }) {
-  const { products, status, error } = useProducts();
+import { useProducts } from "../../hooks/useProducts";
+function Products({ products, searchTerm, searchTermChangeHandler }) {
+  const { status, error } = useProducts();
   const filteredProducts = products?.filter((item) =>
     item.name.toLowerCase().includes(searchTerm)
   );
-  console.log({ filteredProducts, searchTerm });
+
   if (error) {
     return <Error />;
   }
@@ -24,7 +24,7 @@ function Products({ searchTerm, inputChangeHandler }) {
           value={searchTerm}
           className="mobile-product-search"
           placeholder="enter name to search..."
-          onChange={inputChangeHandler}
+          onChange={searchTermChangeHandler}
         />
         <ul>
           {filteredProducts?.map((item, idx) => {

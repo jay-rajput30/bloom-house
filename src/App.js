@@ -7,22 +7,46 @@ import Cart from "./pages/Cart/Cart";
 import "./style.css";
 import MobileNavbar from "./components/Navbar/MobileNavbar/MobileNavbar";
 import DesktopNavbar from "./components/Navbar/DesktopNavbar/DesktopNavbar";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Filter } from "react-feather";
 import MobileFilter from "./components/MobileFilter/MobileFilter";
 
+import { useProducts } from "./hooks/useProducts";
+import useInput from "./hooks/useInput";
+import ProductsWrapper from "./pages/Products/ProductsWrapper";
+import { filterContext } from "./context/FilterProvider";
+
 export const App = () => {
-  const [searchTerm, setSearchTerm] = useState("");
   const [showFilter, setShowFilter] = useState(false);
-  const inputChangeHandler = (e) => {
-    setSearchTerm(e.target.value);
-  };
+
+  //TODO: add custom hook for  form input change handlers
+  // const { searchTerm, searchTermChangeHandler } = useInput("searchTerm", "");
+  const {
+    searchTerm,
+    searchTermChangeHandler,
+    selectedRadioBtn,
+    radioChangeHandler,
+  } = useContext(filterContext);
+  // const [searchTerm, setSearchTerm] = useState("");
+  // const searchTermChangeHandler = (e) => {
+  //   setSearchTerm(e.target.value);
+  // };
+  // const [selectedRadioBtn, setSelectedRadioBtn] = useState("All");
+  // const radioChangeHandler = (e) => {
+  //   setSelectedRadioBtn(e.target.value);
+  // };
+
+  // const filteredCategoryProducts =
+  //   selectedRadioBtn === "All"
+  //     ? products
+  //     : products?.filter((item) => item.category === selectedRadioBtn);
+
   return (
     <div className="app-wrapper">
       <MobileNavbar />
       <DesktopNavbar
         searchTerm={searchTerm}
-        inputChangeHandler={inputChangeHandler}
+        searchTermChangeHandler={searchTermChangeHandler}
       />
       {!showFilter && (
         <div className="filter-button">
@@ -35,17 +59,29 @@ export const App = () => {
           />
         </div>
       )}
-      {showFilter && <MobileFilter setShowFilter={setShowFilter} />}
+      {showFilter && (
+        <MobileFilter
+          setShowFilter={setShowFilter}
+          selectedRadioBtn={selectedRadioBtn}
+          radioChangeHandler={radioChangeHandler}
+        />
+      )}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route
           path="/products"
           element={
-            <Products
+            <ProductsWrapper
               searchTerm={searchTerm}
-              inputChangeHandler={inputChangeHandler}
+              searchTermChangeHandler={searchTermChangeHandler}
             />
           }
+          // <Products
+          //   products={filteredCategoryProducts}
+          //   searchTerm={searchTerm}
+          //   searchTermChangeHandler={searchTermChangeHandler}
+          // />
+          // }
         />
         <Route path="/product/:id" element={<SingleProduct />} />
         <Route path="/cart" element={<Cart />} />

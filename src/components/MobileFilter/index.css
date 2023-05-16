@@ -13,3 +13,18 @@
   top: 10px;
   right: 10px;
 }
+
+.categories-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.rating-filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}

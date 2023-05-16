@@ -1,11 +1,12 @@
 import React from "react";
 import "./index.css";
 import { useParams } from "react-router-dom";
-import { useProducts } from "../../context/ProductProvider";
+
 import { Star } from "react-feather";
 import DeliveryPerks from "../../components/DeliveryPerks/DeliveryPerks";
 
 import React from "react";
+import { useProducts } from "../../hooks/useProducts";
 
 const ProductDetails = ({ plantFound }) => {
   return (

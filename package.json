@@ -9,7 +9,6 @@
   "name": "bloom-house",
   "description": "An online platform to buy gardening plants and related items",
   "version": "1.0.0",
-  "main": "index.js",
   "devDependencies": {
     "parcel": "^2.8.3",
     "process": "^0.11.10"
