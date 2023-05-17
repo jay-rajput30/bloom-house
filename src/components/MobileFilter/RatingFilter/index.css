@@ -1,0 +1,14 @@
+.rating-filter span {
+  padding: 0;
+  margin: 0;
+}
+.rating-filter {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.rating-filter div {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}

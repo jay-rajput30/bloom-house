@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./index.css";
 import { ShoppingCart, User } from "react-feather";
 import { NavLink } from "react-router-dom";
+import { filterContext } from "../../../context/FilterProvider";
 
 const activeStyles = ({ isActive }) => {
   return {
@@ -13,7 +14,8 @@ const activeStyles = ({ isActive }) => {
   };
 };
 
-function DesktopNavbar({ searchTerm, inputChangeHandler }) {
+function DesktopNavbar() {
+  const { searchTerm, searchTermChangeHandler } = useContext(filterContext);
   return (
     <nav className="desktop-navbar">
       <h2>BloomHouse</h2>
@@ -22,7 +24,7 @@ function DesktopNavbar({ searchTerm, inputChangeHandler }) {
         value={searchTerm}
         className="product-search"
         placeholder="enter name to search..."
-        onChange={inputChangeHandler}
+        onChange={searchTermChangeHandler}
       />
       <ul className="nav-items">
         <li>

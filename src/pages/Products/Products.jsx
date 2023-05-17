@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import Error from "../Error/Error";
 import ProductCard from "../../components/Cards/ProductCard/ProductCard";
 import "./index.css";
 import { useProducts } from "../../hooks/useProducts";
-function Products({ products, searchTerm, searchTermChangeHandler }) {
+import { filterContext } from "../../context/FilterProvider";
+
+function Products({ products }) {
   const { status, error } = useProducts();
-  const filteredProducts = products?.filter((item) =>
-    item.name.toLowerCase().includes(searchTerm)
-  );
+  const { searchTerm, searchTermChangeHandler } = useContext(filterContext);
+  // const filteredProducts = products?.filter((item) =>
+  //   item.name.toLowerCase().includes(searchTerm)
+  // );
 
   if (error) {
     return <Error />;
@@ -27,7 +30,7 @@ function Products({ products, searchTerm, searchTermChangeHandler }) {
           onChange={searchTermChangeHandler}
         />
         <ul>
-          {filteredProducts?.map((item, idx) => {
+          {products?.map((item, idx) => {
             return (
               <li key={item?.id}>
                 <ProductCard plant={item} showButton={true} />
