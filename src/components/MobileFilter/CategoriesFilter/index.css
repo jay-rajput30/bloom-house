@@ -1,9 +1,14 @@
 .categories-wrapper {
   /* margin-top: var(--space-4); */
   display: flex;
+  flex-direction: column;
   gap: 8px;
 }
-
+.categories-wrapper div {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
 .category-item {
   display: flex;
   justify-content: center;

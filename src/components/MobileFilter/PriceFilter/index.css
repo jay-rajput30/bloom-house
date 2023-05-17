@@ -1,0 +1,11 @@
+.price-filter {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.price-filter div {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}

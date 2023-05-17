@@ -1,5 +1,6 @@
 .mobile-filter-wrapper {
-  border: 2px solid orange;
+  padding: var(--space-6) var(--space-2) var(--space-2) var(--space-2);
+  color: var(--primary-color);
   width: 100vw;
   position: fixed;
   left: 0px;
@@ -14,12 +15,12 @@
   right: 10px;
 }
 
-.categories-form-wrapper {
+.mobile-form-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 16px;
+  gap: 40px;
 }
 
 .rating-filter {

@@ -7,12 +7,26 @@ export const filterContext = createContext({
 
 const FilterProvider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedRadioBtn, setSelectedRadioBtn] = useState("All");
+  const [selectedRating, setSelectedRating] = useState(0);
+  const [selectedPrice, setSelectedPrice] = useState(0);
+
+  //state change handlers for all states
   const searchTermChangeHandler = (e) => {
     setSearchTerm(e.target.value);
   };
-  const [selectedRadioBtn, setSelectedRadioBtn] = useState("All");
+
   const radioChangeHandler = (e) => {
     setSelectedRadioBtn(e.target.value);
+  };
+
+  const priceChangeHandler = (e) => {
+    setSelectedPrice(+e.target.value);
+  };
+
+  const selectedRatingChangeHandler = (e) => {
+    console.log(+e.target.value);
+    setSelectedRating(+e.target.value);
   };
 
   return (
@@ -22,6 +36,10 @@ const FilterProvider = ({ children }) => {
         searchTermChangeHandler,
         selectedRadioBtn,
         radioChangeHandler,
+        selectedRating,
+        selectedRatingChangeHandler,
+        selectedPrice,
+        priceChangeHandler,
       }}
     >
       {children}
