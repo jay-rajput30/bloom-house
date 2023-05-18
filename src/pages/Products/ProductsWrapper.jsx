@@ -28,7 +28,6 @@ const ProductsWrapper = () => {
   const filteredProducts = priceFilteredProducts?.filter((item) =>
     item.name.toLowerCase().includes(searchTerm)
   );
-  console.log({ priceFilteredProducts, selectedPrice });
 
   return <Products products={filteredProducts} />;
 };
