@@ -8,36 +8,32 @@ import { useProducts } from "../../../hooks/useProducts";
 
 const ProductCard = ({ plant, showButton }) => {
   const [addedToWishlist, setAddedToWishlist] = useState([]);
-  const { dispatch } = useProducts();
-  console.log({ addedToWishlist });
+  const { dispatch, wishlist } = useProducts();
+
   const cartBtnClickHandler = (item) => {
     dispatch({ type: "ADD_TO_CART", payload: item });
   };
   const wishlistBtnClickHandler = (item) => {
-    setAddedToWishlist([...addedToWishlist, item]);
-    dispatch({ type: "ADD_TO_WISHLIST", payload: item });
+    if (!wishlist?.find((item) => item.id === payload.id)) {
+      setAddedToWishlist([...addedToWishlist, item]);
+      dispatch({ type: "ADD_TO_WISHLIST", payload: item });
+    }
   };
-  console.log(addedToWishlist.find((item) => item.id !== plant.id));
+
   return (
     <article className="product-card-wrapper">
       <figure>
         <img src={plant?.thumbnail} />
-        <figcaption>
-          {addedToWishlist.find((item) => item.id !== plant?.id) && (
-            <Heart
-              color="hsl(60, 100%, 100%)"
-              strokeWidth="2"
-              onClick={() => wishlistBtnClickHandler(plant)}
-            />
-          )}
-          {/* (
+        <figcaption onClick={() => wishlistBtnClickHandler(plant)}>
+          {addedToWishlist.find((item) => item.id === plant?.id) ? (
             <Heart
               color="hsl(360, 68%, 63%)"
-              strokeWidth="2"
               fill="hsl(360, 68%, 63%)"
-              onClick={() => wishlistBtnClickHandler(plant)}
+              strokeWidth="2"
             />
-          )} */}
+          ) : (
+            <Heart color="hsl(60, 100%, 100%)" strokeWidth="2" />
+          )}
         </figcaption>
       </figure>
 

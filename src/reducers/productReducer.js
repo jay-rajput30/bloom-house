@@ -10,8 +10,12 @@ export const productReducer = (state, { type, payload }) => {
       );
       return { ...state, cart: filteredCartProducts };
     }
-    case "ADD_TO_WISHLIST":
-      return { ...state, wishlist: [...state.wishlist, payload] };
+    case "ADD_TO_WISHLIST": {
+      if (!state.wishlist.find((item) => item.id === payload.id)) {
+        return { ...state, wishlist: [...state.wishlist, payload] };
+      }
+    }
+
     case "REMOVE_FROM_WISHLIST": {
       const filteredWishlistProducts = state?.wishlist.filter(
         (item) => item.id !== payload.id

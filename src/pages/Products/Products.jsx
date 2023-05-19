@@ -9,9 +9,6 @@ import { filterContext } from "../../context/FilterProvider";
 function Products({ products }) {
   const { status, error } = useProducts();
   const { searchTerm, searchTermChangeHandler } = useContext(filterContext);
-  // const filteredProducts = products?.filter((item) =>
-  //   item.name.toLowerCase().includes(searchTerm)
-  // );
 
   if (error) {
     return <Error />;

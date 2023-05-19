@@ -12,7 +12,7 @@ const ProductProvider = ({ children }) => {
   });
   // const [productsData, setProductsData] = useState(null);
   const [status, setStatus] = useState("idle");
-  console.log(state.wishlist);
+  console.log({ wishlist: state.wishlist });
   useEffect(() => {
     const getData = async () => {
       try {
