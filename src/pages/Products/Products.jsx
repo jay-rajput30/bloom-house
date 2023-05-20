@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import Error from "../Error/Error";
 import ProductCard from "../../components/Cards/ProductCard/ProductCard";
@@ -8,10 +8,8 @@ import { filterContext } from "../../context/FilterProvider";
 
 function Products({ products }) {
   const { status, error } = useProducts();
+  const [addedToWishlist, setAddedToWishlist] = useState([]);
   const { searchTerm, searchTermChangeHandler } = useContext(filterContext);
-  // const filteredProducts = products?.filter((item) =>
-  //   item.name.toLowerCase().includes(searchTerm)
-  // );
 
   if (error) {
     return <Error />;
@@ -30,10 +28,15 @@ function Products({ products }) {
           onChange={searchTermChangeHandler}
         />
         <ul>
-          {products?.map((item, idx) => {
+          {products?.map((item) => {
             return (
               <li key={item?.id}>
-                <ProductCard plant={item} showButton={true} />
+                <ProductCard
+                  plant={item}
+                  showButton={true}
+                  addedToWishlist={addedToWishlist}
+                  setAddedToWishlist={setAddedToWishlist}
+                />
               </li>
             );
           })}

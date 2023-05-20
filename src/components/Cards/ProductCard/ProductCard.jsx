@@ -1,11 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import "./index.css";
 import { Link } from "react-router-dom";
-import { Star } from "react-feather";
-const ProductCard = ({ plant, showButton }) => {
+import { Heart, Star } from "react-feather";
+import { useProducts } from "../../../hooks/useProducts";
+
+const ProductCard = ({
+  plant,
+  showButton,
+  addedToWishlist,
+  setAddedToWishlist,
+}) => {
+  const [addedToWishlist, setAddedToWishlist] = useState([]);
+  const { dispatch, wishlist } = useProducts();
+
+  const cartBtnClickHandler = (item) => {
+    dispatch({ type: "ADD_TO_CART", payload: item });
+  };
+  const wishlistBtnClickHandler = (item) => {
+    if (!wishlist?.find((item) => item.id === payload.id)) {
+      setAddedToWishlist([...addedToWishlist, item]);
+      dispatch({ type: "ADD_TO_WISHLIST", payload: item });
+    }
+  };
+
   return (
     <article className="product-card-wrapper">
-      <img src={plant?.thumbnail} />
+      <figure>
+        <img src={plant?.thumbnail} />
+        {showButton && (
+          <figcaption onClick={() => wishlistBtnClickHandler(plant)}>
+            {addedToWishlist.find((item) => item.id === plant?.id) ? (
+              <Heart
+                color="hsl(360, 68%, 63%)"
+                fill="hsl(360, 68%, 63%)"
+                strokeWidth="2"
+              />
+            ) : (
+              <Heart color="hsl(60, 100%, 100%)" strokeWidth="2" />
+            )}
+          </figcaption>
+        )}
+      </figure>
+
       <div className="product-card-details">
         <h4>{plant?.name}</h4>
         <div className="product-rating-wrapper">
@@ -27,7 +63,9 @@ const ProductCard = ({ plant, showButton }) => {
         </h5>
         {showButton && (
           <div className="button-group">
-            <button className="cart">add to cart</button>
+            <button className="cart" onClick={() => cartBtnClickHandler(plant)}>
+              add to cart
+            </button>
           </div>
         )}
         <Link

@@ -8,4 +8,5 @@ const useInput = (inputType, value) => {
   return { [inputType]: item, [`${inputType}ChangeHander`]: changeHandler };
 };
 
+//TODO: fix this custom hook
 export default useInput;
