@@ -20,6 +20,7 @@ export const productReducer = (state, { type, payload }) => {
       const filteredWishlistProducts = state?.wishlist.filter(
         (item) => item.id !== payload.id
       );
+      console.log("remove wishlist reducer called");
       return { ...state, wishlist: filteredWishlistProducts };
     }
     default:

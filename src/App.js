@@ -12,11 +12,26 @@ import { Filter } from "react-feather";
 import MobileFilter from "./components/MobileFilter/MobileFilter";
 
 import ProductsWrapper from "./pages/Products/ProductsWrapper";
+import { productContext } from "./context/ProductProvider";
 
 export const App = () => {
   const [showFilter, setShowFilter] = useState(false);
-
+  const [addedToWishlist, setAddedToWishlist] = useState([]);
+  const { dispatch } = useContext(productContext);
   //TODO: add custom hook for form input change handlers
+
+  const wishlistBtnClickHandler = (item) => {
+    if (!addedToWishlist.includes(item.id)) {
+      setAddedToWishlist([...addedToWishlist, item.id]);
+      dispatch({ type: "ADD_TO_WISHLIST", payload: item });
+    } else {
+      const filteredaddedToWishlist = addedToWishlist.filter(
+        (wishlistItem) => wishlistItem !== item.id
+      );
+      dispatch({ type: "REMOVE_FROM_WISHLIST", payload: item });
+      setAddedToWishlist(filteredaddedToWishlist);
+    }
+  };
 
   return (
     <div className="app-wrapper">
@@ -36,10 +51,26 @@ export const App = () => {
       {showFilter && <MobileFilter setShowFilter={setShowFilter} />}
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/products" element={<ProductsWrapper />} />
+        <Route
+          path="/products"
+          element={
+            <ProductsWrapper
+              addedToWishlist={addedToWishlist}
+              wishlistBtnClickHandler={wishlistBtnClickHandler}
+            />
+          }
+        />
         <Route path="/product/:id" element={<SingleProduct />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/wishlist" element={<Wishlist />} />
+        <Route
+          path="/wishlist"
+          element={
+            <Wishlist
+              addedToWishlist={addedToWishlist}
+              wishlistBtnClickHandler={wishlistBtnClickHandler}
+            />
+          }
+        />
         <Route path="*" element={<Error />} />
       </Routes>
     </div>

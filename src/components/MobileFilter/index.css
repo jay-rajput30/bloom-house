@@ -7,6 +7,7 @@
   top: 100px;
   height: 60vh;
   background-color: var(--secondary-color);
+  z-index: 999;
 }
 
 .close-filter {

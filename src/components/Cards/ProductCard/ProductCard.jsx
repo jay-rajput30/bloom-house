@@ -8,19 +8,12 @@ const ProductCard = ({
   plant,
   showButton,
   addedToWishlist,
-  setAddedToWishlist,
+  wishlistBtnClickHandler,
 }) => {
-  const [addedToWishlist, setAddedToWishlist] = useState([]);
-  const { dispatch, wishlist } = useProducts();
+  const { dispatch } = useProducts();
 
   const cartBtnClickHandler = (item) => {
     dispatch({ type: "ADD_TO_CART", payload: item });
-  };
-  const wishlistBtnClickHandler = (item) => {
-    if (!wishlist?.find((item) => item.id === payload.id)) {
-      setAddedToWishlist([...addedToWishlist, item]);
-      dispatch({ type: "ADD_TO_WISHLIST", payload: item });
-    }
   };
 
   return (
@@ -28,15 +21,20 @@ const ProductCard = ({
       <figure>
         <img src={plant?.thumbnail} />
         {showButton && (
-          <figcaption onClick={() => wishlistBtnClickHandler(plant)}>
-            {addedToWishlist.find((item) => item.id === plant?.id) ? (
+          <figcaption>
+            {addedToWishlist?.includes(plant?.id) ? (
               <Heart
                 color="hsl(360, 68%, 63%)"
                 fill="hsl(360, 68%, 63%)"
                 strokeWidth="2"
+                onClick={() => wishlistBtnClickHandler(plant)}
               />
             ) : (
-              <Heart color="hsl(60, 100%, 100%)" strokeWidth="2" />
+              <Heart
+                color="hsl(60, 100%, 100%)"
+                strokeWidth="2"
+                onClick={() => wishlistBtnClickHandler(plant)}
+              />
             )}
           </figcaption>
         )}
