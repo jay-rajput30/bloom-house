@@ -10,7 +10,7 @@ import MobileFilter from "../../components/MobileFilter/MobileFilter";
 
 function Products({ products, addedToWishlist, wishlistBtnClickHandler }) {
   const { status, error, dispatch } = useProducts();
-  const { wishlist } = useContext(productContext);
+  const { wishlist, cart } = useContext(productContext);
   // const [addedToWishlist, setAddedToWishlist] = useState([]);
   const { searchTerm, searchTermChangeHandler } = useContext(filterContext);
 

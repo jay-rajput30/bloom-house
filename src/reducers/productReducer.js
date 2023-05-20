@@ -3,7 +3,7 @@ export const productReducer = (state, { type, payload }) => {
     case "UPDATE_PRODUCTS":
       return { ...state, products: payload };
     case "ADD_TO_CART":
-      return { ...state, cart: [...state.cart, payload] };
+      return { ...state, cart: [...state.cart, { ...payload, quantity: 1 }] };
     case "REMOVE_TO_CART": {
       const filteredCartProducts = state.cart?.filter(
         (item) => item.id !== payload.id
