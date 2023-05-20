@@ -5,11 +5,27 @@ import ProductCard from "../../components/Cards/ProductCard/ProductCard";
 import "./index.css";
 import { useProducts } from "../../hooks/useProducts";
 import { filterContext } from "../../context/FilterProvider";
+import { productContext } from "../../context/ProductProvider";
+import MobileFilter from "../../components/MobileFilter/MobileFilter";
 
-function Products({ products }) {
-  const { status, error } = useProducts();
-  const [addedToWishlist, setAddedToWishlist] = useState([]);
+function Products({ products, addedToWishlist, wishlistBtnClickHandler }) {
+  const { status, error, dispatch } = useProducts();
+  const { wishlist } = useContext(productContext);
+  // const [addedToWishlist, setAddedToWishlist] = useState([]);
   const { searchTerm, searchTermChangeHandler } = useContext(filterContext);
+
+  // const wishlistBtnClickHandler = (item) => {
+  //   if (!addedToWishlist.includes(item.id)) {
+  //     setAddedToWishlist([...addedToWishlist, item.id]);
+  //     dispatch({ type: "ADD_TO_WISHLIST", payload: item });
+  //   } else {
+  //     const filteredaddedToWishlist = addedToWishlist.filter(
+  //       (wishlistItem) => wishlistItem !== item.id
+  //     );
+  //     dispatch({ type: "REMOVE_FROM_WISHLIST", payload: item });
+  //     setAddedToWishlist(filteredaddedToWishlist);
+  //   }
+  // };
 
   if (error) {
     return <Error />;
@@ -35,7 +51,7 @@ function Products({ products }) {
                   plant={item}
                   showButton={true}
                   addedToWishlist={addedToWishlist}
-                  setAddedToWishlist={setAddedToWishlist}
+                  wishlistBtnClickHandler={wishlistBtnClickHandler}
                 />
               </li>
             );

@@ -5,7 +5,7 @@ import { filterContext } from "../../context/FilterProvider";
 
 //wrapper component for products to do all the logical calculations
 
-const ProductsWrapper = () => {
+const ProductsWrapper = ({ addedToWishlist, wishlistBtnClickHandler }) => {
   const { searchTerm, selectedRadioBtn, selectedRating, selectedPrice } =
     useContext(filterContext);
 
@@ -29,7 +29,13 @@ const ProductsWrapper = () => {
     item.name.toLowerCase().includes(searchTerm)
   );
 
-  return <Products products={filteredProducts} />;
+  return (
+    <Products
+      products={filteredProducts}
+      addedToWishlist={addedToWishlist}
+      wishlistBtnClickHandler={wishlistBtnClickHandler}
+    />
+  );
 };
 
 export default ProductsWrapper;
