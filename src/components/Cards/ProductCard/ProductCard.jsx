@@ -4,9 +4,12 @@ import { Link } from "react-router-dom";
 import { Heart, Star } from "react-feather";
 import { useProducts } from "../../../hooks/useProducts";
 
-//TODO: fix the stacking context issue;
-
-const ProductCard = ({ plant, showButton }) => {
+const ProductCard = ({
+  plant,
+  showButton,
+  addedToWishlist,
+  setAddedToWishlist,
+}) => {
   const [addedToWishlist, setAddedToWishlist] = useState([]);
   const { dispatch, wishlist } = useProducts();
 
@@ -24,17 +27,19 @@ const ProductCard = ({ plant, showButton }) => {
     <article className="product-card-wrapper">
       <figure>
         <img src={plant?.thumbnail} />
-        <figcaption onClick={() => wishlistBtnClickHandler(plant)}>
-          {addedToWishlist.find((item) => item.id === plant?.id) ? (
-            <Heart
-              color="hsl(360, 68%, 63%)"
-              fill="hsl(360, 68%, 63%)"
-              strokeWidth="2"
-            />
-          ) : (
-            <Heart color="hsl(60, 100%, 100%)" strokeWidth="2" />
-          )}
-        </figcaption>
+        {showButton && (
+          <figcaption onClick={() => wishlistBtnClickHandler(plant)}>
+            {addedToWishlist.find((item) => item.id === plant?.id) ? (
+              <Heart
+                color="hsl(360, 68%, 63%)"
+                fill="hsl(360, 68%, 63%)"
+                strokeWidth="2"
+              />
+            ) : (
+              <Heart color="hsl(60, 100%, 100%)" strokeWidth="2" />
+            )}
+          </figcaption>
+        )}
       </figure>
 
       <div className="product-card-details">

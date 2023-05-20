@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Menu, ShoppingCart, User, X } from "react-feather";
+import { Menu, ShoppingBag, ShoppingCart, User, X } from "react-feather";
 import "./index.css";
 import SideNav from "../../SideNav/SideNav";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +12,14 @@ function MobileNavbar() {
 
   const cartIconClickHandler = () => {
     navigate("/cart");
+  };
+
+  const wishlistBtnClickHandler = () => {
+    navigate("/wishlist");
+  };
+
+  const headerClickHandler = () => {
+    navigate("/products");
   };
 
   const mobileSideNav = sideNavActive ? (
@@ -34,8 +42,13 @@ function MobileNavbar() {
   return (
     <nav className="mobile-navbar">
       {mobileSideNav}
-      <h2>BloomHouse</h2>
+      <h2 onClick={headerClickHandler}>BloomHouse</h2>
       <div className="icon-container">
+        <ShoppingBag
+          color="hsl(60, 100%, 100%)"
+          strokeWidth="3"
+          onClick={wishlistBtnClickHandler}
+        />
         <ShoppingCart
           color="hsl(60, 100%, 100%)"
           strokeWidth="3"

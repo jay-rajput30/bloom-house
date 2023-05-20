@@ -13,6 +13,7 @@
 }
 
 .mobile-navbar h2 {
+  cursor: pointer;
   margin-right: auto;
   margin-left: auto;
   font-variation-settings: "CRSV" 1, "MONO" 1;
@@ -20,7 +21,7 @@
 
 .icon-container {
   display: flex;
-  gap: 16px;
+  gap: 8px;
 }
 
 @media screen and (min-width: 690px) {
