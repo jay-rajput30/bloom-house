@@ -1,0 +1,12 @@
+.desktop-filter-wrapper {
+  display: none;
+}
+
+@media screen and (min-width: 980px) {
+  .desktop-filter-wrapper {
+    flex: 1;
+    padding: var(--space-2);
+    border: 2px solid orangered;
+    height: 100%;
+  }
+}

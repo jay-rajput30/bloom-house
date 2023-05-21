@@ -12,6 +12,7 @@
 .product-card-wrapper figure {
   width: 100%;
   position: relative;
+  z-index: 10;
 }
 .product-card-wrapper figure img {
   padding: 0;

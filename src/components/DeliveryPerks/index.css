@@ -1,8 +1,11 @@
 .delivery-perks-wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-gap: 16px;
   padding: var(--space-2) var(--space-1);
   background-color: hsl(160, 22%, 89%);
+  padding: var(--space-4);
+  margin-top: var(--space-3);
 }
 
 .perk-item {

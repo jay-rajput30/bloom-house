@@ -8,7 +8,7 @@ function Cart() {
   const { cart } = useContext(productContext);
   return (
     <div className="cart-container">
-      <h2>My cart</h2>
+      {/* <h2>My cart</h2> */}
       <div className="cart-wrapper">
         <CartItemList />
         <CartOrderSummary />

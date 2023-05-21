@@ -33,7 +33,7 @@ function MobileNavbar() {
   ) : (
     <Menu
       color="hsl(36, 93%, 68%)"
-      strokeWidth="3"
+      strokeWidth="2"
       onClick={sidenavBtnClickHandler}
       style={{ cursor: "pointer" }}
       className="sidenav-icon"
@@ -46,12 +46,12 @@ function MobileNavbar() {
       <div className="icon-container">
         <ShoppingBag
           color="hsl(60, 100%, 100%)"
-          strokeWidth="3"
+          strokeWidth="2"
           onClick={wishlistBtnClickHandler}
         />
         <ShoppingCart
           color="hsl(60, 100%, 100%)"
-          strokeWidth="3"
+          strokeWidth="2"
           onClick={cartIconClickHandler}
         />
         <User color="hsl(60, 100%, 100%)" strokeWidth="3" />

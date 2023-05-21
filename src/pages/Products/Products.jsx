@@ -7,6 +7,7 @@ import { useProducts } from "../../hooks/useProducts";
 import { filterContext } from "../../context/FilterProvider";
 import { productContext } from "../../context/ProductProvider";
 import MobileFilter from "../../components/MobileFilter/MobileFilter";
+import DesktopFilter from "../../components/Filter/DesktopFilter/DesktopFilter";
 
 function Products({ products, addedToWishlist, wishlistBtnClickHandler }) {
   const { status, error, dispatch } = useProducts();
@@ -43,6 +44,8 @@ function Products({ products, addedToWishlist, wishlistBtnClickHandler }) {
           placeholder="enter name to search..."
           onChange={searchTermChangeHandler}
         />
+        <DesktopFilter />
+
         <ul>
           {products?.map((item) => {
             return (

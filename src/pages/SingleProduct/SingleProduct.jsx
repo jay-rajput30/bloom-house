@@ -57,11 +57,20 @@ function SingleProduct() {
   const plantFound = products?.find((item) => item.id === +id);
 
   return (
-    <div className="product-wrapper">
-      <img src={plantFound?.thumbnail} />
-      <ProductDetails plantFound={plantFound} />
-      <DeliveryPerks />
-      <AboutProduct />
+    <div className="single-product-container">
+      {" "}
+      <div className="product-wrapper">
+        <div className="product-details-wrapper">
+          <div>
+            <img src={plantFound?.thumbnail} />
+          </div>
+
+          <ProductDetails plantFound={plantFound} />
+        </div>
+
+        <DeliveryPerks />
+        <AboutProduct />
+      </div>
     </div>
   );
 }
