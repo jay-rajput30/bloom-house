@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import "./index.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Heart, Star } from "react-feather";
 import { useProducts } from "../../../hooks/useProducts";
 import { productContext } from "../../../context/ProductProvider";
@@ -11,15 +11,15 @@ const ProductCard = ({
   addedToWishlist,
   wishlistBtnClickHandler,
 }) => {
+  const navigate = useNavigate();
   const { dispatch } = useProducts();
   const { cart } = useContext(productContext);
   const cartBtnClickHandler = (item) => {
-    console.log({
-      cartItem: cart?.find((cartItem) => cartItem.id === item.id),
-      addItem: item,
-      cart,
-    });
-    dispatch({ type: "ADD_TO_CART", payload: item });
+    if (cart?.find((cartItem) => cartItem.id === item.id)) {
+      navigate("/cart");
+    } else {
+      dispatch({ type: "ADD_TO_CART", payload: item });
+    }
   };
 
   return (
