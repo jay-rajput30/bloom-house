@@ -17,6 +17,22 @@
   margin-right: auto;
   margin-left: auto;
   font-variation-settings: "CRSV" 1, "MONO" 1;
+  /* background: linear-gradient(
+    270deg,
+    hsl(120deg 43% 63%) 0%,
+    hsl(113deg 47% 62%) 1%,
+    hsl(106deg 51% 62%) 3%,
+    hsl(98deg 55% 61%) 7%,
+    hsl(91deg 59% 60%) 15%,
+    hsl(84deg 63% 59%) 27%,
+    hsl(76deg 67% 58%) 45%,
+    hsl(69deg 71% 58%) 66%,
+    hsl(62deg 75% 57%) 85%,
+    hsl(55deg 79% 56%) 100%
+  );
+  color: transparent;
+  background-clip: text;
+  display: inline-block; */
 }
 
 .icon-container {
