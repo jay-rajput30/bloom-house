@@ -9,10 +9,10 @@ import MobileNavbar from "./components/Navbar/MobileNavbar/MobileNavbar";
 import DesktopNavbar from "./components/Navbar/DesktopNavbar/DesktopNavbar";
 import { useContext, useState } from "react";
 import { Filter } from "react-feather";
-import MobileFilter from "./components/MobileFilter/MobileFilter";
 
 import ProductsWrapper from "./pages/Products/ProductsWrapper";
 import { productContext } from "./context/ProductProvider";
+import MobileFilter from "./components/Filter/MobileFilter/MobileFilter";
 
 export const App = () => {
   const [showFilter, setShowFilter] = useState(false);

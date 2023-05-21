@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import "./index.css";
-import { filterContext } from "../../../context/FilterProvider";
+import { filterContext } from "../../../../context/FilterProvider";
+
 const PriceFilter = () => {
   const { selectedPrice, priceChangeHandler } = useContext(filterContext);
   return (

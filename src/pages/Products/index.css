@@ -12,6 +12,7 @@
   align-items: center;
   gap: 16px;
   margin-top: 4.5rem;
+  height: fit-content;
 }
 .mobile-product-search {
   margin-top: var(--space-3);
@@ -20,7 +21,11 @@
 @media screen and (min-width: 980px) {
   .products-wrapper ul {
     margin-top: var(--space-3);
-    flex: 2;
+    flex: 1;
+  }
+  .products-wrapper {
+    flex-direction: row;
+    justify-content: flex-start;
   }
   .mobile-product-search {
     align-self: center;

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import "./index.css";
-import { filterContext } from "../../../context/FilterProvider";
+import { filterContext } from "../../../../context/FilterProvider";
 const RatingFilter = () => {
   const { selectedRating, selectedRatingChangeHandler } =
     useContext(filterContext);

@@ -58,7 +58,6 @@ function SingleProduct() {
 
   return (
     <div className="single-product-container">
-      {" "}
       <div className="product-wrapper">
         <div className="product-details-wrapper">
           <div>

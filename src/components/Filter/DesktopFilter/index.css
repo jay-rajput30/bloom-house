@@ -4,9 +4,17 @@
 
 @media screen and (min-width: 980px) {
   .desktop-filter-wrapper {
-    flex: 1;
+    display: block;
+    /* flex-basis: 60px; */
     padding: var(--space-2);
-    border: 2px solid orangered;
-    height: 100%;
+    align-self: flex-start;
+    position: sticky;
+    top: 70px;
+    height: fit-content;
+  }
+  .desktop-filter-wrapper form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
   }
 }
