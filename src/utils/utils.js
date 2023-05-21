@@ -4,3 +4,9 @@ export const getCategories = (data) => {
     ["All"]
   );
 };
+
+export const calculateSubTotal = (cart) =>
+  cart?.reduce((acc, cur) => (acc += cur.price * cur.quantity), 0);
+
+export const calculateTotal = (subtotal, discount, shippingCost) =>
+  Math.ceil(subtotal + discount + shippingCost);
