@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage";
-import Products from "./pages/Products/Products";
 import SingleProduct from "./pages/SingleProduct/SingleProduct";
 import Wishlist from "./pages/Wishlist/Wishlist";
 import Cart from "./pages/Cart/Cart";
@@ -9,15 +8,17 @@ import MobileNavbar from "./components/Navbar/MobileNavbar/MobileNavbar";
 import DesktopNavbar from "./components/Navbar/DesktopNavbar/DesktopNavbar";
 import { useContext, useState } from "react";
 import { Filter } from "react-feather";
-import MobileFilter from "./components/MobileFilter/MobileFilter";
-
 import ProductsWrapper from "./pages/Products/ProductsWrapper";
 import { productContext } from "./context/ProductProvider";
+import MobileFilter from "./components/Filter/MobileFilter/MobileFilter";
+import Login from "./pages/Login/Login";
+import ProtectedRoutes from "./utils/ProtectedRoutes";
 
-export const App = () => {
+const App = () => {
   const [showFilter, setShowFilter] = useState(false);
   const [addedToWishlist, setAddedToWishlist] = useState([]);
   const { dispatch } = useContext(productContext);
+
   //TODO: add custom hook for form input change handlers
 
   const wishlistBtnClickHandler = (item) => {
@@ -61,14 +62,24 @@ export const App = () => {
           }
         />
         <Route path="/product/:id" element={<SingleProduct />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/cart"
+          element={
+            <ProtectedRoutes>
+              <Cart />
+            </ProtectedRoutes>
+          }
+        />
         <Route
           path="/wishlist"
           element={
-            <Wishlist
-              addedToWishlist={addedToWishlist}
-              wishlistBtnClickHandler={wishlistBtnClickHandler}
-            />
+            <ProtectedRoutes>
+              <Wishlist
+                addedToWishlist={addedToWishlist}
+                wishlistBtnClickHandler={wishlistBtnClickHandler}
+              />
+            </ProtectedRoutes>
           }
         />
         <Route path="*" element={<Error />} />
@@ -76,3 +87,5 @@ export const App = () => {
     </div>
   );
 };
+
+export default App;

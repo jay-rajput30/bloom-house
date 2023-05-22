@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import "./index.css";
-import { getCategories } from "../../../utils/utils";
-import { useProducts } from "../../../hooks/useProducts";
-import { filterContext } from "../../../context/FilterProvider";
+
+import { useProducts } from "../../../../hooks/useProducts";
+import { filterContext } from "../../../../context/FilterProvider";
+import { getCategories } from "../../../../utils/utils";
 
 const CategoriesFilter = () => {
   const { products } = useProducts();

@@ -1,5 +1,6 @@
 .desktop-navbar {
   display: none;
+  z-index: 100;
 }
 .product-search {
   display: none;

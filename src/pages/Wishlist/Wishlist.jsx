@@ -7,6 +7,9 @@ function Wishlist({ addedToWishlist, wishlistBtnClickHandler }) {
 
   return (
     <div className="wishlist-wrapper">
+      {wishlist?.length === 0 && (
+        <h2>oops.. not items added to wishlist as yet</h2>
+      )}
       <ul>
         {wishlist?.map((item) => {
           return (

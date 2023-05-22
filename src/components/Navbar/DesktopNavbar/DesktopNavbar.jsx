@@ -3,6 +3,7 @@ import "./index.css";
 import { ShoppingCart, User } from "react-feather";
 import { NavLink } from "react-router-dom";
 import { filterContext } from "../../../context/FilterProvider";
+import { authContext } from "../../../context/AuthProvider";
 
 const activeStyles = ({ isActive }) => {
   return {
@@ -15,6 +16,7 @@ const activeStyles = ({ isActive }) => {
 };
 
 function DesktopNavbar() {
+  const { logoutUser, loggedIn } = useContext(authContext);
   const { searchTerm, searchTermChangeHandler } = useContext(filterContext);
   return (
     <nav className="desktop-navbar">
@@ -48,7 +50,11 @@ function DesktopNavbar() {
           </NavLink>
         </li>
       </ul>
-      <button className="logout-button">logout</button>
+      {loggedIn && (
+        <button className="logout-button" onClick={logoutUser}>
+          logout
+        </button>
+      )}
       <div className="icon-container">
         <ShoppingCart color="hsl(60, 100%, 100%)" strokeWidth="3" />
         <User color="hsl(60, 100%, 100%)" strokeWidth="3" />
