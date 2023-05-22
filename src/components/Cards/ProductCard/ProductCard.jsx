@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
 import "./index.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { Heart, Star } from "react-feather";
 import { useProducts } from "../../../hooks/useProducts";
 import { productContext } from "../../../context/ProductProvider";
+import { authContext } from "../../../context/AuthProvider";
 
 const ProductCard = ({
   plant,
@@ -11,12 +12,20 @@ const ProductCard = ({
   addedToWishlist,
   wishlistBtnClickHandler,
 }) => {
+  const { loggedIn } = useContext(authContext);
   const navigate = useNavigate();
+  const location = useLocation();
   const { dispatch } = useProducts();
   const { cart } = useContext(productContext);
   const cartBtnClickHandler = (item) => {
+    console.log({ loggedIn });
     if (cart?.find((cartItem) => cartItem.id === item.id)) {
-      navigate("/cart");
+      if (loggedIn) {
+        navigate("/cart");
+      } else {
+        // <Navigate to="/login" state={{ from: location }} />;
+        navigate("/login", { state: { from: location } });
+      }
     } else {
       dispatch({ type: "ADD_TO_CART", payload: item });
     }
