@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { supabase } from "../backend/db-connect";
 
 export const authContext = createContext();
 
@@ -12,24 +13,27 @@ const AuthProvider = ({ children }) => {
     name: "guest",
     password: "guest",
   });
-
-  const handleLogin = (inputData) => {
-    console.log(
-      "handle login called",
-      inputData.email === "guest@gmail.com" && inputData.password === "guest",
-      inputData
-    );
-    const validId =
-      inputData.email === "guest@gmail.com" && inputData.password === "guest";
-    setIsLoggedIn(validId);
-    navigate(location?.state?.from?.pathname);
+  // "id", "username", "email"
+  const handleLogin = async (inputData) => {
+    try {
+      let { data: user, error } = await supabase
+        .from("users")
+        .select("id, username, email")
+        .eq("password", inputData.password);
+      if (!error) {
+        setIsLoggedIn(true);
+        navigate(location?.state?.from?.pathname);
+      }
+    } catch (e) {
+      console.error({ error: e.message });
+    }
   };
   const logoutUser = () => {
     setIsLoggedIn(false);
   };
   return (
     <authContext.Provider
-      value={{ loggedIn, loggedInUser, handleLogin, logoutUser }}
+      value={{ loggedIn, setIsLoggedIn, loggedInUser, handleLogin, logoutUser }}
     >
       {children}
     </authContext.Provider>

@@ -1,8 +1,11 @@
 import React, { useContext, useState } from "react";
 import "./index.css";
 import { authContext } from "../../context/AuthProvider";
+import { useLocation, useNavigate } from "react-router-dom";
 const Login = () => {
-  const { handleLogin } = useContext(authContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { handleLogin, setIsLoggedIn } = useContext(authContext);
   const [userCredentials, setUserCredentials] = useState({
     email: "",
     password: "",
@@ -11,6 +14,15 @@ const Login = () => {
   const inputChangeHandler = (e) => {
     const { name, value } = e.target;
     setUserCredentials({ ...userCredentials, [name]: value });
+  };
+
+  const guestLoginHandler = (e) => {
+    console.log("guest click handler called");
+    // const validId =
+    //   userCredentials.email === "guest@gmail.com" &&
+    //   userCredentials.password === "guest";
+    setIsLoggedIn(true);
+    navigate(location?.state?.from?.pathname);
   };
   return (
     <div className="login-wrapper">
@@ -47,16 +59,7 @@ const Login = () => {
           >
             login
           </button>
-          <button
-            onClick={() =>
-              handleLogin({
-                password: "guest",
-                email: "guest@gmail.com",
-              })
-            }
-          >
-            login as guest
-          </button>
+          <button onClick={guestLoginHandler}>login as guest</button>
         </div>
       </form>
       {/* <p>login to continue</p> */}
