@@ -13,6 +13,7 @@ import { productContext } from "./context/ProductProvider";
 import MobileFilter from "./components/Filter/MobileFilter/MobileFilter";
 import Login from "./pages/Login/Login";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
+import SignUp from "./pages/SignUp/SignUp";
 
 const App = () => {
   const [showFilter, setShowFilter] = useState(false);
@@ -82,6 +83,7 @@ const App = () => {
             </ProtectedRoutes>
           }
         />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </div>

@@ -18,9 +18,6 @@ const Login = () => {
 
   const guestLoginHandler = (e) => {
     console.log("guest click handler called");
-    // const validId =
-    //   userCredentials.email === "guest@gmail.com" &&
-    //   userCredentials.password === "guest";
     setIsLoggedIn(true);
     navigate(location?.state?.from?.pathname);
   };
@@ -50,7 +47,6 @@ const Login = () => {
         <div className="login-form-item-buttons">
           <button
             onClick={() => {
-              console.log({ userCredentials });
               handleLogin({
                 email: userCredentials.email,
                 password: userCredentials.password,
@@ -62,7 +58,9 @@ const Login = () => {
           <button onClick={guestLoginHandler}>login as guest</button>
         </div>
       </form>
-      {/* <p>login to continue</p> */}
+      <p>
+        No signed up yet? click <Link to="/signup">here</Link> to sign up
+      </p>
     </div>
   );
 };
