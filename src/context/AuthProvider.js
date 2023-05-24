@@ -1,5 +1,7 @@
 import { createContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { supabase } from "../backend/db-connect";
+import { checkLogin } from "../backend/controllers/login.controller";
 
 export const authContext = createContext();
 
@@ -9,27 +11,43 @@ const AuthProvider = ({ children }) => {
   const [loggedIn, setIsLoggedIn] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState({
     email: "guest@gmail.com",
-    name: "guest",
-    password: "guest",
+    user_id: null,
+    accessToken: null,
   });
 
-  const handleLogin = (inputData) => {
-    console.log(
-      "handle login called",
-      inputData.email === "guest@gmail.com" && inputData.password === "guest",
-      inputData
-    );
-    const validId =
-      inputData.email === "guest@gmail.com" && inputData.password === "guest";
-    setIsLoggedIn(validId);
-    navigate(location?.state?.from?.pathname);
+  const handleLogin = async (inputData) => {
+    try {
+      let { data, success, error } = await checkLogin(inputData);
+
+      if (success) {
+        setIsLoggedIn(true);
+        setLoggedInUser({
+          ...loggedInUser,
+          user_id: data.user.id,
+          email: data.user.email,
+          accessToken: data.session.access_token,
+        });
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            user_id: data.user.id,
+            email: data.user.email,
+            accessToken: data.session.access_token,
+          })
+        );
+        navigate(location?.state?.from?.pathname);
+      }
+    } catch (e) {
+      console.error({ error: e.message });
+    }
   };
   const logoutUser = () => {
     setIsLoggedIn(false);
   };
+
   return (
     <authContext.Provider
-      value={{ loggedIn, loggedInUser, handleLogin, logoutUser }}
+      value={{ loggedIn, setIsLoggedIn, loggedInUser, handleLogin, logoutUser }}
     >
       {children}
     </authContext.Provider>

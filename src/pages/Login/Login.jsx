@@ -1,8 +1,11 @@
 import React, { useContext, useState } from "react";
 import "./index.css";
 import { authContext } from "../../context/AuthProvider";
+import { useLocation, useNavigate } from "react-router-dom";
 const Login = () => {
-  const { handleLogin } = useContext(authContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { handleLogin, setIsLoggedIn } = useContext(authContext);
   const [userCredentials, setUserCredentials] = useState({
     email: "",
     password: "",
@@ -11,6 +14,12 @@ const Login = () => {
   const inputChangeHandler = (e) => {
     const { name, value } = e.target;
     setUserCredentials({ ...userCredentials, [name]: value });
+  };
+
+  const guestLoginHandler = (e) => {
+    console.log("guest click handler called");
+    setIsLoggedIn(true);
+    navigate(location?.state?.from?.pathname);
   };
   return (
     <div className="login-wrapper">
@@ -38,7 +47,6 @@ const Login = () => {
         <div className="login-form-item-buttons">
           <button
             onClick={() => {
-              console.log({ userCredentials });
               handleLogin({
                 email: userCredentials.email,
                 password: userCredentials.password,
@@ -47,19 +55,12 @@ const Login = () => {
           >
             login
           </button>
-          <button
-            onClick={() =>
-              handleLogin({
-                password: "guest",
-                email: "guest@gmail.com",
-              })
-            }
-          >
-            login as guest
-          </button>
+          <button onClick={guestLoginHandler}>login as guest</button>
         </div>
       </form>
-      {/* <p>login to continue</p> */}
+      <p>
+        No signed up yet? click <Link to="/signup">here</Link> to sign up
+      </p>
     </div>
   );
 };
