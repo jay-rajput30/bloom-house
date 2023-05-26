@@ -10,3 +10,6 @@ export const calculateSubTotal = (cart) =>
 
 export const calculateTotal = (subtotal, discount, shippingCost) =>
   Math.ceil(subtotal + discount + shippingCost);
+
+export const setLocalStorage = (data) =>
+  localStorage.setItem("user", JSON.stringify(data));
