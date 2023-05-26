@@ -31,7 +31,6 @@ const AuthProvider = ({ children }) => {
           "user",
           JSON.stringify({
             user_id: data.user.id,
-            email: data.user.email,
             accessToken: data.session.access_token,
           })
         );
@@ -47,7 +46,14 @@ const AuthProvider = ({ children }) => {
 
   return (
     <authContext.Provider
-      value={{ loggedIn, setIsLoggedIn, loggedInUser, handleLogin, logoutUser }}
+      value={{
+        loggedIn,
+        setIsLoggedIn,
+        setLoggedInUser,
+        loggedInUser,
+        handleLogin,
+        logoutUser,
+      }}
     >
       {children}
     </authContext.Provider>

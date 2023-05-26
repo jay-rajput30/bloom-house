@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import "./index.css";
 import { authContext } from "../../context/AuthProvider";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -58,9 +58,11 @@ const Login = () => {
           <button onClick={guestLoginHandler}>login as guest</button>
         </div>
       </form>
-      <p>
-        No signed up yet? click <Link to="/signup">here</Link> to sign up
-      </p>
+      <div className="login-form-item-link">
+        <p>
+          No signed up yet? click <Link to="/signup">here</Link> to sign up
+        </p>
+      </div>
     </div>
   );
 };
