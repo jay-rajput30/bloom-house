@@ -16,12 +16,12 @@ export const getUserWishlist = async (userId) => {
   try {
     let { data: wishlist, error } = await supabase
       .from("wishlist")
-      .select("*")
+      .select("id, products")
       .eq("user_id", userId);
-    console.log({ wishlistController: wishlist });
+    console.log({ wishlistController: wishlist[0] });
     if (!error) {
       console.log({ wishlistData: wishlist });
-      return { success: true, data: wishlist, error };
+      return { success: true, data: wishlist[0], error };
     }
   } catch (e) {
     return { success: false, error };

@@ -14,7 +14,7 @@ function Wishlist({ addedToWishlist, wishlistBtnClickHandler }) {
           loggedInUser.user_id
         );
         if (success) {
-          dispatch({ type: "LOAD_WISHLIST", payload: data });
+          dispatch({ type: "LOAD_WISHLIST", payload: data.products });
         }
       } catch (e) {
         console.error(e);
@@ -23,6 +23,7 @@ function Wishlist({ addedToWishlist, wishlistBtnClickHandler }) {
 
     fetchData();
   }, []);
+
   return (
     <div className="wishlist-wrapper">
       {wishlist?.length === 0 && (

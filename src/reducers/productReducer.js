@@ -19,7 +19,10 @@ export const productReducer = (state, { type, payload }) => {
       return { ...state, cart: updatedCart };
     }
     case "LOAD_WISHLIST": {
-      return { ...state, wishlist: [...state.wishlist, payload] };
+      const updateWishlist = payload.map((item) =>
+        state.products?.find((productItem) => productItem.id === item)
+      );
+      return { ...state, wishlist: updateWishlist };
     }
     case "ADD_TO_WISHLIST": {
       if (!state.wishlist.find((item) => item.id === payload.id)) {
@@ -31,7 +34,7 @@ export const productReducer = (state, { type, payload }) => {
       const filteredWishlistProducts = state?.wishlist.filter(
         (item) => item.id !== payload.id
       );
-      console.log("remove wishlist reducer called");
+
       return { ...state, wishlist: filteredWishlistProducts };
     }
     default:
