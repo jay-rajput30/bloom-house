@@ -3,7 +3,7 @@ import "./index.css";
 import { productContext } from "../../context/ProductProvider";
 import CartItemList from "./CartItemList";
 import CartOrderSummary from "./CartOrderSummary";
-
+//TODO: 26-MAY-23 add backend part to add/delete/update cart item
 function Cart() {
   const { cart } = useContext(productContext);
   return (

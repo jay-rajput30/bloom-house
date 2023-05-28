@@ -18,6 +18,9 @@ export const productReducer = (state, { type, payload }) => {
       );
       return { ...state, cart: updatedCart };
     }
+    case "LOAD_WISHLIST": {
+      return { ...state, wishlist: [...state.wishlist, payload] };
+    }
     case "ADD_TO_WISHLIST": {
       if (!state.wishlist.find((item) => item.id === payload.id)) {
         return { ...state, wishlist: [...state.wishlist, payload] };

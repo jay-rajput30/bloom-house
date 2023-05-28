@@ -14,22 +14,41 @@ import MobileFilter from "./components/Filter/MobileFilter/MobileFilter";
 import Login from "./pages/Login/Login";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
 import SignUp from "./pages/SignUp/SignUp";
+import { updateWishList } from "./backend/controllers/wishlist.controller";
+import { authContext } from "./context/AuthProvider";
 
 const App = () => {
   const [showFilter, setShowFilter] = useState(false);
   const [addedToWishlist, setAddedToWishlist] = useState([]);
   const { dispatch } = useContext(productContext);
-
+  const { loggedInUser } = useContext(authContext);
   //TODO: add custom hook for form input change handlers
 
-  const wishlistBtnClickHandler = (item) => {
+  const wishlistBtnClickHandler = async (item) => {
     if (!addedToWishlist.includes(item.id)) {
+      console.log([...addedToWishlist, item.id]);
+      console.log({
+        item,
+        addedToWishlist: [
+          ...addedToWishlist.map((wishlistItem) => wishlistItem?.id),
+          item.id,
+        ],
+      });
+      const { success, data, error } = await updateWishList(
+        [...addedToWishlist, item.id],
+        loggedInUser?.user_id
+      );
       setAddedToWishlist([...addedToWishlist, item.id]);
       dispatch({ type: "ADD_TO_WISHLIST", payload: item });
     } else {
       const filteredaddedToWishlist = addedToWishlist.filter(
         (wishlistItem) => wishlistItem !== item.id
       );
+      const { success, data, error } = await updateWishList(
+        [...filteredaddedToWishlist],
+        loggedInUser?.user_id
+      );
+
       dispatch({ type: "REMOVE_FROM_WISHLIST", payload: item });
       setAddedToWishlist(filteredaddedToWishlist);
     }
