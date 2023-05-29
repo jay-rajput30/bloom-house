@@ -1,7 +1,7 @@
 .homepage-main {
   height: 80vh;
   width: 100%;
-  background-image: url(../../assets/homepage-main.avif);
+  background-image: url(../../assets/hompage-cover-image.avif);
   background-position: 100% 100%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -21,7 +21,7 @@
 }
 .homepage-main button {
   background-color: var(--primary-color);
-  border: none;
+  border: 2px solid var(--secondary-color);
   border-radius: 5px;
   color: var(--secondary-color);
   font-size: var(--font-length-md2);

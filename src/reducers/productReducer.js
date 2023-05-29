@@ -1,9 +1,23 @@
+import { addToCart } from "../backend/controllers/cart.controller";
+
 export const productReducer = (state, { type, payload }) => {
   switch (type) {
     case "UPDATE_PRODUCTS":
       return { ...state, products: payload };
-    case "ADD_TO_CART":
-      return { ...state, cart: [...state.cart, { ...payload, quantity: 1 }] };
+    case "ADD_TO_CART": {
+      // const { success, data, error } = await addToCart(payload.user_id, {
+      //   plantId: payload.plantId,
+      //   quantity: payload.quantity,
+      // });
+      return {
+        ...state,
+        cart: [
+          ...state.cart,
+          { plantId: payload.plantId, quantity: payload.quantity },
+        ],
+      };
+    }
+
     case "REMOVE_FROM_CART": {
       const filteredCartProducts = state.cart?.filter(
         (item) => item.id !== payload.id
@@ -18,6 +32,12 @@ export const productReducer = (state, { type, payload }) => {
       );
       return { ...state, cart: updatedCart };
     }
+    case "LOAD_WISHLIST": {
+      const updateWishlist = payload.map((item) =>
+        state.products?.find((productItem) => productItem.id === item)
+      );
+      return { ...state, wishlist: updateWishlist };
+    }
     case "ADD_TO_WISHLIST": {
       if (!state.wishlist.find((item) => item.id === payload.id)) {
         return { ...state, wishlist: [...state.wishlist, payload] };
@@ -28,7 +48,7 @@ export const productReducer = (state, { type, payload }) => {
       const filteredWishlistProducts = state?.wishlist.filter(
         (item) => item.id !== payload.id
       );
-      console.log("remove wishlist reducer called");
+
       return { ...state, wishlist: filteredWishlistProducts };
     }
     default:

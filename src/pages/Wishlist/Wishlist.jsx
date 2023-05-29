@@ -1,9 +1,28 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { productContext } from "../../context/ProductProvider";
 import ProductCard from "../../components/Cards/ProductCard/ProductCard";
 import "./index.css";
+import { getUserWishlist } from "../../backend/controllers/wishlist.controller";
+import { authContext } from "../../context/AuthProvider";
 function Wishlist({ addedToWishlist, wishlistBtnClickHandler }) {
-  const { wishlist } = useContext(productContext);
+  const { loggedInUser } = useContext(authContext);
+  const { wishlist, dispatch } = useContext(productContext);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data, success, error } = await getUserWishlist(
+          loggedInUser.user_id
+        );
+        if (success) {
+          dispatch({ type: "LOAD_WISHLIST", payload: data.products });
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="wishlist-wrapper">
