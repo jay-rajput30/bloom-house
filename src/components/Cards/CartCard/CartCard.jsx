@@ -1,18 +1,49 @@
 import React, { useContext } from "react";
 import { X } from "react-feather";
 import "./index.css";
+import { authContext } from "../../../context/AuthProvider";
 import { productContext } from "../../../context/ProductProvider";
+import { updateCart } from "../../../backend/controllers/cart.controller";
 const CartCard = ({ cartItem }) => {
+  const { loggedInUser } = useContext(authContext);
   const { dispatch } = useContext(productContext);
-  const removeCartButtonClickHandler = (item) => {
-    dispatch({ type: "REMOVE_FROM_CART", payload: item });
+  const { cart } = useContext(productContext);
+  const removeCartButtonClickHandler = async (item) => {
+    try {
+      const updatedCartItems = cart.filter(
+        (cartItem) => cartItem.id !== item.id
+      );
+
+      const { data, error, success } = await updateCart(
+        loggedInUser.user_id,
+        updatedCartItems
+      );
+      if (success) {
+        dispatch({ type: "REMOVE_CART", payload: item });
+      }
+    } catch (e) {
+      console.error(e);
+    }
   };
-  const cartQuantityChangeHandler = (e) => {
-    dispatch({
-      type: "UPDATE_CART",
-      payload: { item: cartItem, quantity: +e.target.value },
-    });
-    console.log({ value: e.target.value, cartItem });
+  const cartQuantityChangeHandler = async (e, cartItem) => {
+    try {
+      const updatedCartItems = cart.map((item) =>
+        cartItem.id === item.id ? { ...item, quantity: +e.target.value } : item
+      );
+
+      const { data, error, success } = await updateCart(
+        loggedInUser.user_id,
+        updatedCartItems
+      );
+      if (success) {
+        dispatch({
+          type: "UPDATE_CART",
+          payload: { item: cartItem, quantity: +e.target.value },
+        });
+      }
+    } catch (e) {
+      console.error(e);
+    }
   };
   return (
     <article className="cart-card-wrapper">
@@ -32,7 +63,7 @@ const CartCard = ({ cartItem }) => {
           <small id="cart-card-details-price">${cartItem?.price}</small>
           <div>
             <span>Qty: </span>
-            <select onChange={cartQuantityChangeHandler}>
+            <select onChange={(e) => cartQuantityChangeHandler(e, cartItem)}>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>

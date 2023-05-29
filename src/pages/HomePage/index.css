@@ -26,6 +26,7 @@
   color: var(--secondary-color);
   font-size: var(--font-length-md2);
   padding: 0.3rem 0.5rem;
+  box-shadow: 2px 4px 4px var(--color-shadow) inset;
 }
 
 .homepage-categories h2 {
