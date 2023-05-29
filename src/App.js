@@ -26,14 +26,6 @@ const App = () => {
 
   const wishlistBtnClickHandler = async (item) => {
     if (!addedToWishlist.includes(item.id)) {
-      console.log([...addedToWishlist, item.id]);
-      console.log({
-        item,
-        addedToWishlist: [
-          ...addedToWishlist.map((wishlistItem) => wishlistItem?.id),
-          item.id,
-        ],
-      });
       const { success, data, error } = await updateWishList(
         [...addedToWishlist, item.id],
         loggedInUser?.user_id

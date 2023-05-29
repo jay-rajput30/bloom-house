@@ -5,6 +5,7 @@ import { Heart, Star } from "react-feather";
 import { useProducts } from "../../../hooks/useProducts";
 import { productContext } from "../../../context/ProductProvider";
 import { authContext } from "../../../context/AuthProvider";
+import { addToCart } from "../../../backend/controllers/cart.controller";
 
 const ProductCard = ({
   plant,
@@ -12,22 +13,37 @@ const ProductCard = ({
   addedToWishlist,
   wishlistBtnClickHandler,
 }) => {
-  const { loggedIn } = useContext(authContext);
+  const { loggedIn, loggedInUser } = useContext(authContext);
   const navigate = useNavigate();
   const location = useLocation();
   const { dispatch } = useProducts();
   const { cart } = useContext(productContext);
-  const cartBtnClickHandler = (item) => {
-    console.log({ loggedIn });
+  const cartBtnClickHandler = async (item) => {
     if (cart?.find((cartItem) => cartItem.id === item.id)) {
       if (loggedIn) {
         navigate("/cart");
       } else {
-        // <Navigate to="/login" state={{ from: location }} />;
         navigate("/login", { state: { from: location } });
       }
     } else {
-      dispatch({ type: "ADD_TO_CART", payload: item });
+      const { success, data, error } = await addToCart(loggedInUser.user_id, [
+        ...cart,
+        {
+          plantId: item.id,
+          quantity: 1,
+        },
+      ]);
+      if (success) {
+        console.log({ data });
+        dispatch({
+          type: "ADD_TO_CART",
+          payload: {
+            plantId: item.id,
+            quantity: 1,
+            userId: loggedInUser.user_id,
+          },
+        });
+      }
     }
   };
 
