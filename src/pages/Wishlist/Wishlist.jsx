@@ -10,9 +10,7 @@ function Wishlist({ addedToWishlist, wishlistBtnClickHandler }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data, success, error } = await getUserWishlist(
-          loggedInUser.user_id
-        );
+        const { data, success } = await getUserWishlist(loggedInUser.user_id);
         if (success) {
           dispatch({ type: "LOAD_WISHLIST", payload: data.products });
         }
@@ -22,7 +20,7 @@ function Wishlist({ addedToWishlist, wishlistBtnClickHandler }) {
     };
 
     fetchData();
-  }, []);
+  }, [wishlist]);
 
   return (
     <div className="wishlist-wrapper">
