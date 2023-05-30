@@ -50,7 +50,7 @@ const App = () => {
     <div className="app-wrapper">
       <MobileNavbar />
       <DesktopNavbar />
-      {!showFilter && (
+      {/* {!showFilter && (
         <div className="filter-button">
           <Filter
             color="hsl(36, 93%, 68%)"
@@ -60,7 +60,7 @@ const App = () => {
             onClick={() => setShowFilter(true)}
           />
         </div>
-      )}
+      )} */}
       {showFilter && <MobileFilter setShowFilter={setShowFilter} />}
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -68,6 +68,7 @@ const App = () => {
           path="/products"
           element={
             <ProductsWrapper
+              setShowFilter={setShowFilter}
               addedToWishlist={addedToWishlist}
               wishlistBtnClickHandler={wishlistBtnClickHandler}
             />

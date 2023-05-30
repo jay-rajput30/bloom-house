@@ -8,7 +8,6 @@ export const getUserCart = async (userId) => {
       .eq("user_id", userId);
 
     if (!error) {
-      console.log({ cart });
       return { success: true, data: cart, error };
     }
   } catch (e) {
@@ -16,9 +15,8 @@ export const getUserCart = async (userId) => {
   }
 };
 
-export const addToCart = async (userId, items) => {
+export const updateCart = async (userId, items) => {
   try {
-    console.log({ cartController: items });
     const { data, error } = await supabase
       .from("cart")
       .update({ products: items })

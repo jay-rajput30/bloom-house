@@ -1,11 +1,13 @@
-.price-filter {
+.price-filter-wrapper {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   width: 100%;
+  gap: 4px;
 }
 
-.price-filter div {
+.price-filter-wrapper div {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
 }

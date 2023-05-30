@@ -1,20 +1,15 @@
-import { addToCart } from "../backend/controllers/cart.controller";
+import { updateCart } from "../backend/controllers/cart.controller";
 
 export const productReducer = (state, { type, payload }) => {
   switch (type) {
     case "UPDATE_PRODUCTS":
       return { ...state, products: payload };
+    case "LOAD_CART":
+      return { ...state, cart: [...payload] };
     case "ADD_TO_CART": {
-      // const { success, data, error } = await addToCart(payload.user_id, {
-      //   plantId: payload.plantId,
-      //   quantity: payload.quantity,
-      // });
       return {
         ...state,
-        cart: [
-          ...state.cart,
-          { plantId: payload.plantId, quantity: payload.quantity },
-        ],
+        cart: [...state.cart, payload],
       };
     }
 
@@ -26,9 +21,7 @@ export const productReducer = (state, { type, payload }) => {
     }
     case "UPDATE_CART": {
       const updatedCart = state.cart?.map((cartItem) =>
-        cartItem.id === payload.item?.id
-          ? { ...cartItem, quantity: payload?.quantity }
-          : cartItem
+        cartItem.id === payload.id ? payload : cartItem
       );
       return { ...state, cart: updatedCart };
     }

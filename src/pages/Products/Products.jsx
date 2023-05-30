@@ -8,25 +8,16 @@ import { filterContext } from "../../context/FilterProvider";
 import { productContext } from "../../context/ProductProvider";
 
 import DesktopFilter from "../../components/Filter/DesktopFilter/DesktopFilter";
+import { Filter } from "react-feather";
+import SearchFilter from "./SearchFilter";
 
-function Products({ products, addedToWishlist, wishlistBtnClickHandler }) {
-  const { status, error, dispatch } = useProducts();
-  const { wishlist, cart } = useContext(productContext);
-  // const [addedToWishlist, setAddedToWishlist] = useState([]);
-  const { searchTerm, searchTermChangeHandler } = useContext(filterContext);
-
-  // const wishlistBtnClickHandler = (item) => {
-  //   if (!addedToWishlist.includes(item.id)) {
-  //     setAddedToWishlist([...addedToWishlist, item.id]);
-  //     dispatch({ type: "ADD_TO_WISHLIST", payload: item });
-  //   } else {
-  //     const filteredaddedToWishlist = addedToWishlist.filter(
-  //       (wishlistItem) => wishlistItem !== item.id
-  //     );
-  //     dispatch({ type: "REMOVE_FROM_WISHLIST", payload: item });
-  //     setAddedToWishlist(filteredaddedToWishlist);
-  //   }
-  // };
+function Products({
+  products,
+  addedToWishlist,
+  wishlistBtnClickHandler,
+  setShowFilter,
+}) {
+  const { status, error } = useProducts();
 
   if (error) {
     return <Error />;
@@ -37,13 +28,7 @@ function Products({ products, addedToWishlist, wishlistBtnClickHandler }) {
   if (status === "success") {
     return (
       <div className="products-wrapper">
-        {/* <input
-          type="text"
-          value={searchTerm}
-          className="mobile-product-search"
-          placeholder="enter name to search..."
-          onChange={searchTermChangeHandler}
-        /> */}
+        <SearchFilter setShowFilter={setShowFilter} />
         <DesktopFilter />
         <ul>
           {products?.map((item) => {

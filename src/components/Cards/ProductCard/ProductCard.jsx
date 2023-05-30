@@ -5,7 +5,7 @@ import { Heart, Star } from "react-feather";
 import { useProducts } from "../../../hooks/useProducts";
 import { productContext } from "../../../context/ProductProvider";
 import { authContext } from "../../../context/AuthProvider";
-import { addToCart } from "../../../backend/controllers/cart.controller";
+import { updateCart } from "../../../backend/controllers/cart.controller";
 
 const ProductCard = ({
   plant,
@@ -26,21 +26,19 @@ const ProductCard = ({
         navigate("/login", { state: { from: location } });
       }
     } else {
-      const { success, data, error } = await addToCart(loggedInUser.user_id, [
+      const { success, data, error } = await updateCart(loggedInUser.user_id, [
         ...cart,
         {
-          plantId: item.id,
+          ...item,
           quantity: 1,
         },
       ]);
       if (success) {
-        console.log({ data });
         dispatch({
           type: "ADD_TO_CART",
           payload: {
-            plantId: item.id,
+            ...item,
             quantity: 1,
-            userId: loggedInUser.user_id,
           },
         });
       }

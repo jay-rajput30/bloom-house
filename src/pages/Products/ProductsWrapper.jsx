@@ -5,7 +5,11 @@ import { filterContext } from "../../context/FilterProvider";
 
 //wrapper component for products to do all the logical calculations
 
-const ProductsWrapper = ({ addedToWishlist, wishlistBtnClickHandler }) => {
+const ProductsWrapper = ({
+  addedToWishlist,
+  wishlistBtnClickHandler,
+  setShowFilter,
+}) => {
   const { searchTerm, selectedRadioBtn, selectedRating, selectedPrice } =
     useContext(filterContext);
 
@@ -31,6 +35,7 @@ const ProductsWrapper = ({ addedToWishlist, wishlistBtnClickHandler }) => {
 
   return (
     <Products
+      setShowFilter={setShowFilter}
       products={filteredProducts}
       addedToWishlist={addedToWishlist}
       wishlistBtnClickHandler={wishlistBtnClickHandler}

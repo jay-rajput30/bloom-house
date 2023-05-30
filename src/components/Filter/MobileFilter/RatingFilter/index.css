@@ -1,14 +1,16 @@
-.rating-filter span {
+.rating-filter-wrapper span {
   padding: 0;
   margin: 0;
 }
-.rating-filter {
+.rating-filter-wrapper {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   width: 100%;
-}
-.rating-filter div {
-  display: flex;
-  align-items: center;
   gap: 4px;
+}
+.rating-filter-wrapper div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
 }

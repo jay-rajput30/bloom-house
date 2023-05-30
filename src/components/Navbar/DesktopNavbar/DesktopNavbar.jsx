@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import "./index.css";
-import { ShoppingCart, User } from "react-feather";
+import { LogIn, LogOut, ShoppingCart, User } from "react-feather";
 import { NavLink } from "react-router-dom";
 import { filterContext } from "../../../context/FilterProvider";
 import { authContext } from "../../../context/AuthProvider";
@@ -50,15 +50,13 @@ function DesktopNavbar() {
           </NavLink>
         </li>
       </ul>
-      {loggedIn && (
+      {loggedIn ? (
         <button className="logout-button" onClick={logoutUser}>
           logout
         </button>
+      ) : (
+        <LogIn color="hsl(60, 100%, 100%)" strokeWidth="3" />
       )}
-      <div className="icon-container">
-        <ShoppingCart color="hsl(60, 100%, 100%)" strokeWidth="3" />
-        <User color="hsl(60, 100%, 100%)" strokeWidth="3" />
-      </div>
     </nav>
   );
 }

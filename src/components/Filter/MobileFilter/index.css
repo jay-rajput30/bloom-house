@@ -4,8 +4,8 @@
   width: 100vw;
   position: fixed;
   left: 0px;
-  top: 100px;
-  height: 60vh;
+  bottom: 150px;
+  height: 50vh;
   background-color: var(--secondary-color);
   z-index: 999;
 }
@@ -23,6 +23,7 @@
   align-items: flex-start;
   gap: 40px;
 }
+
 /* 
 .rating-filter {
   display: flex;
