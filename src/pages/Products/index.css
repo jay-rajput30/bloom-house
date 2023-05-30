@@ -14,14 +14,31 @@
   margin-top: 4.5rem;
   height: fit-content;
 }
-.mobile-product-search {
+/* .mobile-product-search {
   margin-top: var(--space-3);
+} */
+
+.search-filter-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+  padding: var(--space-2) var(--space-4);
+  position: sticky;
+  top: 68px;
+  background-color: var(--primary-color);
+  z-index: 100;
+  box-shadow: 2px 4px 4px var(--color-shadow);
 }
 
 @media screen and (min-width: 980px) {
   .products-wrapper ul {
     margin-top: var(--space-3);
     flex: 1;
+  }
+  .search-filter-wrapper {
+    display: none;
   }
   .products-wrapper {
     flex-direction: row;

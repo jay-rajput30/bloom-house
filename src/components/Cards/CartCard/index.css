@@ -59,7 +59,7 @@
 
 @media screen and (min-width: 800px) {
   .cart-card-wrapper {
-    max-width: 45vw;
+    width: 35vw;
   }
 
   .cart-item-quantity-wrapper > * {

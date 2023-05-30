@@ -33,7 +33,9 @@ const CartOrderSummary = () => {
                 )}
           </p>
         </div>
-        <button>procced to checkout</button>
+        <div>
+          <button>procced to checkout</button>
+        </div>
       </article>
     </section>
   );
