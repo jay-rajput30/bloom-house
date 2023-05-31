@@ -8,8 +8,9 @@ import { filterContext } from "../../context/FilterProvider";
 import { productContext } from "../../context/ProductProvider";
 
 import DesktopFilter from "../../components/Filter/DesktopFilter/DesktopFilter";
-import { Filter } from "react-feather";
+import { Filter, Loader } from "react-feather";
 import SearchFilter from "./SearchFilter";
+import Loading from "../../utils/Loading/Loading";
 
 function Products({
   products,
@@ -23,7 +24,7 @@ function Products({
     return <Error />;
   }
   if (status === "loading") {
-    return <p>loading data. Please wait...</p>;
+    return <Loading />;
   }
   if (status === "success") {
     return (

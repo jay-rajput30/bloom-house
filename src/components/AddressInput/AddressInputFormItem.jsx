@@ -1,8 +1,14 @@
 import React from "react";
 
-const SingUpFormItem = ({ inputChangeHandler, type, item, name, text }) => {
+const AddressInputFormItem = ({
+  inputChangeHandler,
+  type,
+  item,
+  name,
+  text,
+}) => {
   return (
-    <div className="signup-form-item">
+    <div className="address-input-form-item">
       <label htmlFor={item}>{text}: </label>
       <input
         type={type}
@@ -15,4 +21,4 @@ const SingUpFormItem = ({ inputChangeHandler, type, item, name, text }) => {
   );
 };
 
-export default SingUpFormItem;
+export default AddressInputFormItem;
