@@ -29,7 +29,19 @@ export const signUpUser = async (signUpData) => {
       .from("cart")
       .insert([{ user_id: data.user.id, products: [] }])
       .select();
-    console.log({ data, wishlistData, carttData });
+
+    const { profileData, profileError } = await supabase
+      .from("profile")
+      .insert([
+        {
+          id: data.user.id,
+          address: [],
+          firstName: signUpData.firstName,
+          lastName: signUpData.lastName,
+          phoneNo: signUpData.phoneNo,
+        },
+      ]);
+
     if (data) {
       return { success: true, data, error };
     }

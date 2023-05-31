@@ -16,6 +16,7 @@ import ProtectedRoutes from "./utils/ProtectedRoutes";
 import SignUp from "./pages/SignUp/SignUp";
 import { updateWishList } from "./backend/controllers/wishlist.controller";
 import { authContext } from "./context/AuthProvider";
+import AddressInput from "./components/AddressInput/AddressInput";
 
 const App = () => {
   const [showFilter, setShowFilter] = useState(false);
@@ -50,17 +51,7 @@ const App = () => {
     <div className="app-wrapper">
       <MobileNavbar />
       <DesktopNavbar />
-      {/* {!showFilter && (
-        <div className="filter-button">
-          <Filter
-            color="hsl(36, 93%, 68%)"
-            strokeWidth="3"
-            fill="hsl(36, 93%, 68%)"
-            size="40"
-            onClick={() => setShowFilter(true)}
-          />
-        </div>
-      )} */}
+
       {showFilter && <MobileFilter setShowFilter={setShowFilter} />}
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -95,7 +86,7 @@ const App = () => {
             </ProtectedRoutes>
           }
         />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signup" element={<AddressInput />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </div>

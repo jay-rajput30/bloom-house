@@ -13,6 +13,9 @@ const SignUp = () => {
 
   const { setLoggedInUser, setIsLoggedIn } = useContext(authContext);
   const [signupDetails, setSignUpDetails] = useState({
+    firstName: "",
+    lastName: "",
+    phoneNo: null,
     email: "",
     password: "",
   });
@@ -29,6 +32,9 @@ const SignUp = () => {
         let { data, success, error } = await signUpUser({
           email: signupDetails.email,
           password: signupDetails.password,
+          firstName: signupDetails.firstName,
+          lastName: signupDetails.lastName,
+          phoneNo: signupDetails.phoneNo,
         });
 
         if (success) {
@@ -48,9 +54,11 @@ const SignUp = () => {
 
         setSignUpDetails({
           ...signupDetails,
+          firstName: "",
+          lastName: "",
+          phoneNo: null,
           email: "",
           password: "",
-          confirmPassword: "",
         });
       }
     } catch (e) {
@@ -63,14 +71,39 @@ const SignUp = () => {
       <form className="signup-form" onSubmit={(e) => e.preventDefault()}>
         <SingUpFormItem
           inputChangeHandler={inputChangeHandler}
+          type="text"
+          name="firstName"
+          item={signupDetails.firstName}
+          text="First Name"
+        />
+        <SingUpFormItem
+          inputChangeHandler={inputChangeHandler}
+          type="text"
+          name="lastName"
+          item={signupDetails.lastName}
+          text="Last Name"
+        />
+        <SingUpFormItem
+          inputChangeHandler={inputChangeHandler}
+          type="number"
+          name="phoneNo"
+          item={signupDetails.phoneNo}
+          text="Phone No"
+        />
+        <SingUpFormItem
+          inputChangeHandler={inputChangeHandler}
           type="email"
+          name="email"
           item={signupDetails.email}
+          text="Email"
         />
 
         <SingUpFormItem
           inputChangeHandler={inputChangeHandler}
           type="password"
+          name="password"
           item={signupDetails.password}
+          text="Password"
         />
 
         <div className="signup-form-item-buttons">
