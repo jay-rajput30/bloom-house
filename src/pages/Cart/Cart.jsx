@@ -24,12 +24,11 @@ function Cart() {
       }
     };
     fetchCart();
-  }, [cart]);
+  }, []);
 
   return (
     <div className="cart-container">
       {cart?.length === 0 && <h2>oops.. not items added to cart as yet</h2>}
-      {/* <h2>My cart</h2> */}
       {cart?.length > 0 && (
         <div className="cart-wrapper">
           <CartItemList />

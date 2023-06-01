@@ -6,10 +6,15 @@ export const addAddress = async (addressData, userId) => {
       .from("profile")
       .select("address")
       .eq("id", userId);
-    console.log({ profileData });
+
     const { data, error } = await supabase
       .from("profile")
-      .update({ address: [...profileData[0].address, addressData] })
+      .update({
+        address: [
+          ...profileData[0].address,
+          { ...addressData, id: crypto.randomUUID() },
+        ],
+      })
       .eq("id", userId);
 
     if (!error) {
@@ -17,5 +22,19 @@ export const addAddress = async (addressData, userId) => {
     }
   } catch (e) {
     return { sucess: false, error: e };
+  }
+};
+
+export const getAddress = async (userId) => {
+  try {
+    const { data, error } = await supabase
+      .from("profile")
+      .select("address")
+      .eq("id", userId);
+    if (!error) {
+      return { success: true, data: data[0].address, error };
+    }
+  } catch (e) {
+    return { success: false, error: e };
   }
 };

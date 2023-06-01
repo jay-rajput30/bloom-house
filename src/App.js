@@ -7,7 +7,6 @@ import "./style.css";
 import MobileNavbar from "./components/Navbar/MobileNavbar/MobileNavbar";
 import DesktopNavbar from "./components/Navbar/DesktopNavbar/DesktopNavbar";
 import { useContext, useState } from "react";
-import { Filter } from "react-feather";
 import ProductsWrapper from "./pages/Products/ProductsWrapper";
 import { productContext } from "./context/ProductProvider";
 import MobileFilter from "./components/Filter/MobileFilter/MobileFilter";
@@ -17,6 +16,7 @@ import SignUp from "./pages/SignUp/SignUp";
 import { updateWishList } from "./backend/controllers/wishlist.controller";
 import { authContext } from "./context/AuthProvider";
 import AddressInput from "./components/AddressInput/AddressInput";
+import Checkout from "./pages/Checkout/Checkout";
 
 const App = () => {
   const [showFilter, setShowFilter] = useState(false);
@@ -87,6 +87,7 @@ const App = () => {
           }
         />
         <Route path="/signup" element={<AddressInput />} />
+        <Route path="/checkout" element={<Checkout />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </div>
