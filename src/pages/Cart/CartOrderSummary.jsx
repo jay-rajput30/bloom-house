@@ -33,7 +33,7 @@ const CartOrderSummary = () => {
           <p>
             $
             {cart.length === 0
-              ? "0"
+              ? 0
               : calculateTotal(
                   calculateSubTotal(cart),
                   Math.ceil(calculateSubTotal(cart) * 0.2),
@@ -42,7 +42,7 @@ const CartOrderSummary = () => {
           </p>
         </div>
         <div>
-          <button onClick={buttonClickHandler}>procced to checkout</button>
+          <button onClick={buttonClickHandler}>proceed to checkout</button>
         </div>
       </article>
     </section>

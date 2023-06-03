@@ -3,7 +3,7 @@ import "./index.css";
 import AddressInputFormItem from "./AddressInputFormItem";
 import { addAddress } from "../../backend/controllers/profile.controller";
 import { authContext } from "../../context/AuthProvider";
-const AddressInput = () => {
+const AddressInput = ({ setShowAddressInput, setcheckoutToggle }) => {
   const { loggedInUser } = useContext(authContext);
   const [addressInput, setAddressInput] = useState({
     flatNo: "",
@@ -12,21 +12,29 @@ const AddressInput = () => {
     state: "",
     pincode: 000000,
   });
-  console.log({ addressInput });
+
   const inputChangeHandler = (e) => {
     const { name, value } = e.target;
-    // console.log({ name, value });
+
     setAddressInput({ ...addressInput, [name]: value });
   };
 
   const formBtnClickHandler = async () => {
-    console.log({ userid: loggedInUser.user_id });
+    console.log({ insideAddressInput: loggedInUser?.user_id });
     const { data, success } = await addAddress(
       addressInput,
-      "89ba83f7-2679-4059-a00f-c6af4065f6f1"
+      loggedInUser?.user_id
     );
     if (success) {
-      console.log({ AdressData: data });
+      setShowAddressInput(false);
+      setAddressInput({
+        flatNo: "",
+        area: "",
+        city: "",
+        state: "",
+        pincode: 000000,
+      });
+      setcheckoutToggle((prev) => !prev);
     }
   };
 
@@ -69,7 +77,8 @@ const AddressInput = () => {
           text="Pincode"
         />
         <div className="signup-form-item-buttons">
-          <button onClick={formBtnClickHandler}>add address</button>
+          <button onClick={formBtnClickHandler}>save</button>
+          <button onClick={() => setShowAddressInput(false)}>cancel</button>
         </div>
       </form>
     </div>

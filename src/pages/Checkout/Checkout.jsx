@@ -5,27 +5,29 @@ import { getAddress } from "../../backend/controllers/profile.controller";
 import AddressList from "./AddressList";
 import CartOrderSummary from "../Cart/CartOrderSummary";
 const Checkout = () => {
-  console.log("checkout Component");
   const { loggedInUser } = useContext(authContext);
   const [addresses, setAddresses] = useState([]);
+  const [checkoutToggle, setcheckoutToggle] = useState(false);
   useEffect(() => {
     const fetchAddress = async () => {
       try {
         const { data, success } = await getAddress(loggedInUser.user_id);
         if (success) {
           setAddresses(data);
-          console.log({ address: data });
         }
       } catch (e) {
         console.error(e);
       }
     };
     fetchAddress();
-  }, []);
+  }, [checkoutToggle]);
   console.log({ addresses });
   return (
     <div className="checkout-page-wrapper">
-      <AddressList addresses={addresses} />
+      <AddressList
+        addresses={addresses}
+        setcheckoutToggle={setcheckoutToggle}
+      />
       <CartOrderSummary />
     </div>
   );
