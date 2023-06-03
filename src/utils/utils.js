@@ -5,11 +5,12 @@ export const getCategories = (data) => {
   );
 };
 
-export const calculateSubTotal = (cart) =>
-  cart?.reduce((acc, cur) => (acc += cur.price * cur.quantity), 0);
+export const calculateSubTotal = (cart) => {
+  return cart?.reduce((acc, cur) => acc + cur.price * cur.quantity, 0);
+};
 
 export const calculateTotal = (subtotal, discount, shippingCost) =>
-  Math.ceil(subtotal + discount + shippingCost);
+  subtotal - discount + shippingCost;
 
 export const setLocalStorage = (data) =>
   localStorage.setItem("user", JSON.stringify(data));

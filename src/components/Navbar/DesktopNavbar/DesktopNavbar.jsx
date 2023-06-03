@@ -4,6 +4,7 @@ import { LogIn, LogOut, ShoppingCart, User } from "react-feather";
 import { NavLink } from "react-router-dom";
 import { filterContext } from "../../../context/FilterProvider";
 import { authContext } from "../../../context/AuthProvider";
+import { useCart } from "../../../context/CartProvider";
 
 const activeStyles = ({ isActive }) => {
   return {
@@ -18,6 +19,11 @@ const activeStyles = ({ isActive }) => {
 function DesktopNavbar() {
   const { logoutUser, loggedIn } = useContext(authContext);
   const { searchTerm, searchTermChangeHandler } = useContext(filterContext);
+  const { setCartToggle } = useCart();
+  const logoutBtnClickHandler = () => {
+    setCartToggle((prev) => !prev);
+    logoutUser();
+  };
   return (
     <nav className="desktop-navbar">
       <h2>BloomHouse</h2>
@@ -51,7 +57,7 @@ function DesktopNavbar() {
         </li>
       </ul>
       {loggedIn ? (
-        <button className="logout-button" onClick={logoutUser}>
+        <button className="logout-button" onClick={logoutBtnClickHandler}>
           logout
         </button>
       ) : (

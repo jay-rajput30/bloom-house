@@ -13,13 +13,13 @@ root.render(
   <StrictMode>
     <BrowserRouter>
       <AuthProvider>
-        <ProductProvider>
-          <CartProvider>
+        <CartProvider>
+          <ProductProvider>
             <FilterProvider>
               <App />
             </FilterProvider>
-          </CartProvider>
-        </ProductProvider>
+          </ProductProvider>
+        </CartProvider>
       </AuthProvider>
     </BrowserRouter>
   </StrictMode>

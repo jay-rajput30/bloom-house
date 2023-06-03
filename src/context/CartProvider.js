@@ -8,7 +8,7 @@ const cartContext = createContext();
 
 const CartProvider = ({ children }) => {
   const [cartData, setCartData] = useState([]);
-  const [cartToggle, setCartToggle] = useState(false);
+  const { cartToggle, setCartToggle } = useContext(authContext);
   const { loggedInUser } = useContext(authContext);
   const navigate = useNavigate();
   const cartAddBtnClickHandler = async (item) => {
@@ -34,30 +34,28 @@ const CartProvider = ({ children }) => {
 
   const fetchCartData = async () => {
     try {
-      console.log({ user: loggedInUser?.user_id });
       let { data: cart, error } = await supabase
         .from("cart")
         .select("id,products")
         .eq("user_id", loggedInUser?.user_id);
 
       if (!error) {
-        console.log({ cartContextEffect: cart });
         setCartData(cart[0].products);
       }
     } catch (e) {
       console.error({ error: e });
     }
   };
+
   useEffect(() => {
     fetchCartData();
   }, [cartToggle]);
+
   return (
     <cartContext.Provider
       value={{
         cartData,
         setCartData,
-        cartToggle,
-        setCartToggle,
         cartAddBtnClickHandler,
       }}
     >
@@ -65,8 +63,6 @@ const CartProvider = ({ children }) => {
     </cartContext.Provider>
   );
 };
-
-export default CartProvider;
 
 export const useCart = () => {
   const {
@@ -84,3 +80,4 @@ export const useCart = () => {
     cartAddBtnClickHandler,
   };
 };
+export default CartProvider;

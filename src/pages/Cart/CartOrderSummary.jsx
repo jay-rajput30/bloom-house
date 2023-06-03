@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
-import { productContext } from "../../context/ProductProvider";
+import React from "react";
 import { calculateSubTotal, calculateTotal } from "../../utils/utils";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useCart } from "../../context/CartProvider";
 
 const CartOrderSummary = () => {
-  const { cart } = useContext(productContext);
+  const { cartData } = useCart();
   const navigate = useNavigate();
   const location = useLocation();
   const buttonClickHandler = () => {
@@ -18,27 +18,27 @@ const CartOrderSummary = () => {
       <article className="order-summary-items">
         <div className="order-summary-item">
           <strong>Subtotal</strong>
-          <p>${Math.ceil(calculateSubTotal(cart))}</p>
+          <p>₹{calculateSubTotal(cartData)}</p>
         </div>
         <div className="order-summary-item">
           <strong>Shipping cost</strong>
-          <p>{cart.length === 0 ? "$0" : "$10"}</p>
+          <p>{cartData.length === 0 ? "₹0" : "₹10"}</p>
         </div>
         <div className="order-summary-item">
-          <strong>Discount(20%)</strong>
-          <p>${Math.ceil(calculateSubTotal(cart) * 0.2)}</p>
+          <strong>Discount(10%)</strong>
+          <p>₹{Math.ceil(calculateSubTotal(cartData) * 0.1)}</p>
         </div>
         <div className="order-summary-item">
           <strong>TOTAL</strong>
           <p>
-            $
-            {cart.length === 0
+            ₹
+            {cartData.length === 0
               ? 0
               : calculateTotal(
-                  calculateSubTotal(cart),
-                  Math.ceil(calculateSubTotal(cart) * 0.2),
+                  calculateSubTotal(cartData),
+                  Math.ceil(calculateSubTotal(cartData) * 0.2),
                   10
-                )}
+                ).toFixed(2)}
           </p>
         </div>
         <div>

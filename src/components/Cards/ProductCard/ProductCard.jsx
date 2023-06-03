@@ -21,7 +21,6 @@ const ProductCard = ({
   const location = useLocation();
   const { dispatch } = useProducts();
   const { cartAddBtnClickHandler, cartData } = useCart();
-  console.log({ cartData });
 
   const wishlistButtonClicked = (plant) => {
     setWishlistToggle((prev) => !prev);

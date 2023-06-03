@@ -8,6 +8,7 @@ export const authContext = createContext();
 const AuthProvider = ({ children }) => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [cartToggle, setCartToggle] = useState(false);
   const [loggedIn, setIsLoggedIn] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState({
     email: "",
@@ -20,6 +21,7 @@ const AuthProvider = ({ children }) => {
       let { data, success, error } = await checkLogin(inputData);
 
       if (success) {
+        setCartToggle((prev) => !prev);
         setIsLoggedIn(true);
         setLoggedInUser({
           ...loggedInUser,
@@ -53,6 +55,8 @@ const AuthProvider = ({ children }) => {
         loggedInUser,
         handleLogin,
         logoutUser,
+        cartToggle,
+        setCartToggle,
       }}
     >
       {children}
