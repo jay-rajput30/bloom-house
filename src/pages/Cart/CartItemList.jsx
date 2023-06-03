@@ -1,15 +1,15 @@
-import React, { useContext } from "react";
-import { productContext } from "../../context/ProductProvider";
+import React from "react";
 import CartCard from "../../components/Cards/CartCard/CartCard";
+import { useCart } from "../../context/CartProvider";
 
 const CartItemList = ({ setCartToggle }) => {
-  const { cart } = useContext(productContext);
+  const { cartData } = useCart();
   return (
     <ul className="cart-items-wrapper">
-      {cart?.map((item) => {
+      {cartData?.map((item) => {
         return (
           <li key={item.id}>
-            <CartCard cartItem={item} setCartToggle={setCartToggle} />
+            <CartCard cartItem={item} />
           </li>
         );
       })}

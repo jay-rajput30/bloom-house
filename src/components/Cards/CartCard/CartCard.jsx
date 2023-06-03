@@ -2,24 +2,23 @@ import React, { useContext } from "react";
 import { X } from "react-feather";
 import "./index.css";
 import { authContext } from "../../../context/AuthProvider";
-import { productContext } from "../../../context/ProductProvider";
 import { updateCart } from "../../../backend/controllers/cart.controller";
-const CartCard = ({ cartItem, setCartToggle }) => {
-  const { loggedInUser } = useContext(authContext);
-  const { dispatch } = useContext(productContext);
-  const { cart } = useContext(productContext);
+import { useCart } from "../../../context/CartProvider";
+const CartCard = ({ cartItem }) => {
+  const { loggedInUser, setCartToggle } = useContext(authContext);
+  const { cartData } = useCart();
   const removeCartButtonClickHandler = async (item) => {
     try {
-      const updatedCartItems = cart.filter(
+      const updatedCartItems = cartData.filter(
         (cartItem) => cartItem.id !== item.id
       );
 
-      const { data, error, success } = await updateCart(
+      const { success } = await updateCart(
         loggedInUser.user_id,
         updatedCartItems
       );
       if (success) {
-        dispatch({ type: "REMOVE_CART", payload: item });
+        // dispatch({ type: "REMOVE_CART", payload: item });
         setCartToggle((prev) => !prev);
       }
     } catch (e) {
@@ -28,19 +27,15 @@ const CartCard = ({ cartItem, setCartToggle }) => {
   };
   const cartQuantityChangeHandler = async (e, cartItem) => {
     try {
-      const updatedCartItems = cart.map((item) =>
+      const updatedCartItems = cartData.map((item) =>
         cartItem.id === item.id ? { ...item, quantity: +e.target.value } : item
       );
 
-      const { data, error, success } = await updateCart(
+      const { success } = await updateCart(
         loggedInUser.user_id,
         updatedCartItems
       );
       if (success) {
-        dispatch({
-          type: "UPDATE_CART",
-          payload: { item: cartItem, quantity: +e.target.value },
-        });
         setCartToggle((prev) => !prev);
       }
     } catch (e) {
@@ -62,10 +57,13 @@ const CartCard = ({ cartItem, setCartToggle }) => {
         <h4>{cartItem?.name}</h4>
 
         <div className="cart-item-quantity-wrapper">
-          <small id="cart-card-details-price">${cartItem?.price}</small>
+          <small id="cart-card-details-price">₹{cartItem?.price}</small>
           <div>
             <span>Qty: </span>
-            <select onChange={(e) => cartQuantityChangeHandler(e, cartItem)}>
+            <select
+              onChange={(e) => cartQuantityChangeHandler(e, cartItem)}
+              defaultValue={cartItem?.quantity}
+            >
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>

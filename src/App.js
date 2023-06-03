@@ -20,32 +20,9 @@ import Checkout from "./pages/Checkout/Checkout";
 
 const App = () => {
   const [showFilter, setShowFilter] = useState(false);
-  const [addedToWishlist, setAddedToWishlist] = useState([]);
-  const { dispatch } = useContext(productContext);
+
   const { loggedInUser } = useContext(authContext);
   //TODO: add custom hook for form input change handlers
-
-  const wishlistBtnClickHandler = async (item) => {
-    if (!addedToWishlist.includes(item.id)) {
-      const { success, data, error } = await updateWishList(
-        [...addedToWishlist, item.id],
-        loggedInUser?.user_id
-      );
-      setAddedToWishlist([...addedToWishlist, item.id]);
-      dispatch({ type: "ADD_TO_WISHLIST", payload: item });
-    } else {
-      const filteredaddedToWishlist = addedToWishlist.filter(
-        (wishlistItem) => wishlistItem !== item.id
-      );
-      const { success, data, error } = await updateWishList(
-        [...filteredaddedToWishlist],
-        loggedInUser?.user_id
-      );
-
-      dispatch({ type: "REMOVE_FROM_WISHLIST", payload: item });
-      setAddedToWishlist(filteredaddedToWishlist);
-    }
-  };
 
   return (
     <div className="app-wrapper">
@@ -57,13 +34,7 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route
           path="/products"
-          element={
-            <ProductsWrapper
-              setShowFilter={setShowFilter}
-              addedToWishlist={addedToWishlist}
-              wishlistBtnClickHandler={wishlistBtnClickHandler}
-            />
-          }
+          element={<ProductsWrapper setShowFilter={setShowFilter} />}
         />
         <Route path="/product/:id" element={<SingleProduct />} />
         <Route path="/login" element={<Login />} />

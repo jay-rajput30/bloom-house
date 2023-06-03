@@ -1,10 +1,10 @@
 import React from "react";
 
-function Error() {
+function Error({ message }) {
   return (
     <figure className="error-wrapper">
       <img src="https://httpcats.com/404.jpg" />
-      <figcaption>Oops...something went wrong</figcaption>
+      <figcaption>Oops...something went wrong. {message}</figcaption>
     </figure>
   );
 }

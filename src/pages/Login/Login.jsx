@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import "./index.css";
 import { authContext } from "../../context/AuthProvider";
 import { useLocation, useNavigate, Link } from "react-router-dom";
+import { useCart } from "../../context/CartProvider";
 const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -16,8 +17,13 @@ const Login = () => {
     setUserCredentials({ ...userCredentials, [name]: value });
   };
 
+  const loginClickHandler = () => {
+    handleLogin({
+      email: userCredentials.email,
+      password: userCredentials.password,
+    });
+  };
   const guestLoginHandler = (e) => {
-    console.log("guest click handler called");
     setIsLoggedIn(true);
     navigate(location?.state?.from?.pathname);
   };
@@ -45,16 +51,7 @@ const Login = () => {
           />
         </div>
         <div className="login-form-item-buttons">
-          <button
-            onClick={() => {
-              handleLogin({
-                email: userCredentials.email,
-                password: userCredentials.password,
-              });
-            }}
-          >
-            login
-          </button>
+          <button onClick={loginClickHandler}>login</button>
           <button onClick={guestLoginHandler}>login as guest</button>
         </div>
       </form>

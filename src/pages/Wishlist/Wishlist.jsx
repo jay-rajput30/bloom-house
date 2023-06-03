@@ -4,9 +4,10 @@ import ProductCard from "../../components/Cards/ProductCard/ProductCard";
 import "./index.css";
 import { getUserWishlist } from "../../backend/controllers/wishlist.controller";
 import { authContext } from "../../context/AuthProvider";
+import { useWishlist } from "../../context/WishlistProvider";
 function Wishlist({ addedToWishlist, wishlistBtnClickHandler }) {
   const { loggedInUser } = useContext(authContext);
-  const { wishlist, dispatch } = useContext(productContext);
+  const { wishlistData } = useWishlist();
   const [wishlistToggle, setWishlistToggle] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
@@ -25,11 +26,11 @@ function Wishlist({ addedToWishlist, wishlistBtnClickHandler }) {
 
   return (
     <div className="wishlist-wrapper">
-      {wishlist?.length === 0 && (
+      {wishlistData?.length === 0 && (
         <h2>oops.. not items added to wishlist as yet</h2>
       )}
       <ul>
-        {wishlist?.map((item) => {
+        {wishlistData?.map((item) => {
           return (
             <li key={item?.id}>
               <ProductCard

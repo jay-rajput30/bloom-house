@@ -8,7 +8,7 @@ export const productContext = createContext();
 const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(productReducer, {
     products: null,
-    cart: [],
+
     wishlist: [],
   });
 

@@ -20,10 +20,11 @@ export const updateCart = async (userId, items) => {
     const { data, error } = await supabase
       .from("cart")
       .update({ products: items })
-      .eq("user_id", userId);
+      .eq("user_id", userId)
+      .select();
+
     if (!error) {
-      console.log({ cartData: data });
-      return { success: true, data, error };
+      return { success: true, data: data[0]?.products, error };
     }
   } catch (e) {
     return { success: false, error: e };

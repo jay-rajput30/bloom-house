@@ -6,50 +6,18 @@ import { useProducts } from "../../../hooks/useProducts";
 import { productContext } from "../../../context/ProductProvider";
 import { authContext } from "../../../context/AuthProvider";
 import { updateCart } from "../../../backend/controllers/cart.controller";
+import { useCart } from "../../../context/CartProvider";
+import { useWishlist } from "../../../context/WishlistProvider";
 
-const ProductCard = ({
-  plant,
-  showButton,
-  addedToWishlist,
-  wishlistBtnClickHandler,
-  setWishlistToggle,
-  wishlistToggle,
-}) => {
-  console.log({ setWishlistToggle, wishlistToggle });
+const ProductCard = ({ plant, showButton }) => {
   const { loggedIn, loggedInUser } = useContext(authContext);
+  const { wishlistData, wishlistBtnClickHandler } = useWishlist();
   const navigate = useNavigate();
   const location = useLocation();
-  const { dispatch } = useProducts();
-  const { cart } = useContext(productContext);
-  const cartBtnClickHandler = async (item) => {
-    if (cart?.find((cartItem) => cartItem.id === item.id)) {
-      if (loggedIn) {
-        navigate("/cart");
-      } else {
-        navigate("/login", { state: { from: location } });
-      }
-    } else {
-      const { success, data, error } = await updateCart(loggedInUser.user_id, [
-        ...cart,
-        {
-          ...item,
-          quantity: 1,
-        },
-      ]);
-      if (success) {
-        dispatch({
-          type: "ADD_TO_CART",
-          payload: {
-            ...item,
-            quantity: 1,
-          },
-        });
-      }
-    }
-  };
+  const { cartAddBtnClickHandler, cartData } = useCart();
 
   const wishlistButtonClicked = (plant) => {
-    setWishlistToggle((prev) => !prev);
+    // setWishlistToggle((prev) => !prev);
     wishlistBtnClickHandler(plant);
   };
 
@@ -59,7 +27,7 @@ const ProductCard = ({
         <img src={plant?.thumbnail} />
         {showButton && (
           <figcaption>
-            {addedToWishlist?.includes(plant?.id) ? (
+            {wishlistData?.includes(plant?.id) ? (
               <Heart
                 color="hsl(360, 68%, 63%)"
                 fill="hsl(360, 68%, 63%)"
@@ -98,8 +66,11 @@ const ProductCard = ({
         </h5>
         {showButton && (
           <div className="button-group">
-            <button className="cart" onClick={() => cartBtnClickHandler(plant)}>
-              {cart?.find((cartItem) => plant.id === cartItem.id)
+            <button
+              className="cart"
+              onClick={() => cartAddBtnClickHandler(plant)}
+            >
+              {cartData?.find((cartItem) => plant.id === cartItem.id)
                 ? "go to cart"
                 : "add to cart"}
             </button>
