@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { productContext } from "../../context/ProductProvider";
 import ProductCard from "../../components/Cards/ProductCard/ProductCard";
 import "./index.css";
@@ -7,6 +7,7 @@ import { authContext } from "../../context/AuthProvider";
 function Wishlist({ addedToWishlist, wishlistBtnClickHandler }) {
   const { loggedInUser } = useContext(authContext);
   const { wishlist, dispatch } = useContext(productContext);
+  const [wishlistToggle, setWishlistToggle] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -20,7 +21,7 @@ function Wishlist({ addedToWishlist, wishlistBtnClickHandler }) {
     };
 
     fetchData();
-  }, [wishlist]);
+  }, [wishlistToggle]);
 
   return (
     <div className="wishlist-wrapper">
@@ -36,6 +37,8 @@ function Wishlist({ addedToWishlist, wishlistBtnClickHandler }) {
                 showButton={true}
                 addedToWishlist={addedToWishlist}
                 wishlistBtnClickHandler={wishlistBtnClickHandler}
+                setWishlistToggle={setWishlistToggle}
+                wishlistToggle={wishlistToggle}
               />
             </li>
           );

@@ -12,7 +12,10 @@ const ProductCard = ({
   showButton,
   addedToWishlist,
   wishlistBtnClickHandler,
+  setWishlistToggle,
+  wishlistToggle,
 }) => {
+  console.log({ setWishlistToggle, wishlistToggle });
   const { loggedIn, loggedInUser } = useContext(authContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -45,6 +48,11 @@ const ProductCard = ({
     }
   };
 
+  const wishlistButtonClicked = (plant) => {
+    setWishlistToggle((prev) => !prev);
+    wishlistBtnClickHandler(plant);
+  };
+
   return (
     <article className="product-card-wrapper">
       <figure>
@@ -56,13 +64,13 @@ const ProductCard = ({
                 color="hsl(360, 68%, 63%)"
                 fill="hsl(360, 68%, 63%)"
                 strokeWidth="2"
-                onClick={() => wishlistBtnClickHandler(plant)}
+                onClick={() => wishlistButtonClicked(plant)}
               />
             ) : (
               <Heart
                 color="hsl(60, 100%, 100%)"
                 strokeWidth="2"
-                onClick={() => wishlistBtnClickHandler(plant)}
+                onClick={() => wishlistButtonClicked(plant)}
               />
             )}
           </figcaption>

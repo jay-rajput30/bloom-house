@@ -4,7 +4,7 @@ import "./index.css";
 import { authContext } from "../../../context/AuthProvider";
 import { productContext } from "../../../context/ProductProvider";
 import { updateCart } from "../../../backend/controllers/cart.controller";
-const CartCard = ({ cartItem }) => {
+const CartCard = ({ cartItem, setCartToggle }) => {
   const { loggedInUser } = useContext(authContext);
   const { dispatch } = useContext(productContext);
   const { cart } = useContext(productContext);
@@ -20,6 +20,7 @@ const CartCard = ({ cartItem }) => {
       );
       if (success) {
         dispatch({ type: "REMOVE_CART", payload: item });
+        setCartToggle((prev) => !prev);
       }
     } catch (e) {
       console.error(e);
@@ -40,6 +41,7 @@ const CartCard = ({ cartItem }) => {
           type: "UPDATE_CART",
           payload: { item: cartItem, quantity: +e.target.value },
         });
+        setCartToggle((prev) => !prev);
       }
     } catch (e) {
       console.error(e);

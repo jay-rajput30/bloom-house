@@ -1,9 +1,17 @@
 import React, { useContext } from "react";
 import { productContext } from "../../context/ProductProvider";
 import { calculateSubTotal, calculateTotal } from "../../utils/utils";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const CartOrderSummary = () => {
   const { cart } = useContext(productContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const buttonClickHandler = () => {
+    navigate("/checkout", {
+      state: { from: location },
+    });
+  };
   return (
     <section className="order-summary-wrapper">
       <h2>Order Summary</h2>
@@ -25,7 +33,7 @@ const CartOrderSummary = () => {
           <p>
             $
             {cart.length === 0
-              ? "0"
+              ? 0
               : calculateTotal(
                   calculateSubTotal(cart),
                   Math.ceil(calculateSubTotal(cart) * 0.2),
@@ -34,7 +42,7 @@ const CartOrderSummary = () => {
           </p>
         </div>
         <div>
-          <button>procced to checkout</button>
+          <button onClick={buttonClickHandler}>proceed to checkout</button>
         </div>
       </article>
     </section>

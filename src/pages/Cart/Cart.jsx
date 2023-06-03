@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./index.css";
 import { productContext } from "../../context/ProductProvider";
 import CartItemList from "./CartItemList";
@@ -9,30 +9,28 @@ import { authContext } from "../../context/AuthProvider";
 function Cart() {
   const { loggedInUser } = useContext(authContext);
   const { cart, dispatch } = useContext(productContext);
-  useEffect(() => {
-    const fetchCart = async () => {
-      try {
-        const { success, data, error } = await getUserCart(
-          loggedInUser?.user_id
-        );
-        if (success) {
-          console.log({ cartData: data[0] });
-          dispatch({ type: "LOAD_CART", payload: data[0].products });
-        }
-      } catch (e) {
-        console.error({ e });
+  const [cartToggle, setCartToggle] = useState(false);
+  const fetchCart = async () => {
+    try {
+      const { success, data, error } = await getUserCart(loggedInUser?.user_id);
+      if (success) {
+        console.log("cart effect called");
+        dispatch({ type: "LOAD_CART", payload: data[0].products });
       }
-    };
+    } catch (e) {
+      console.error({ e });
+    }
+  };
+  useEffect(() => {
     fetchCart();
-  }, [cart]);
+  }, [cartToggle]);
 
   return (
     <div className="cart-container">
       {cart?.length === 0 && <h2>oops.. not items added to cart as yet</h2>}
-      {/* <h2>My cart</h2> */}
       {cart?.length > 0 && (
         <div className="cart-wrapper">
-          <CartItemList />
+          <CartItemList setCartToggle={setCartToggle} />
           <CartOrderSummary />
         </div>
       )}
