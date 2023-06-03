@@ -6,11 +6,11 @@ import CartOrderSummary from "./CartOrderSummary";
 import { getUserCart } from "../../backend/controllers/cart.controller";
 import { authContext } from "../../context/AuthProvider";
 import { useCart } from "../../context/CartProvider";
-//TODO: 29-MAY-23 add backend part to  delete/update cart item
+
 function Cart() {
-  const { loggedInUser } = useContext(authContext);
+  const { loggedInUser, cartToggle } = useContext(authContext);
   const { cartData } = useCart();
-  const { cartToggle } = useContext(authContext);
+
   const fetchCart = async () => {
     try {
       const { success } = await getUserCart(loggedInUser?.user_id);
@@ -21,7 +21,9 @@ function Cart() {
     }
   };
   useEffect(() => {
-    fetchCart();
+    if (loggedInUser.user_id) {
+      fetchCart();
+    }
   }, [cartToggle]);
 
   return (

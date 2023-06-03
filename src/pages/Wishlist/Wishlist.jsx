@@ -5,25 +5,23 @@ import "./index.css";
 import { getUserWishlist } from "../../backend/controllers/wishlist.controller";
 import { authContext } from "../../context/AuthProvider";
 import { useWishlist } from "../../context/WishlistProvider";
-function Wishlist({ addedToWishlist, wishlistBtnClickHandler }) {
-  const { loggedInUser } = useContext(authContext);
-  const { wishlistData } = useWishlist();
-  const [wishlistToggle, setWishlistToggle] = useState(false);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data, success } = await getUserWishlist(loggedInUser.user_id);
-        if (success) {
-          dispatch({ type: "LOAD_WISHLIST", payload: data.products });
-        }
-      } catch (e) {
-        console.error(e);
+function Wishlist() {
+  const { loggedInUser, wishlistToggle } = useContext(authContext);
+  const { wishlistData, setWishlistData } = useWishlist();
+  const fetchData = async () => {
+    try {
+      const { success, data } = await getUserWishlist(loggedInUser?.user_id);
+      if (success) {
+        setWishlistData(data.products);
       }
-    };
-
+    } catch (e) {
+      console.error(e);
+    }
+  };
+  useEffect(() => {
     fetchData();
   }, [wishlistToggle]);
-
+  console.log({ wishlistData });
   return (
     <div className="wishlist-wrapper">
       {wishlistData?.length === 0 && (
@@ -33,14 +31,7 @@ function Wishlist({ addedToWishlist, wishlistBtnClickHandler }) {
         {wishlistData?.map((item) => {
           return (
             <li key={item?.id}>
-              <ProductCard
-                plant={item}
-                showButton={true}
-                addedToWishlist={addedToWishlist}
-                wishlistBtnClickHandler={wishlistBtnClickHandler}
-                setWishlistToggle={setWishlistToggle}
-                wishlistToggle={wishlistToggle}
-              />
+              <ProductCard plant={item} showButton={true} />
             </li>
           );
         })}

@@ -50,10 +50,7 @@ const App = () => {
           path="/wishlist"
           element={
             <ProtectedRoutes>
-              <Wishlist
-                addedToWishlist={addedToWishlist}
-                wishlistBtnClickHandler={wishlistBtnClickHandler}
-              />
+              <Wishlist />
             </ProtectedRoutes>
           }
         />

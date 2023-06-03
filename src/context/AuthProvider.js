@@ -16,7 +16,7 @@ const AuthProvider = ({ children }) => {
     user_id: null,
     accessToken: null,
   });
-
+  console.log({ location });
   const handleLogin = async (inputData) => {
     try {
       let { data, success, error } = await checkLogin(inputData);

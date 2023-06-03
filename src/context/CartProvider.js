@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { supabase } from "../backend/db-connect";
 import { authContext } from "./AuthProvider";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { updateCart } from "../backend/controllers/cart.controller";
 
 const cartContext = createContext();
@@ -9,8 +9,9 @@ const cartContext = createContext();
 const CartProvider = ({ children }) => {
   const [cartData, setCartData] = useState([]);
   const { cartToggle, setCartToggle, loggedInUser } = useContext(authContext);
-
   const navigate = useNavigate();
+  const location = useLocation();
+
   const cartAddBtnClickHandler = async (item) => {
     if (!loggedInUser.user_id) {
       navigate("/login", { state: { from: location } });
@@ -48,7 +49,11 @@ const CartProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    fetchCartData();
+    if (loggedInUser.user_id) {
+      fetchCartData();
+    } else {
+      <Navigate path="/cart" state={{ from: location }} />;
+    }
   }, [cartToggle]);
 
   return (
