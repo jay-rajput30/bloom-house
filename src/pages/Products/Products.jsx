@@ -14,8 +14,7 @@ import Loading from "../../utils/Loading/Loading";
 
 function Products({
   products,
-  addedToWishlist,
-  wishlistBtnClickHandler,
+
   setShowFilter,
 }) {
   const { status, error } = useProducts();
@@ -35,12 +34,7 @@ function Products({
           {products?.map((item) => {
             return (
               <li key={item?.id}>
-                <ProductCard
-                  plant={item}
-                  showButton={true}
-                  addedToWishlist={addedToWishlist}
-                  wishlistBtnClickHandler={wishlistBtnClickHandler}
-                />
+                <ProductCard plant={item} showButton={true} />
               </li>
             );
           })}

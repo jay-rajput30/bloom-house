@@ -6,6 +6,7 @@ import ProductProvider from "./context/ProductProvider";
 import FilterProvider from "./context/FilterProvider";
 import AuthProvider from "./context/AuthProvider";
 import CartProvider from "./context/CartProvider";
+import WishlistProvider from "./context/WishlistProvider";
 
 const container = document.getElementById("app");
 const root = createRoot(container);
@@ -14,11 +15,13 @@ root.render(
     <BrowserRouter>
       <AuthProvider>
         <CartProvider>
-          <ProductProvider>
-            <FilterProvider>
-              <App />
-            </FilterProvider>
-          </ProductProvider>
+          <WishlistProvider>
+            <ProductProvider>
+              <FilterProvider>
+                <App />
+              </FilterProvider>
+            </ProductProvider>
+          </WishlistProvider>
         </CartProvider>
       </AuthProvider>
     </BrowserRouter>

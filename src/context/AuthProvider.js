@@ -9,6 +9,7 @@ const AuthProvider = ({ children }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [cartToggle, setCartToggle] = useState(false);
+  const [wishlistToggle, setWishlistToggle] = useState(false);
   const [loggedIn, setIsLoggedIn] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState({
     email: "",
@@ -57,6 +58,8 @@ const AuthProvider = ({ children }) => {
         logoutUser,
         cartToggle,
         setCartToggle,
+        wishlistToggle,
+        setWishlistToggle,
       }}
     >
       {children}

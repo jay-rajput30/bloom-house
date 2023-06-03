@@ -8,8 +8,8 @@ const cartContext = createContext();
 
 const CartProvider = ({ children }) => {
   const [cartData, setCartData] = useState([]);
-  const { cartToggle, setCartToggle } = useContext(authContext);
-  const { loggedInUser } = useContext(authContext);
+  const { cartToggle, setCartToggle, loggedInUser } = useContext(authContext);
+
   const navigate = useNavigate();
   const cartAddBtnClickHandler = async (item) => {
     if (!loggedInUser.user_id) {
