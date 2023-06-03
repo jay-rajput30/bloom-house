@@ -14,7 +14,6 @@ function Cart() {
     try {
       const { success, data, error } = await getUserCart(loggedInUser?.user_id);
       if (success) {
-        console.log("cart effect called");
         dispatch({ type: "LOAD_CART", payload: data[0].products });
       }
     } catch (e) {

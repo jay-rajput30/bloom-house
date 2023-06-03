@@ -22,7 +22,6 @@ export const updateCart = async (userId, items) => {
       .update({ products: items })
       .eq("user_id", userId);
     if (!error) {
-      console.log({ cartData: data });
       return { success: true, data, error };
     }
   } catch (e) {

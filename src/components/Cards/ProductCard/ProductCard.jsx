@@ -6,6 +6,7 @@ import { useProducts } from "../../../hooks/useProducts";
 import { productContext } from "../../../context/ProductProvider";
 import { authContext } from "../../../context/AuthProvider";
 import { updateCart } from "../../../backend/controllers/cart.controller";
+import { useCart } from "../../../context/CartProvider";
 
 const ProductCard = ({
   plant,
@@ -15,38 +16,12 @@ const ProductCard = ({
   setWishlistToggle,
   wishlistToggle,
 }) => {
-  console.log({ setWishlistToggle, wishlistToggle });
   const { loggedIn, loggedInUser } = useContext(authContext);
   const navigate = useNavigate();
   const location = useLocation();
   const { dispatch } = useProducts();
-  const { cart } = useContext(productContext);
-  const cartBtnClickHandler = async (item) => {
-    if (cart?.find((cartItem) => cartItem.id === item.id)) {
-      if (loggedIn) {
-        navigate("/cart");
-      } else {
-        navigate("/login", { state: { from: location } });
-      }
-    } else {
-      const { success, data, error } = await updateCart(loggedInUser.user_id, [
-        ...cart,
-        {
-          ...item,
-          quantity: 1,
-        },
-      ]);
-      if (success) {
-        dispatch({
-          type: "ADD_TO_CART",
-          payload: {
-            ...item,
-            quantity: 1,
-          },
-        });
-      }
-    }
-  };
+  const { cartAddBtnClickHandler, cartData } = useCart();
+  console.log({ cartData });
 
   const wishlistButtonClicked = (plant) => {
     setWishlistToggle((prev) => !prev);
@@ -98,8 +73,11 @@ const ProductCard = ({
         </h5>
         {showButton && (
           <div className="button-group">
-            <button className="cart" onClick={() => cartBtnClickHandler(plant)}>
-              {cart?.find((cartItem) => plant.id === cartItem.id)
+            <button
+              className="cart"
+              onClick={() => cartAddBtnClickHandler(plant)}
+            >
+              {cartData?.find((cartItem) => plant.id === cartItem.id)
                 ? "go to cart"
                 : "add to cart"}
             </button>

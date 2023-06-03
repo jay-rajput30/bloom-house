@@ -10,7 +10,7 @@ const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const [loggedIn, setIsLoggedIn] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState({
-    email: "guest@gmail.com",
+    email: "",
     user_id: null,
     accessToken: null,
   });
