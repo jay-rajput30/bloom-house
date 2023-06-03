@@ -2,22 +2,18 @@ import React, { useContext, useState } from "react";
 import "./index.css";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { Heart, Star } from "react-feather";
-import { useProducts } from "../../../hooks/useProducts";
-import { productContext } from "../../../context/ProductProvider";
-import { authContext } from "../../../context/AuthProvider";
-import { updateCart } from "../../../backend/controllers/cart.controller";
+
 import { useCart } from "../../../context/CartProvider";
 import { useWishlist } from "../../../context/WishlistProvider";
 
 const ProductCard = ({ plant, showButton }) => {
-  const { loggedIn, loggedInUser } = useContext(authContext);
+  // const { loggedIn, loggedInUser } = useContext(authContext);
   const { wishlistData, wishlistBtnClickHandler } = useWishlist();
   const navigate = useNavigate();
-  const location = useLocation();
+  // const location = useLocation();
   const { cartAddBtnClickHandler, cartData } = useCart();
 
   const wishlistButtonClicked = (plant) => {
-    // setWishlistToggle((prev) => !prev);
     wishlistBtnClickHandler(plant);
   };
 
@@ -27,7 +23,7 @@ const ProductCard = ({ plant, showButton }) => {
         <img src={plant?.thumbnail} />
         {showButton && (
           <figcaption>
-            {wishlistData?.includes(plant?.id) ? (
+            {wishlistData?.some((item) => item?.id === plant.id) ? (
               <Heart
                 color="hsl(360, 68%, 63%)"
                 fill="hsl(360, 68%, 63%)"

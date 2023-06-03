@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { authContext } from "./AuthProvider";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { supabase } from "../backend/db-connect";
 import { updateWishList } from "../backend/controllers/wishlist.controller";
 
@@ -10,16 +10,16 @@ const WishlistProvider = ({ children }) => {
   const [wishlistData, setWishlistData] = useState([]);
   const { wishlistToggle, setWishlistToggle, loggedInUser } =
     useContext(authContext);
-  const navigate = useNavigate();
 
+  const location = useLocation();
   const wishlistBtnClickHandler = async (item) => {
     let updatedWishlistData = [];
-    if (!wishlistData.includes(item.id)) {
-      updatedWishlistData = [...wishlistData, item.id];
-    } else {
+    if (wishlistData.some((wishlistItem) => wishlistItem.id === item.id)) {
       updatedWishlistData = wishlistData.filter(
-        (wishlistItem) => wishlistItem !== item.id
+        (wishlistItem) => wishlistItem.id !== item.id
       );
+    } else {
+      updatedWishlistData = [...wishlistData, item];
     }
     const { success } = await updateWishList(
       updatedWishlistData,
@@ -47,7 +47,7 @@ const WishlistProvider = ({ children }) => {
 
   useEffect(() => {
     if (!loggedInUser.user_id) {
-      navigate("/login");
+      <Navigate to="login" state={{ from: location }} />;
     } else {
       fetchWishlist();
     }

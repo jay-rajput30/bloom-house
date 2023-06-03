@@ -1,13 +1,14 @@
 import { supabase } from "../db-connect";
 
 export const updateWishList = async (items, userId) => {
+  console.log({ wishController: items });
   const { data, error } = await supabase
     .from("wishlist")
     .update({ products: items })
     .eq("user_id", userId)
     .select();
   if (!error) {
-    console.log({ updatedWishtlistData: data });
+    // console.log({ updatedWishtlistData: data, items });
     return { success: true, data, error };
   } else {
     return { success: false, error };
