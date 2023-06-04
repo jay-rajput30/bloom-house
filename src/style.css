@@ -61,8 +61,8 @@ h6 {
 }
 body {
   line-height: 1.5;
-  background-color: var(--primary-color);
-  color: var(--color-font-text);
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
   font-family: "Recursive", monospace;
   font-variation-settings: "CRSV" 0;
   -webkit-font-smoothing: antialiased;

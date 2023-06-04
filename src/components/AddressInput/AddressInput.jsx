@@ -10,7 +10,7 @@ const AddressInput = ({ setShowAddressInput, setcheckoutToggle }) => {
     area: "",
     city: "",
     state: "",
-    pincode: 000000,
+    pincode: 0,
   });
 
   const inputChangeHandler = (e) => {
