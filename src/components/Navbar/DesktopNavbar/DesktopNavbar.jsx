@@ -19,7 +19,7 @@ const activeStyles = ({ isActive }) => {
 function DesktopNavbar() {
   const { logoutUser, loggedIn } = useContext(authContext);
   const { searchTerm, searchTermChangeHandler } = useContext(filterContext);
-  const { setCartToggle } = useCart();
+  const { setCartToggle } = useContext(authContext);
   const logoutBtnClickHandler = () => {
     setCartToggle((prev) => !prev);
     logoutUser();

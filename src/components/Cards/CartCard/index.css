@@ -7,6 +7,7 @@
   padding: var(--space-1);
   background-color: var(--secondary-color);
   color: var(--primary-color);
+  border: 1px solid var(--color-font-text);
   box-shadow: 4px 8px 8px var(--color-shadow);
 }
 .cart-card-wrapper h4 {

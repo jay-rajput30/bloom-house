@@ -54,7 +54,7 @@ const App = () => {
             </ProtectedRoutes>
           }
         />
-        <Route path="/signup" element={<AddressInput />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="*" element={<Error />} />
       </Routes>
