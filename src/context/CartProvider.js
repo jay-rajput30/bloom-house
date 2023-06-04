@@ -12,9 +12,9 @@ const CartProvider = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const cartAddBtnClickHandler = async (item) => {
+  const cartAddBtnClickHandler = async (item, from) => {
     if (!loggedInUser.user_id) {
-      navigate("/login", { state: { from: location } });
+      navigate("/login", { state: from });
     } else {
       if (cartData?.find((cartItem) => cartItem.id === item.id)) {
         navigate("/cart");

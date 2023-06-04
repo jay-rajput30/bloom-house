@@ -3,6 +3,7 @@ import "./index.css";
 import AddressInputFormItem from "./AddressInputFormItem";
 import { addAddress } from "../../backend/controllers/profile.controller";
 import { authContext } from "../../context/AuthProvider";
+import { getRandomAddress } from "./address.data";
 const AddressInput = ({ setShowAddressInput, setcheckoutToggle }) => {
   const { loggedInUser } = useContext(authContext);
   const [addressInput, setAddressInput] = useState({
@@ -19,6 +20,10 @@ const AddressInput = ({ setShowAddressInput, setcheckoutToggle }) => {
     setAddressInput({ ...addressInput, [name]: value });
   };
 
+  const addRandomAddress = () => {
+    console.log(getRandomAddress());
+    setAddressInput(getRandomAddress());
+  };
   const formBtnClickHandler = async () => {
     console.log({ insideAddressInput: loggedInUser?.user_id });
     const { data, success } = await addAddress(
@@ -79,6 +84,7 @@ const AddressInput = ({ setShowAddressInput, setcheckoutToggle }) => {
         <div className="signup-form-item-buttons">
           <button onClick={formBtnClickHandler}>save</button>
           <button onClick={() => setShowAddressInput(false)}>cancel</button>
+          <button onClick={addRandomAddress}>random data</button>
         </div>
       </form>
     </div>

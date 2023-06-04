@@ -16,7 +16,7 @@ const AuthProvider = ({ children }) => {
     user_id: null,
     accessToken: null,
   });
-  console.log({ location });
+
   const handleLogin = async (inputData) => {
     try {
       let { data, success, error } = await checkLogin(inputData);
@@ -34,6 +34,7 @@ const AuthProvider = ({ children }) => {
           "user",
           JSON.stringify({
             user_id: data.user.id,
+            email: data.user.email,
             accessToken: data.session.access_token,
           })
         );
@@ -45,6 +46,7 @@ const AuthProvider = ({ children }) => {
   };
   const logoutUser = () => {
     setIsLoggedIn(false);
+    localStorage.removeItem("user");
   };
 
   return (

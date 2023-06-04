@@ -25,7 +25,10 @@ const Login = () => {
   };
   const guestLoginHandler = (e) => {
     setIsLoggedIn(true);
-    navigate(location?.state?.from?.pathname);
+    handleLogin({
+      email: "test@gmail.com",
+      password: "test123",
+    });
   };
   return (
     <div className="login-wrapper">

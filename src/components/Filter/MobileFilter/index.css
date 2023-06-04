@@ -4,10 +4,11 @@
   width: 100vw;
   position: fixed;
   left: 0px;
-  bottom: 150px;
-  height: 50vh;
+  /* top: 90px; */
+  height: 100%;
   background-color: var(--secondary-color);
   z-index: 999;
+  /* animation:  */
 }
 
 .mobile-filter-wrapper button {
@@ -17,7 +18,7 @@
   padding: var(--space-1) var(--space-2);
   border-radius: 5px;
 }
-.mobile-filter-wrapper div {
+.mobile-filter-wrapper > div {
   display: flex;
   justify-content: space-between;
 }

@@ -111,20 +111,14 @@ li:hover {
 
 /* general styles */
 
+button {
+  background-color: var(--color-button-background);
+  border: none;
+  padding: var(--space-1);
+  border-radius: 5px;
+}
 .app-wrapper {
   min-height: 100%;
-}
-
-.filter-button {
-  z-index: 99;
-  position: fixed;
-  bottom: 160px;
-  right: 10px;
-  border: solid var(--color-button-background);
-  padding: 0.7rem;
-  border-radius: 50%;
-  background-color: var(--primary-color);
-  cursor: pointer;
 }
 
 @media screen and (min-width: 380px) {
