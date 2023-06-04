@@ -1,13 +1,19 @@
 .product-card-wrapper {
   display: flex;
+  border: 1px solid var(--color-font-text);
   flex-direction: column;
   color: var(--primary-color);
   align-items: flex-start;
-  gap: 16px;
-  width: 300px;
-  height: 390px;
+  gap: 8px;
+  width: 250px;
+  padding-bottom: var(--space-1);
   background-color: var(--secondary-color);
-  box-shadow: 4px 8px 8px var(--color-shadow);
+  box-shadow: 2px 4px 4px var(--color-shadow);
+  font-size: var(--font-length-sm3);
+}
+
+.product-card-wrapper h4 {
+  font-size: var(--font-length-md1);
 }
 .product-card-wrapper figure {
   width: 100%;
@@ -45,11 +51,11 @@
 }
 
 .product-rating-wrapper > p {
-  color: var(--color-font-label);
+  color: var(--color-button-text);
 }
 .actual-price,
 .discounted-price {
-  font-size: var(--font-length-md1);
+  font-size: var(--font-length-sm3);
 }
 .actual-price {
   color: var(--color-font-text);

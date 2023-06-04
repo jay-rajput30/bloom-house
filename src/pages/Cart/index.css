@@ -20,7 +20,16 @@
   width: 100%;
 }
 .order-summary-wrapper {
+  height: fit-content;
   flex: 1;
+  border: solid var(--color-font-text);
+  padding: var(--space-1);
+}
+
+.order-summary-wrapper h2 {
+  color: var(--primary-color);
+  border-bottom: 1px solid var(--color-font-text);
+  margin-bottom: var(--space-1);
 }
 .order-summary-items {
   gap: 8px;

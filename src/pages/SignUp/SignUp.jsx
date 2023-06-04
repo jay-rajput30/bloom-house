@@ -26,7 +26,7 @@ const SignUp = () => {
     setSignUpDetails({ ...signupDetails, [name]: value });
   };
 
-  const formBtnClickHandler = async () => {
+  const formsingUpBtnClickHandler = async () => {
     try {
       if (signupDetails.email || signupDetails.password) {
         let { data, success, error } = await signUpUser({
@@ -66,6 +66,10 @@ const SignUp = () => {
     }
   };
 
+  const formCancelBtnClickHandler = () => {
+    navigate("/login");
+  };
+
   return (
     <div className="signup-wrapper">
       <form className="signup-form" onSubmit={(e) => e.preventDefault()}>
@@ -85,7 +89,7 @@ const SignUp = () => {
         />
         <SingUpFormItem
           inputChangeHandler={inputChangeHandler}
-          type="number"
+          type="tel"
           name="phoneNo"
           item={signupDetails.phoneNo}
           text="Phone No"
@@ -107,7 +111,8 @@ const SignUp = () => {
         />
 
         <div className="signup-form-item-buttons">
-          <button onClick={formBtnClickHandler}>signup</button>
+          <button onClick={formsingUpBtnClickHandler}>signup</button>
+          <button onClick={formCancelBtnClickHandler}>cancel</button>
         </div>
       </form>
     </div>

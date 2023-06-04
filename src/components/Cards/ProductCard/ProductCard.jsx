@@ -55,9 +55,9 @@ const ProductCard = ({ plant, showButton }) => {
         </div>
 
         <h5 className="actual-price">
-          ${plant?.price}
+          ₹{plant?.price}
           <span className="discounted-price">
-            ${Math.floor(plant?.price - plant?.price * 0.2)}
+            ₹{Math.floor(plant?.price - plant?.price * 0.2)}
           </span>
         </h5>
         {showButton && (
