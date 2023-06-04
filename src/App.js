@@ -55,7 +55,14 @@ const App = () => {
           }
         />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/checkout" element={<Checkout />} />
+        <Route
+          path="/checkout"
+          element={
+            <ProtectedRoutes>
+              <Checkout />
+            </ProtectedRoutes>
+          }
+        />
         <Route path="*" element={<Error />} />
       </Routes>
     </div>

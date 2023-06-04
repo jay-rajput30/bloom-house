@@ -11,14 +11,11 @@ import DesktopFilter from "../../components/Filter/DesktopFilter/DesktopFilter";
 import { Filter, Loader } from "react-feather";
 import SearchFilter from "./SearchFilter";
 import Loading from "../../utils/Loading/Loading";
+import { useLocation } from "react-router-dom";
 
-function Products({
-  products,
-
-  setShowFilter,
-}) {
+function Products({ products, setShowFilter }) {
   const { status, error } = useProducts();
-
+  const location = useLocation();
   if (error) {
     return <Error />;
   }
@@ -34,7 +31,11 @@ function Products({
           {products?.map((item) => {
             return (
               <li key={item?.id}>
-                <ProductCard plant={item} showButton={true} />
+                <ProductCard
+                  plant={item}
+                  showButton={true}
+                  from={{ from: location }}
+                />
               </li>
             );
           })}

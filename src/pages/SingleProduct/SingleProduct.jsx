@@ -1,6 +1,6 @@
 import React from "react";
 import "./index.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import { ArrowLeft, Star } from "react-feather";
 import DeliveryPerks from "../../components/DeliveryPerks/DeliveryPerks";
@@ -9,16 +9,17 @@ import React from "react";
 import { useProducts } from "../../hooks/useProducts";
 import { useCart } from "../../context/CartProvider";
 import { useWishlist } from "../../context/WishlistProvider";
+import AboutProduct from "./AboutProduct";
 
-const ProductDetails = ({ plantFound }) => {
+const ProductDetails = ({ plantFound, from }) => {
   const { cartAddBtnClickHandler } = useCart();
   const { wishlistBtnClickHandler } = useWishlist();
   const singleProductAddToCart = (plant) => {
-    cartAddBtnClickHandler(plant);
+    cartAddBtnClickHandler(plant, from);
   };
 
   const singleProductAddToWishlist = (plant) => {
-    wishlistBtnClickHandler(plant);
+    wishlistBtnClickHandler(plant, from);
   };
   return (
     <div className="product-details">
@@ -41,17 +42,12 @@ const ProductDetails = ({ plantFound }) => {
           />
         </div>
       </div>
-      <button className="add-to-cart">add to cart</button>
-      <button className="add-to-wishlist">add to wishlist</button>
-    </div>
-  );
-};
-
-const AboutProduct = ({ text }) => {
-  return (
-    <div className="about-product">
-      <h2>About the product</h2>
-      <p className="about-product-description">{text}</p>
+      <button className="add-to-cart" onClick={singleProductAddToCart}>
+        add to cart
+      </button>
+      <button className="add-to-wishlist" onClick={singleProductAddToWishlist}>
+        add to wishlist
+      </button>
     </div>
   );
 };
@@ -59,6 +55,7 @@ const AboutProduct = ({ text }) => {
 function SingleProduct() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const { products } = useProducts();
   const plantFound = products?.find((item) => item.id === id);
 
@@ -81,7 +78,7 @@ function SingleProduct() {
             <img src={plantFound?.thumbnail} />
           </div>
 
-          <ProductDetails plantFound={plantFound} />
+          <ProductDetails plantFound={plantFound} from={{ from: location }} />
         </div>
         <AboutProduct text={plantFound?.description} />
         <DeliveryPerks />

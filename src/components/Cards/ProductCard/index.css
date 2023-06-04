@@ -67,8 +67,6 @@
 }
 .rating-icon {
   margin-left: var(--space-1);
-  /* display: inline-block;
-  line-height: 0; */
 }
 
 .button-group button {
@@ -82,6 +80,4 @@
 }
 .discounted-price {
   margin-left: var(--space-2);
-}
-@media screen and (width >=690px) {
 }

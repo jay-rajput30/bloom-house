@@ -6,15 +6,14 @@ import { Heart, Star } from "react-feather";
 import { useCart } from "../../../context/CartProvider";
 import { useWishlist } from "../../../context/WishlistProvider";
 
-const ProductCard = ({ plant, showButton }) => {
-  // const { loggedIn, loggedInUser } = useContext(authContext);
+const ProductCard = ({ plant, showButton, from }) => {
   const { wishlistData, wishlistBtnClickHandler } = useWishlist();
   const navigate = useNavigate();
   // const location = useLocation();
   const { cartAddBtnClickHandler, cartData } = useCart();
 
   const wishlistButtonClicked = (plant) => {
-    wishlistBtnClickHandler(plant);
+    wishlistBtnClickHandler(plant, from);
   };
 
   return (
@@ -64,7 +63,7 @@ const ProductCard = ({ plant, showButton }) => {
           <div className="button-group">
             <button
               className="cart"
-              onClick={() => cartAddBtnClickHandler(plant)}
+              onClick={() => cartAddBtnClickHandler(plant, from)}
             >
               {cartData?.find((cartItem) => plant.id === cartItem.id)
                 ? "go to cart"

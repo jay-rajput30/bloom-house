@@ -22,7 +22,6 @@ const ProductProvider = ({ children }) => {
         let { data: products, error } = await supabase
           .from("products")
           .select("*");
-        console.log(products);
         const {
           status,
           message,

@@ -18,7 +18,7 @@ const CartOrderSummary = () => {
       <article className="order-summary-items">
         <div className="order-summary-item">
           <strong>Subtotal</strong>
-          <p>₹{calculateSubTotal(cartData)}</p>
+          <p>₹{calculateSubTotal(cartData).toFixed(2)}</p>
         </div>
         <div className="order-summary-item">
           <strong>Shipping cost</strong>

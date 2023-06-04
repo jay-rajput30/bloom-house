@@ -13,10 +13,9 @@ const WishlistProvider = ({ children }) => {
     useContext(authContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const wishlistBtnClickHandler = async (item) => {
+  const wishlistBtnClickHandler = async (item, from) => {
     if (!loggedInUser.user_id) {
-      console.log("not logged in");
-      navigate("/login");
+      navigate("/login", { state: from });
       return;
     }
     let updatedWishlistData = [];

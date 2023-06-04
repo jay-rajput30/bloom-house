@@ -18,12 +18,6 @@
   gap: 16px;
 }
 
-.addresslist-wrapper legend {
-  color: var(--secondary-color);
-}
-.addresslist-wrapper p {
-  color: var(--secondary-color);
-}
 .addresslist-wrapper form {
   padding: 0;
   list-style: none;
