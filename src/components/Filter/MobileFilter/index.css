@@ -10,6 +10,18 @@
   z-index: 999;
 }
 
+.mobile-filter-wrapper button {
+  background-color: var(--color-button-background);
+  border: none;
+  font-size: var(--font-length-md1);
+  padding: var(--space-1) var(--space-2);
+  border-radius: 5px;
+}
+.mobile-filter-wrapper div {
+  display: flex;
+  justify-content: space-between;
+}
+
 .close-filter {
   position: absolute;
   top: 10px;
@@ -23,11 +35,3 @@
   align-items: flex-start;
   gap: 40px;
 }
-
-/* 
-.rating-filter {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-} */

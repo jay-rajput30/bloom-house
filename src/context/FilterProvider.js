@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { useProducts } from "../hooks/useProducts";
 
 export const filterContext = createContext({
   searchTerm: "null",
@@ -9,7 +10,8 @@ const FilterProvider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedRadioBtn, setSelectedRadioBtn] = useState("All");
   const [selectedRating, setSelectedRating] = useState(0);
-  const [selectedPrice, setSelectedPrice] = useState(0);
+  const [selectedPrice, setSelectedPrice] = useState("");
+  const [resetFilter, setResetFilter] = useState(false);
 
   //state change handlers for all states
   const searchTermChangeHandler = (e) => {
@@ -21,12 +23,17 @@ const FilterProvider = ({ children }) => {
   };
 
   const priceChangeHandler = (e) => {
-    setSelectedPrice(+e.target.value);
+    setSelectedPrice(e.target.value);
   };
 
   const selectedRatingChangeHandler = (e) => {
-    console.log(+e.target.value);
     setSelectedRating(+e.target.value);
+  };
+  const resetFilterClickHandler = () => {
+    setResetFilter(true);
+    setSelectedPrice("");
+    setSelectedRating(0);
+    setSelectedRadioBtn("All");
   };
 
   return (
@@ -40,6 +47,8 @@ const FilterProvider = ({ children }) => {
         selectedRatingChangeHandler,
         selectedPrice,
         priceChangeHandler,
+        resetFilter,
+        resetFilterClickHandler,
       }}
     >
       {children}
