@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./index.css";
 import CategoriesFilter from "../MobileFilter/CategoriesFilter/CategoriesFilter";
 import RatingFilter from "../MobileFilter/RatingFilter/RatingFilter";
 import PriceFilter from "../MobileFilter/PriceFilter/PriceFilter";
+import { filterContext } from "../../../context/FilterProvider";
+
 const DesktopFilter = () => {
+  const { resetFilterClickHandler } = useContext(filterContext);
   return (
     <section className="desktop-filter-wrapper">
       <fieldset>
@@ -12,6 +15,7 @@ const DesktopFilter = () => {
           <CategoriesFilter />
           <RatingFilter />
           <PriceFilter />
+          <button onClick={resetFilterClickHandler}>reset</button>
         </form>
       </fieldset>
     </section>

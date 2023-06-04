@@ -2,12 +2,18 @@ import React, { useContext, useState } from "react";
 import { useProducts } from "../../hooks/useProducts";
 import Products from "./Products";
 import { filterContext } from "../../context/FilterProvider";
+import { sortProductByPrice } from "./products.helper";
 
 //wrapper component for products to do all the logical calculations
 
 const ProductsWrapper = ({ setShowFilter }) => {
-  const { searchTerm, selectedRadioBtn, selectedRating, selectedPrice } =
-    useContext(filterContext);
+  const {
+    searchTerm,
+    selectedRadioBtn,
+    selectedRating,
+    selectedPrice,
+    resetFilter,
+  } = useContext(filterContext);
 
   const { products } = useProducts();
 
@@ -21,9 +27,10 @@ const ProductsWrapper = ({ setShowFilter }) => {
     ? filteredCategoryProducts?.filter((item) => item.rating >= selectedRating)
     : filteredCategoryProducts;
 
-  const priceFilteredProducts = selectedPrice
-    ? ratingFilteredProducts?.filter((item) => item.price <= selectedPrice)
-    : ratingFilteredProducts;
+  const priceFilteredProducts = sortProductByPrice(
+    selectedPrice,
+    ratingFilteredProducts
+  );
 
   const filteredProducts = priceFilteredProducts?.filter((item) =>
     item.name.toLowerCase().includes(searchTerm)

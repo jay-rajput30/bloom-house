@@ -2,16 +2,16 @@ import React, { useContext } from "react";
 import "./index.css";
 import { filterContext } from "../../../../context/FilterProvider";
 
-const allPrices = [5, 10, 15, 20, 25];
+const allPrices = ["High to Low", "Low to High"];
 const PriceFilter = () => {
   const { selectedPrice, priceChangeHandler } = useContext(filterContext);
   return (
     <div className="price-filter-wrapper">
-      <p>Price Range: </p>
+      <p>Sort (price): </p>
       <div>
         {allPrices.map((item, idx) => {
           return (
-            <div key={idx}>
+            <div key={idx} className="price-filter-wrapper-item">
               <input
                 type="radio"
                 name="price-radio-group"
@@ -20,7 +20,7 @@ const PriceFilter = () => {
                 checked={item === selectedPrice}
                 onChange={priceChangeHandler}
               />
-              <label htmlFor={item}>{"<$" + item}</label>
+              <label htmlFor={item}>{item}</label>
             </div>
           );
         })}

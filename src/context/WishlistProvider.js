@@ -1,8 +1,9 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { authContext } from "./AuthProvider";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { supabase } from "../backend/db-connect";
 import { updateWishList } from "../backend/controllers/wishlist.controller";
+import path from "path-browserify";
 
 const wishlistContext = createContext();
 
@@ -10,9 +11,14 @@ const WishlistProvider = ({ children }) => {
   const [wishlistData, setWishlistData] = useState([]);
   const { wishlistToggle, setWishlistToggle, loggedInUser } =
     useContext(authContext);
-
+  const navigate = useNavigate();
   const location = useLocation();
   const wishlistBtnClickHandler = async (item) => {
+    if (!loggedInUser.user_id) {
+      console.log("not logged in");
+      navigate("/login");
+      return;
+    }
     let updatedWishlistData = [];
     if (wishlistData.some((wishlistItem) => wishlistItem.id === item.id)) {
       updatedWishlistData = wishlistData.filter(
