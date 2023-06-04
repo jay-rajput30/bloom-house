@@ -29,6 +29,7 @@ const ProductsWrapper = ({ setShowFilter }) => {
 
   const priceFilteredProducts = sortProductByPrice(
     selectedPrice,
+    products,
     ratingFilteredProducts
   );
 
