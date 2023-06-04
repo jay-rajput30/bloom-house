@@ -68,15 +68,14 @@ function SingleProduct() {
 
   return (
     <div className="single-product-container">
-      <div className="back-botton-wrapper">
-        <ArrowLeft
-          color="darkgreen"
-          strokeWidth="3"
-          onClick={backButtonClickHandler}
-        />
-      </div>
-
       <div className="product-wrapper">
+        <div className="back-botton-wrapper">
+          <ArrowLeft
+            color="darkgreen"
+            strokeWidth="3"
+            onClick={backButtonClickHandler}
+          />
+        </div>
         <div className="product-details-wrapper">
           <div>
             <img src={plantFound?.thumbnail} />
