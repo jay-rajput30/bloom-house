@@ -11,6 +11,12 @@
   /* animation:  */
 }
 
+.mobile-form-buttons {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  justify-content: space-evenly;
+}
 .mobile-filter-wrapper button {
   background-color: var(--color-button-background);
   border: none;

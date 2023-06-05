@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 import { useProducts } from "../hooks/useProducts";
 
 export const filterContext = createContext({
-  searchTerm: "null",
+  searchTerm: "",
   selectedRadioBtn: "All",
 });
 
@@ -19,6 +19,7 @@ const FilterProvider = ({ children }) => {
   };
 
   const radioChangeHandler = (e) => {
+    console.log(e.target.value);
     setSelectedRadioBtn(e.target.value);
   };
 

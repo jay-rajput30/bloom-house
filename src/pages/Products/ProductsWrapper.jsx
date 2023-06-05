@@ -7,13 +7,8 @@ import { sortProductByPrice } from "./products.helper";
 //wrapper component for products to do all the logical calculations
 
 const ProductsWrapper = ({ setShowFilter }) => {
-  const {
-    searchTerm,
-    selectedRadioBtn,
-    selectedRating,
-    selectedPrice,
-    resetFilter,
-  } = useContext(filterContext);
+  const { searchTerm, selectedRadioBtn, selectedRating, selectedPrice } =
+    useContext(filterContext);
 
   const { products } = useProducts();
 
@@ -22,9 +17,9 @@ const ProductsWrapper = ({ setShowFilter }) => {
     selectedRadioBtn === "All"
       ? products
       : products?.filter((item) => item.category === selectedRadioBtn);
-
+  console.log({ filteredCategoryProducts });
   const ratingFilteredProducts = selectedRating
-    ? filteredCategoryProducts?.filter((item) => item.rating >= selectedRating)
+    ? filteredCategoryProducts?.filter((item) => item.rating > +selectedRating)
     : filteredCategoryProducts;
 
   const priceFilteredProducts = sortProductByPrice(

@@ -15,6 +15,7 @@ const DesktopFilter = () => {
           <CategoriesFilter />
           <RatingFilter />
           <PriceFilter />
+          <button>apply</button>
           <button onClick={resetFilterClickHandler}>reset</button>
         </form>
       </fieldset>
