@@ -32,6 +32,9 @@
     padding: 0.1rem 0.5rem;
     font-size: var(--font-length-md1);
   }
+  .desktop-navbar h2:hover {
+    cursor: pointer;
+  }
   .icon-container {
     display: flex;
     gap: 16px;

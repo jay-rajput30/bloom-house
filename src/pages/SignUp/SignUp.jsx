@@ -18,6 +18,7 @@ const SignUp = () => {
     phoneNo: null,
     email: "",
     password: "",
+    confirmPassword: "",
   });
 
   const inputChangeHandler = (e) => {
@@ -49,7 +50,7 @@ const SignUp = () => {
             accessToken: data.session.access_token,
           });
 
-          navigate("/");
+          navigate("/products");
         }
 
         setSignUpDetails({
@@ -109,6 +110,16 @@ const SignUp = () => {
           item={signupDetails.password}
           text="Password"
         />
+        <SingUpFormItem
+          inputChangeHandler={inputChangeHandler}
+          type="password"
+          name="confirmPassword"
+          item={signupDetails.confirmPassword}
+          text="confirm password"
+        />
+        {!(signupDetails.password === signupDetails.confirmPassword) && (
+          <p>passwords dont match. please retry</p>
+        )}
 
         <div className="signup-form-item-buttons">
           <button onClick={formsingUpBtnClickHandler}>signup</button>

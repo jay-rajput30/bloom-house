@@ -16,3 +16,7 @@
   gap: 16px;
   margin-top: 5rem;
 }
+
+.wishlist-wrapper h2 {
+  color: var(--primary-color);
+}

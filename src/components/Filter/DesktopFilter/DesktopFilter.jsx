@@ -5,7 +5,7 @@ import RatingFilter from "../MobileFilter/RatingFilter/RatingFilter";
 import PriceFilter from "../MobileFilter/PriceFilter/PriceFilter";
 import { filterContext } from "../../../context/FilterProvider";
 
-const DesktopFilter = () => {
+const DesktopFilter = ({ applyFilter }) => {
   const { resetFilterClickHandler } = useContext(filterContext);
   return (
     <section className="desktop-filter-wrapper">
@@ -15,7 +15,7 @@ const DesktopFilter = () => {
           <CategoriesFilter />
           <RatingFilter />
           <PriceFilter />
-          <button>apply</button>
+
           <button onClick={resetFilterClickHandler}>reset</button>
         </form>
       </fieldset>

@@ -1,5 +1,5 @@
 .homepage-main {
-  height: 80vh;
+  height: 60vh;
   width: 100%;
   background-image: url(../../assets/hompage-cover-image.avif);
   background-position: 100% 100%;
@@ -30,6 +30,7 @@
 }
 
 .homepage-categories h2 {
+  color: vaR(--primary-color);
   font-size: var(--font-length-md3);
   text-align: center;
   margin: 1rem auto;
@@ -41,10 +42,60 @@
   gap: 1rem;
 }
 
+.homepage-footer {
+  border: none;
+  padding: var(--space-2) var(--space-1) 0 var(--space-1);
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  margin: 0;
+}
+
+.footer-social-media {
+  display: flex;
+  width: 100%;
+  gap: 8px;
+  justify-content: space-evenly;
+}
+.homepage-footer-item {
+  margin-bottom: var(--space-2);
+}
+.homepage-footer-item h4 {
+  margin-bottom: var(--space-1);
+
+  color: var(--color-button-background);
+}
+small {
+  border: none;
+  width: 100%;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  background-color: var(--primary-color);
+  text-align: center;
+  color: var(--color-font-text);
+}
+a {
+  text-decoration: none;
+  color: var(--color-font-text);
+}
+
+.my-github-icon {
+  padding-top: 4px;
+  display: inline;
+  cursor: pointer;
+}
 @media screen and (width >= 690px) {
   .homepage-categories-wrapper {
     margin-top: 1rem;
     justify-content: space-evenly;
     width: 100%;
+  }
+
+  .homepage-footer {
+    flex-direction: row;
+    gap: 32px;
   }
 }

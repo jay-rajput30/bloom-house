@@ -1,23 +1,50 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useProducts } from "../../hooks/useProducts";
 import Products from "./Products";
-import { filterContext } from "../../context/FilterProvider";
 import { sortProductByPrice } from "./products.helper";
-
-//wrapper component for products to do all the logical calculations
+import { filterContext } from "../../context/FilterProvider";
 
 const ProductsWrapper = ({ setShowFilter }) => {
-  const { searchTerm, selectedRadioBtn, selectedRating, selectedPrice } =
-    useContext(filterContext);
-
   const { products } = useProducts();
+  const {
+    searchTerm,
+    selectedCategoryRadioBtn,
+    selectedRating,
+    selectedPrice,
+  } = useContext(filterContext);
 
   //products filtering logic
+  // const getFilteredItems = () => {
+  //   const filteredCategoryProducts =
+  //     selectedCategoryRadioBtn === "All"
+  //       ? products
+  //       : products?.filter(
+  //           (item) => item.category === selectedCategoryRadioBtn
+  //         );
+
+  //   const ratingFilteredProducts = selectedRating
+  //     ? filteredCategoryProducts?.filter(
+  //         (item) => item.rating > +selectedRating
+  //       )
+  //     : filteredCategoryProducts;
+
+  //   const priceFilteredProducts = sortProductByPrice(
+  //     selectedPrice,
+  //     products,
+  //     ratingFilteredProducts
+  //   );
+
+  //   const filteredProducts = priceFilteredProducts?.filter((item) =>
+  //     item.name.toLowerCase().includes(searchTerm)
+  //   );
+  //   return filteredProducts;
+  // };
+
   const filteredCategoryProducts =
-    selectedRadioBtn === "All"
+    selectedCategoryRadioBtn === "All"
       ? products
-      : products?.filter((item) => item.category === selectedRadioBtn);
-  console.log({ filteredCategoryProducts });
+      : products?.filter((item) => item.category === selectedCategoryRadioBtn);
+
   const ratingFilteredProducts = selectedRating
     ? filteredCategoryProducts?.filter((item) => item.rating > +selectedRating)
     : filteredCategoryProducts;

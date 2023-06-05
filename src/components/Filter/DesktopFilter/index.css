@@ -11,6 +11,7 @@
     position: sticky;
     top: 70px;
     height: fit-content;
+    width: 25vw;
   }
   .desktop-filter-wrapper form {
     display: flex;

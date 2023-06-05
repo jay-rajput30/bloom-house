@@ -12,21 +12,27 @@ import { Filter, Loader } from "react-feather";
 import SearchFilter from "./SearchFilter";
 import Loading from "../../utils/Loading/Loading";
 import { useLocation } from "react-router-dom";
+import { authContext } from "../../context/AuthProvider";
 
 function Products({ products, setShowFilter }) {
   const { status, error } = useProducts();
   const location = useLocation();
+  const { getFilteredItems } = useContext(authContext);
+  const applyFilter = () => {
+    setUpdatedProducts(getFilteredItems());
+  };
   if (error) {
     return <Error />;
   }
   if (status === "loading") {
     return <Loading />;
   }
+
   if (status === "success") {
     return (
       <div className="products-wrapper">
         <SearchFilter setShowFilter={setShowFilter} />
-        <DesktopFilter />
+        <DesktopFilter applyFilter={applyFilter} />
         <ul>
           {products?.map((item) => {
             return (
