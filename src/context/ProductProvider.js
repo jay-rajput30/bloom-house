@@ -8,8 +8,6 @@ export const productContext = createContext();
 const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(productReducer, {
     products: null,
-
-    wishlist: [],
   });
 
   const [status, setStatus] = useState("idle");
@@ -22,12 +20,8 @@ const ProductProvider = ({ children }) => {
         let { data: products, error } = await supabase
           .from("products")
           .select("*");
-        const {
-          status,
-          message,
-          data: { plants },
-        } = await fakeFetch("https://api.plants.com");
-        if (status === 200 && message === "success") {
+
+        if (!error) {
           dispatch({ type: "UPDATE_PRODUCTS", payload: products });
           setStatus("success");
         }

@@ -1,16 +1,18 @@
 import { createContext, useState } from "react";
 import { useProducts } from "../hooks/useProducts";
+import { sortProductByPrice } from "../pages/Products/products.helper";
 
 export const filterContext = createContext({
   searchTerm: "",
-  selectedRadioBtn: "All",
+  selectedCategoryRadioBtn: "All",
 });
 
 const FilterProvider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedRadioBtn, setSelectedRadioBtn] = useState("All");
+  const [selectedCategoryRadioBtn, setselectedCategoryRadioBtn] =
+    useState("All");
   const [selectedRating, setSelectedRating] = useState(0);
-  const [selectedPrice, setSelectedPrice] = useState("");
+  const [selectedPrice, setSelectedPrice] = useState("High to Low");
   const [resetFilter, setResetFilter] = useState(false);
 
   //state change handlers for all states
@@ -20,7 +22,7 @@ const FilterProvider = ({ children }) => {
 
   const radioChangeHandler = (e) => {
     console.log(e.target.value);
-    setSelectedRadioBtn(e.target.value);
+    setselectedCategoryRadioBtn(e.target.value);
   };
 
   const priceChangeHandler = (e) => {
@@ -34,7 +36,7 @@ const FilterProvider = ({ children }) => {
     setResetFilter(true);
     setSelectedPrice("");
     setSelectedRating(0);
-    setSelectedRadioBtn("All");
+    setselectedCategoryRadioBtn("All");
   };
 
   return (
@@ -42,7 +44,7 @@ const FilterProvider = ({ children }) => {
       value={{
         searchTerm,
         searchTermChangeHandler,
-        selectedRadioBtn,
+        selectedCategoryRadioBtn,
         radioChangeHandler,
         selectedRating,
         selectedRatingChangeHandler,

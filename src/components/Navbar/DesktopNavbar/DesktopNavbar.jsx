@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import "./index.css";
 import { LogIn, LogOut, ShoppingCart, User } from "react-feather";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { filterContext } from "../../../context/FilterProvider";
 import { authContext } from "../../../context/AuthProvider";
 import { useCart } from "../../../context/CartProvider";
@@ -24,9 +24,13 @@ function DesktopNavbar() {
     setCartToggle((prev) => !prev);
     logoutUser();
   };
+  const navigate = useNavigate();
+  const heroTitleClickHandler = () => {
+    navigate("/products");
+  };
   return (
     <nav className="desktop-navbar">
-      <h2>BloomHouse</h2>
+      <h2 onClick={heroTitleClickHandler}>BloomHouse</h2>
       <input
         type="text"
         value={searchTerm}

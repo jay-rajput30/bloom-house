@@ -28,6 +28,7 @@
   .address-input-wrapper {
     font-size: var(--font-length-sm3);
     width: 25vw;
+    left: 40vw;
     margin-left: auto;
     margin-right: auto;
   }

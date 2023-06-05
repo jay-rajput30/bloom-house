@@ -7,7 +7,8 @@ import { getCategories } from "../../../../utils/utils";
 
 const CategoriesFilter = () => {
   const { products } = useProducts();
-  const { selectedRadioBtn, radioChangeHandler } = useContext(filterContext);
+  const { selectedCategoryRadioBtn, radioChangeHandler } =
+    useContext(filterContext);
   const allCategories = getCategories(products);
   return (
     <div className="categories-wrapper">
@@ -21,7 +22,7 @@ const CategoriesFilter = () => {
                 name="categories-radio-group"
                 id={item}
                 value={item}
-                checked={item === selectedRadioBtn}
+                checked={item === selectedCategoryRadioBtn}
                 onChange={radioChangeHandler}
               />
               <label htmlFor={item}>{item}</label>
