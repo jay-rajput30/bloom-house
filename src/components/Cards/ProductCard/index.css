@@ -7,7 +7,7 @@
   gap: 8px;
   width: 250px;
   padding-bottom: var(--space-1);
-  background-color: var(--secondary-color);
+  background-color: hsl(161, 85%, 92%);
   box-shadow: 2px 4px 4px var(--color-shadow);
   font-size: var(--font-length-sm3);
 }

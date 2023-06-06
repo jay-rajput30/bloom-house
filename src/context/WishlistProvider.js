@@ -3,7 +3,7 @@ import { authContext } from "./AuthProvider";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { supabase } from "../backend/db-connect";
 import { updateWishList } from "../backend/controllers/wishlist.controller";
-import path from "path-browserify";
+import { toast } from "react-toastify";
 
 const wishlistContext = createContext();
 
@@ -23,8 +23,18 @@ const WishlistProvider = ({ children }) => {
       updatedWishlistData = wishlistData.filter(
         (wishlistItem) => wishlistItem.id !== item.id
       );
+      toast.success("removed to wishlist", {
+        position: toast.BOTTOM_CENTER,
+        theme: "colored",
+        autoClose: 1000,
+      });
     } else {
       updatedWishlistData = [...wishlistData, item];
+      toast.success("Added to wishlist", {
+        position: toast.BOTTOM_CENTER,
+        theme: "colored",
+        autoClose: 1000,
+      });
     }
     const { success } = await updateWishList(
       updatedWishlistData,

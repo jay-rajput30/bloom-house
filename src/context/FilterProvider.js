@@ -17,11 +17,11 @@ const FilterProvider = ({ children }) => {
 
   //state change handlers for all states
   const searchTermChangeHandler = (e) => {
-    setSearchTerm(e.target.value);
+    setSearchTerm(e.target.value.toLowerCase());
   };
 
   const radioChangeHandler = (e) => {
-    console.log(e.target.value);
+    e.target.value;
     setselectedCategoryRadioBtn(e.target.value);
   };
 
@@ -52,6 +52,7 @@ const FilterProvider = ({ children }) => {
         priceChangeHandler,
         resetFilter,
         resetFilterClickHandler,
+        setselectedCategoryRadioBtn,
       }}
     >
       {children}

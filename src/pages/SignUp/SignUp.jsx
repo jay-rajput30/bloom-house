@@ -23,7 +23,7 @@ const SignUp = () => {
 
   const inputChangeHandler = (e) => {
     const { name, value } = e.target;
-    console.log({ name, value });
+    ({ name, value });
     setSignUpDetails({ ...signupDetails, [name]: value });
   };
 

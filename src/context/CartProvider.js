@@ -3,6 +3,7 @@ import { supabase } from "../backend/db-connect";
 import { authContext } from "./AuthProvider";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { updateCart } from "../backend/controllers/cart.controller";
+import { toast } from "react-toastify";
 
 const cartContext = createContext();
 
@@ -27,6 +28,11 @@ const CartProvider = ({ children }) => {
           },
         ]);
         if (success) {
+          toast.success("added to cart", {
+            position: toast.BOTTOM_CENTER,
+            theme: "colored",
+            autoClose: 1000,
+          });
           setCartToggle((prev) => !prev);
         }
       }
@@ -70,18 +76,11 @@ const CartProvider = ({ children }) => {
 };
 
 export const useCart = () => {
-  const {
-    cartData,
-    setCartData,
-    cartToggle,
-    setCartToggle,
-    cartAddBtnClickHandler,
-  } = useContext(cartContext);
+  const { cartData, setCartData, cartAddBtnClickHandler } =
+    useContext(cartContext);
   return {
     cartData,
     setCartData,
-    cartToggle,
-    setCartToggle,
     cartAddBtnClickHandler,
   };
 };

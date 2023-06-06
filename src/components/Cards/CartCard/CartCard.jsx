@@ -4,9 +4,11 @@ import "./index.css";
 import { authContext } from "../../../context/AuthProvider";
 import { updateCart } from "../../../backend/controllers/cart.controller";
 import { useCart } from "../../../context/CartProvider";
+import { Navigate, useNavigate } from "react-router-dom";
 const CartCard = ({ cartItem }) => {
   const { loggedInUser, setCartToggle } = useContext(authContext);
   const { cartData } = useCart();
+  const navigate = useNavigate();
   const removeCartButtonClickHandler = async (item) => {
     try {
       const updatedCartItems = cartData.filter(
@@ -18,7 +20,6 @@ const CartCard = ({ cartItem }) => {
         updatedCartItems
       );
       if (success) {
-        // dispatch({ type: "REMOVE_CART", payload: item });
         setCartToggle((prev) => !prev);
       }
     } catch (e) {
@@ -42,14 +43,17 @@ const CartCard = ({ cartItem }) => {
       console.error(e);
     }
   };
+  const cartCardClickHandler = () => {
+    navigate(`/product/${cartItem?.id}`);
+  };
   return (
-    <article className="cart-card-wrapper">
+    <article className="cart-card-wrapper" o>
       <X
         className="remove-cart-item-icon"
         onClick={() => removeCartButtonClickHandler(cartItem)}
       />
       <div>
-        <img src={cartItem.thumbnail} />
+        <img src={cartItem.thumbnail} onClick={cartCardClickHandler} />
       </div>
 
       <div className="cart-card-details">
@@ -71,6 +75,7 @@ const CartCard = ({ cartItem }) => {
               <option value="5">5</option>
             </select>
           </div>
+          <button> wishlist</button>
         </div>
       </div>
     </article>

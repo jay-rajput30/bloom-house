@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import "./index.css";
 import { getAddress } from "./checkout.helper";
 import AddressInput from "../../components/AddressInput/AddressInput";
-const AddressList = ({ addresses, setcheckoutToggle }) => {
-  const [selectedAdress, setSelectedAddress] = useState("");
+const AddressList = ({
+  addresses,
+  setcheckoutToggle,
+  selectedAdress,
+  setSelectedAddress,
+}) => {
   const [showAddressInput, setShowAddressInput] = useState(false);
 
   return (
