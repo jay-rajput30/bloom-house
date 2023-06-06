@@ -23,7 +23,7 @@ const WishlistProvider = ({ children }) => {
       updatedWishlistData = wishlistData.filter(
         (wishlistItem) => wishlistItem.id !== item.id
       );
-      toast.success("removed to wishlist", {
+      toast.error("removed to wishlist", {
         position: toast.BOTTOM_CENTER,
         theme: "colored",
         autoClose: 1000,

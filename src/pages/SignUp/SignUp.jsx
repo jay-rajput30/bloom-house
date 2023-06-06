@@ -15,7 +15,7 @@ const SignUp = () => {
   const [signupDetails, setSignUpDetails] = useState({
     firstName: "",
     lastName: "",
-    phoneNo: null,
+    phoneNo: 0,
     email: "",
     password: "",
     confirmPassword: "",
@@ -57,7 +57,7 @@ const SignUp = () => {
           ...signupDetails,
           firstName: "",
           lastName: "",
-          phoneNo: null,
+          phoneNo: 0,
           email: "",
           password: "",
         });

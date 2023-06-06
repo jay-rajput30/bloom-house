@@ -4,11 +4,19 @@ import "./index.css";
 import { authContext } from "../../../context/AuthProvider";
 import { updateCart } from "../../../backend/controllers/cart.controller";
 import { useCart } from "../../../context/CartProvider";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useWishlist } from "../../../context/WishlistProvider";
 const CartCard = ({ cartItem }) => {
   const { loggedInUser, setCartToggle } = useContext(authContext);
+  const { wishlistBtnClickHandler } = useWishlist();
   const { cartData } = useCart();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const cartCardAddToWishlist = (cartItem, from) => {
+    wishlistBtnClickHandler(cartItem, from);
+  };
   const removeCartButtonClickHandler = async (item) => {
     try {
       const updatedCartItems = cartData.filter(
@@ -20,6 +28,11 @@ const CartCard = ({ cartItem }) => {
         updatedCartItems
       );
       if (success) {
+        toast.error("removed from cart", {
+          position: toast.BOTTOM_CENTER,
+          theme: "colored",
+          autoClose: 1000,
+        });
         setCartToggle((prev) => !prev);
       }
     } catch (e) {
@@ -75,7 +88,12 @@ const CartCard = ({ cartItem }) => {
               <option value="5">5</option>
             </select>
           </div>
-          <button> wishlist</button>
+          <button
+            onClick={() => cartCardAddToWishlist(cartItem, { from: location })}
+          >
+            {" "}
+            wishlist
+          </button>
         </div>
       </div>
     </article>
