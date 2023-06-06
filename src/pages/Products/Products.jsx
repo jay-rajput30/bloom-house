@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import Error from "../Error/Error";
 import ProductCard from "../../components/Cards/ProductCard/ProductCard";
@@ -21,6 +21,9 @@ function Products({ products, setShowFilter }) {
   const applyFilter = () => {
     setUpdatedProducts(getFilteredItems());
   };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   if (error) {
     return <Error />;
   }

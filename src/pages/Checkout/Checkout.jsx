@@ -4,15 +4,21 @@ import { authContext } from "../../context/AuthProvider";
 import { getAddress } from "../../backend/controllers/profile.controller";
 import AddressList from "./AddressList";
 import CartOrderSummary from "../Cart/CartOrderSummary";
+import Loading from "../../utils/Loading/Loading";
+import CheckoutOrderSummary from "./CheckoutOrderSummary";
 const Checkout = () => {
   const { loggedInUser } = useContext(authContext);
   const [addresses, setAddresses] = useState([]);
   const [checkoutToggle, setcheckoutToggle] = useState(false);
+  const [selectedAdress, setSelectedAddress] = useState("");
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const fetchAddress = async () => {
       try {
+        setLoading(true);
         const { data, success } = await getAddress(loggedInUser.user_id);
         if (success) {
+          setLoading(false);
           setAddresses(data);
         }
       } catch (e) {
@@ -21,17 +27,19 @@ const Checkout = () => {
     };
     fetchAddress();
   }, [checkoutToggle]);
-  console.log({ addresses });
+  if (loading) return <Loading />;
   return (
     <div className="checkout-page-wrapper">
       <AddressList
         addresses={addresses}
         setcheckoutToggle={setcheckoutToggle}
+        selectedAdress={selectedAdress}
+        setSelectedAddress={setSelectedAddress}
       />
-      <CartOrderSummary />
+      <CheckoutOrderSummary selectedAdress={selectedAdress} />
+      {selectedAdress && <button>proceed to payment</button>}
     </div>
   );
 };
-//TODO: make checkout page, check out page should show order summary and adress options to select. it should also show add address button
-//TODO: on click of add address button should show add address inpout form as a pop up modal.
+
 export default Checkout;

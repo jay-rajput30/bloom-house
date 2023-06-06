@@ -6,24 +6,19 @@ import Cart from "./pages/Cart/Cart";
 import "./style.css";
 import MobileNavbar from "./components/Navbar/MobileNavbar/MobileNavbar";
 import DesktopNavbar from "./components/Navbar/DesktopNavbar/DesktopNavbar";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import ProductsWrapper from "./pages/Products/ProductsWrapper";
-import { productContext } from "./context/ProductProvider";
+
 import MobileFilter from "./components/Filter/MobileFilter/MobileFilter";
 import Login from "./pages/Login/Login";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
 import SignUp from "./pages/SignUp/SignUp";
-import { updateWishList } from "./backend/controllers/wishlist.controller";
-import { authContext } from "./context/AuthProvider";
-import AddressInput from "./components/AddressInput/AddressInput";
-import Checkout from "./pages/Checkout/Checkout";
 
+import Checkout from "./pages/Checkout/Checkout";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 const App = () => {
   const [showFilter, setShowFilter] = useState(false);
-
-  const { loggedInUser } = useContext(authContext);
-  //TODO: add custom hook for form input change handlers
-
   return (
     <div className="app-wrapper">
       <MobileNavbar />
@@ -65,6 +60,7 @@ const App = () => {
         />
         <Route path="*" element={<Error />} />
       </Routes>
+      <ToastContainer />
     </div>
   );
 };

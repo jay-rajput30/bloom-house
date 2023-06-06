@@ -16,7 +16,7 @@ const ProductProvider = ({ children }) => {
     const getData = async () => {
       try {
         setStatus("loading");
-        console.log(process.env);
+        process.env;
         let { data: products, error } = await supabase
           .from("products")
           .select("*");

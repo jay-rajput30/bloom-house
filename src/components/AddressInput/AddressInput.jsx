@@ -21,11 +21,11 @@ const AddressInput = ({ setShowAddressInput, setcheckoutToggle }) => {
   };
 
   const addRandomAddress = () => {
-    console.log(getRandomAddress());
+    getRandomAddress();
     setAddressInput(getRandomAddress());
   };
   const formBtnClickHandler = async () => {
-    console.log({ insideAddressInput: loggedInUser?.user_id });
+    ({ insideAddressInput: loggedInUser?.user_id });
     const { data, success } = await addAddress(
       addressInput,
       loggedInUser?.user_id

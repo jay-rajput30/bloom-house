@@ -1,7 +1,7 @@
 .homepage-main {
   height: 60vh;
   width: 100%;
-  background-image: url(../../assets/hompage-cover-image.avif);
+  background-image: url(../../assets/homepage-cover-image.avif);
   background-position: 100% 100%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -40,6 +40,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
+  padding: var(--space-2);
 }
 
 .homepage-footer {
@@ -67,7 +68,7 @@
 
   color: var(--color-button-background);
 }
-small {
+.homepage-wrapper small {
   border: none;
   width: 100%;
   display: inline-block;

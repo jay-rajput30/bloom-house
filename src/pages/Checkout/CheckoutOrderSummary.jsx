@@ -3,7 +3,7 @@ import { calculateSubTotal, calculateTotal } from "../../utils/utils";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useCart } from "../../context/CartProvider";
 
-const CartOrderSummary = () => {
+const CheckoutOrderSummary = ({ selectedAdress }) => {
   ({ selectedAdress });
   const { cartData } = useCart();
   const navigate = useNavigate();
@@ -43,12 +43,13 @@ const CartOrderSummary = () => {
           </p>
         </div>
 
-        <div className="cart-summary-buttons">
-          <button onClick={buttonClickHandler}>proceed to checkout</button>
+        <div className="order-summary-item">
+          <strong>Shipping Address </strong>
+          <p>{selectedAdress}</p>
         </div>
       </article>
     </section>
   );
 };
 
-export default CartOrderSummary;
+export default CheckoutOrderSummary;

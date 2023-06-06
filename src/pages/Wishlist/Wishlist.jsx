@@ -5,9 +5,11 @@ import "./index.css";
 import { getUserWishlist } from "../../backend/controllers/wishlist.controller";
 import { authContext } from "../../context/AuthProvider";
 import { useWishlist } from "../../context/WishlistProvider";
+import Loading from "../../utils/Loading/Loading";
 function Wishlist() {
   const { loggedInUser, wishlistToggle } = useContext(authContext);
   const { wishlistData, setWishlistData } = useWishlist();
+  const [loading, setLoading] = useState(false);
   const fetchData = async () => {
     try {
       const { success, data } = await getUserWishlist(loggedInUser?.user_id);
@@ -19,13 +21,16 @@ function Wishlist() {
     }
   };
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  useEffect(() => {
     fetchData();
   }, [wishlistToggle]);
-  console.log({ wishlistData });
+  if (loading) return <Loading />;
   return (
     <div className="wishlist-wrapper">
       {wishlistData?.length === 0 && (
-        <h2>oops.. not items added to wishlist as yet</h2>
+        <h2>oops.. no items added to wishlist as yet</h2>
       )}
       <ul>
         {wishlistData?.map((item) => {

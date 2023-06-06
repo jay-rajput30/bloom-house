@@ -6,8 +6,7 @@ function CategoriesCards({ imgLink, text }) {
   const navigate = useNavigate();
   const { setselectedCategoryRadioBtn } = useContext(filterContext);
   const categoryClickHandler = () => {
-    // console.log({ setselectedCategoryRadioBtn, text });
-    // setselectedCategoryRadioBtn("Plants");
+    setselectedCategoryRadioBtn(text);
     navigate("/products");
   };
   return (

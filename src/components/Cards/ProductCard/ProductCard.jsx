@@ -9,7 +9,6 @@ import { useWishlist } from "../../../context/WishlistProvider";
 const ProductCard = ({ plant, showButton, from }) => {
   const { wishlistData, wishlistBtnClickHandler } = useWishlist();
   const navigate = useNavigate();
-  // const location = useLocation();
   const { cartAddBtnClickHandler, cartData } = useCart();
 
   const wishlistButtonClicked = (plant) => {
@@ -31,7 +30,7 @@ const ProductCard = ({ plant, showButton, from }) => {
               />
             ) : (
               <Heart
-                color="hsl(60, 100%, 100%)"
+                color="hsl(178, 100%, 6%)"
                 strokeWidth="2"
                 onClick={() => wishlistButtonClicked(plant)}
               />

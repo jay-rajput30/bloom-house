@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./index.css";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
@@ -12,10 +12,16 @@ import { useWishlist } from "../../context/WishlistProvider";
 import AboutProduct from "./AboutProduct";
 
 const ProductDetails = ({ plantFound, from }) => {
-  const { cartAddBtnClickHandler } = useCart();
-  const { wishlistBtnClickHandler } = useWishlist();
+  const navigate = useNavigate();
+  const { cartData, cartAddBtnClickHandler } = useCart();
+  const { wishlistData, wishlistBtnClickHandler } = useWishlist();
   const singleProductAddToCart = (plant) => {
-    cartAddBtnClickHandler(plant, from);
+    if (cartData?.some((item) => item.id === plantFound.id)) {
+      console.log("plant found");
+      navigate("/cart");
+    } else {
+      cartAddBtnClickHandler(plant, from);
+    }
   };
 
   const singleProductAddToWishlist = (plant) => {
@@ -42,10 +48,26 @@ const ProductDetails = ({ plantFound, from }) => {
           />
         </div>
       </div>
-      <button className="add-to-cart" onClick={singleProductAddToCart}>
-        add to cart
+      <button
+        className="add-to-cart"
+        onClick={() => singleProductAddToCart(plantFound)}
+      >
+        {cartData?.some((item) => item.id === plantFound.id)
+          ? "go to cart"
+          : "add to cart"}
       </button>
-      <button className="add-to-wishlist" onClick={singleProductAddToWishlist}>
+      <button
+        className="add-to-wishlist"
+        onClick={() => singleProductAddToWishlist(plantFound)}
+        disabled={
+          wishlistData?.some((item) => item.id === plantFound.id) === true
+        }
+        style={{
+          opacity: wishlistData?.some((item) => item.id === plantFound.id)
+            ? "0.5"
+            : "1",
+        }}
+      >
         add to wishlist
       </button>
     </div>
@@ -58,7 +80,9 @@ function SingleProduct() {
   const location = useLocation();
   const { products } = useProducts();
   const plantFound = products?.find((item) => item.id === id);
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const backButtonClickHandler = () => {
     navigate("/products");
   };
@@ -80,8 +104,8 @@ function SingleProduct() {
 
           <ProductDetails plantFound={plantFound} from={{ from: location }} />
         </div>
-        <AboutProduct text={plantFound?.description} />
         <DeliveryPerks />
+        <AboutProduct text={plantFound?.description} />
       </div>
     </div>
   );
