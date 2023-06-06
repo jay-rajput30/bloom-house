@@ -23,7 +23,7 @@ const CartOrderSummary = () => {
         </div>
         <div className="order-summary-item">
           <strong>Shipping cost</strong>
-          <p>{cartData.length === 0 ? "₹0" : "₹10"}</p>
+          <p>{cartData.length === 0 ? "₹0" : "₹100"}</p>
         </div>
         <div className="order-summary-item">
           <strong>Discount(10%)</strong>
@@ -38,7 +38,7 @@ const CartOrderSummary = () => {
               : calculateTotal(
                   calculateSubTotal(cartData),
                   Math.ceil(calculateSubTotal(cartData) * 0.2),
-                  10
+                  100
                 ).toFixed(2)}
           </p>
         </div>

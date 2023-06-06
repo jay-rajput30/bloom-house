@@ -60,7 +60,7 @@ const CartCard = ({ cartItem }) => {
     navigate(`/product/${cartItem?.id}`);
   };
   return (
-    <article className="cart-card-wrapper" o>
+    <article className="cart-card-wrapper">
       <X
         className="remove-cart-item-icon"
         onClick={() => removeCartButtonClickHandler(cartItem)}
@@ -79,7 +79,8 @@ const CartCard = ({ cartItem }) => {
             <span>Qty: </span>
             <select
               onChange={(e) => cartQuantityChangeHandler(e, cartItem)}
-              defaultValue={cartItem?.quantity}
+              // defaultValue={cartItem?.quantity}
+              value={cartItem?.quantity}
             >
               <option value="1">1</option>
               <option value="2">2</option>
@@ -91,7 +92,6 @@ const CartCard = ({ cartItem }) => {
           <button
             onClick={() => cartCardAddToWishlist(cartItem, { from: location })}
           >
-            {" "}
             wishlist
           </button>
         </div>
