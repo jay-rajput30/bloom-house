@@ -2,6 +2,7 @@ import { createContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { supabase } from "../backend/db-connect";
 import { checkLogin } from "../backend/controllers/login.controller";
+import { toast } from "react-toastify";
 
 export const authContext = createContext();
 
@@ -22,6 +23,11 @@ const AuthProvider = ({ children }) => {
       let { data, success, error } = await checkLogin(inputData);
 
       if (success) {
+        toast.success("welcome! your are now logged in", {
+          position: toast.BOTTOM_CENTER,
+          theme: "colored",
+          autoClose: 1000,
+        });
         setCartToggle((prev) => !prev);
         setIsLoggedIn(true);
         setLoggedInUser({
@@ -46,6 +52,11 @@ const AuthProvider = ({ children }) => {
   };
   const logoutUser = () => {
     setIsLoggedIn(false);
+    toast.success("logged out successfully", {
+      position: toast.BOTTOM_CENTER,
+      theme: "colored",
+      autoClose: 1000,
+    });
     localStorage.removeItem("user");
   };
 

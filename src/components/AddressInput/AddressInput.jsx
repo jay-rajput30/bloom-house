@@ -4,6 +4,7 @@ import AddressInputFormItem from "./AddressInputFormItem";
 import { addAddress } from "../../backend/controllers/profile.controller";
 import { authContext } from "../../context/AuthProvider";
 import { getRandomAddress } from "./address.data";
+import { toast } from "react-toastify";
 const AddressInput = ({ setShowAddressInput, setcheckoutToggle }) => {
   const { loggedInUser } = useContext(authContext);
   const [addressInput, setAddressInput] = useState({
@@ -31,6 +32,11 @@ const AddressInput = ({ setShowAddressInput, setcheckoutToggle }) => {
       loggedInUser?.user_id
     );
     if (success) {
+      toast.success("new address added", {
+        position: toast.BOTTOM_CENTER,
+        theme: "colored",
+        autoClose: 1000,
+      });
       setShowAddressInput(false);
       setAddressInput({
         flatNo: "",
