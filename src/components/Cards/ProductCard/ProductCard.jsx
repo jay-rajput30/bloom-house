@@ -18,7 +18,7 @@ const ProductCard = ({ plant, showButton, from }) => {
   return (
     <article className="product-card-wrapper">
       <figure>
-        <img src={plant?.thumbnail} />
+        <img src={plant?.thumbnail} loading="lazy" />
         {showButton && (
           <figcaption>
             {wishlistData?.some((item) => item?.id === plant.id) ? (

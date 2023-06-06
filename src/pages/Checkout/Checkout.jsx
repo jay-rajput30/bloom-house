@@ -36,8 +36,12 @@ const Checkout = () => {
         selectedAdress={selectedAdress}
         setSelectedAddress={setSelectedAddress}
       />
-      <CheckoutOrderSummary selectedAdress={selectedAdress} />
-      {selectedAdress && <button>proceed to payment</button>}
+      <div>
+        <CheckoutOrderSummary selectedAdress={selectedAdress} />
+        {selectedAdress && <button>proceed to payment</button>}
+      </div>
+      {/* <CheckoutOrderSummary selectedAdress={selectedAdress} />
+      {selectedAdress && <button>proceed to payment</button>} */}
     </div>
   );
 };
