@@ -8,6 +8,7 @@ import Loading from "../../utils/Loading/Loading";
 import "./index.css";
 import { Edit2, Trash2 } from "react-feather";
 import UpdateAddressInput from "./UpdateAddressInput/UpdateAddressInput";
+import { toast } from "react-toastify";
 const Profile = () => {
   const { loggedInUser } = useContext(authContext);
   const [userDetails, setUserDetails] = useState();
@@ -39,6 +40,11 @@ const Profile = () => {
     );
     if (success) {
       setUserDetails(data);
+      toast.error("address deleted", {
+        position: toast.BOTTOM_CENTER,
+        theme: "colored",
+        autoClose: 1000,
+      });
       setProfileToggle((prev) => !prev);
     }
   };
