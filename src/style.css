@@ -56,7 +56,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: var(--secondary-color);
+  color: var(--primary-color);
   font-variation-settings: "CRSV" 1, "MONO" 0;
 }
 body {

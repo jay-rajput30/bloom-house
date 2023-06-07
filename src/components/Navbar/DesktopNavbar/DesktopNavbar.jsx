@@ -4,7 +4,6 @@ import { LogIn, LogOut, ShoppingCart, User } from "react-feather";
 import { NavLink, useNavigate } from "react-router-dom";
 import { filterContext } from "../../../context/FilterProvider";
 import { authContext } from "../../../context/AuthProvider";
-import { useCart } from "../../../context/CartProvider";
 
 const activeStyles = ({ isActive }) => {
   return {
@@ -27,6 +26,9 @@ function DesktopNavbar() {
   const navigate = useNavigate();
   const heroTitleClickHandler = () => {
     navigate("/products");
+  };
+  const loginBtnClickHandler = () => {
+    navigate("/login");
   };
   return (
     <nav className="desktop-navbar">
@@ -59,13 +61,22 @@ function DesktopNavbar() {
             wishlist
           </NavLink>
         </li>
+        <li>
+          <NavLink to="/profile" style={activeStyles}>
+            profile
+          </NavLink>
+        </li>
       </ul>
       {loggedIn ? (
         <button className="logout-button" onClick={logoutBtnClickHandler}>
           logout
         </button>
       ) : (
-        <LogIn color="hsl(60, 100%, 100%)" strokeWidth="3" />
+        <LogIn
+          color="hsl(60, 100%, 100%)"
+          strokeWidth="3"
+          onClick={loginBtnClickHandler}
+        />
       )}
     </nav>
   );

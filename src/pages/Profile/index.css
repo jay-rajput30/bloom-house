@@ -1,0 +1,17 @@
+.profile-wrapper {
+  margin-top: 5rem;
+  padding: var(--space-2);
+}
+
+.profile-address-item {
+  font-size: var(--font-length-sm3);
+  display: flex;
+}
+.profile-address-item p {
+  flex: 1;
+}
+.profile-address-item div {
+  display: flex;
+  gap: 4px;
+  cursor: pointer;
+}

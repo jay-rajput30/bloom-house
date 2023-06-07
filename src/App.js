@@ -17,6 +17,7 @@ import SignUp from "./pages/SignUp/SignUp";
 import Checkout from "./pages/Checkout/Checkout";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import Profile from "./pages/Profile/Profile";
 const App = () => {
   const [showFilter, setShowFilter] = useState(false);
   return (
@@ -55,6 +56,14 @@ const App = () => {
           element={
             <ProtectedRoutes>
               <Checkout />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoutes>
+              <Profile />
             </ProtectedRoutes>
           }
         />
