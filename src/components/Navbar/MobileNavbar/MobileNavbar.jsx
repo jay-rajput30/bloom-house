@@ -22,6 +22,9 @@ function MobileNavbar() {
     navigate("/products");
   };
 
+  const profileClickHandler = () => {
+    navigate("/profile");
+  };
   const mobileSideNav = sideNavActive ? (
     <X
       color="hsl(36, 93%, 68%)"
@@ -54,7 +57,11 @@ function MobileNavbar() {
           strokeWidth="2"
           onClick={cartIconClickHandler}
         />
-        <User color="hsl(60, 100%, 100%)" strokeWidth="3" />
+        <User
+          color="hsl(60, 100%, 100%)"
+          strokeWidth="3"
+          onClick={profileClickHandler}
+        />
       </div>
       {sideNavActive && <SideNav setSideNavActive={setSideNavActive} />}
     </nav>
