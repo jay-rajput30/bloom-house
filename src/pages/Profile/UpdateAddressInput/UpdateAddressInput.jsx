@@ -9,6 +9,7 @@ const UpdateAddressInput = ({
   currentAddress,
   setShowUpdateAddressForm,
   userAddresses,
+  setProfileToggle,
 }) => {
   const { loggedInUser } = useContext(authContext);
   const [addressInput, setAddressInput] = useState({
@@ -39,7 +40,8 @@ const UpdateAddressInput = ({
         theme: "colored",
         autoClose: 1000,
       });
-      setShowAddressInput(false);
+      setShowUpdateAddressForm(false);
+      setProfileToggle((prev) => !prev);
       setAddressInput({
         flatNo: "",
         area: "",

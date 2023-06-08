@@ -6,15 +6,19 @@ import {
 } from "../../backend/controllers/profile.controller";
 import Loading from "../../utils/Loading/Loading";
 import "./index.css";
-import { Edit2, Trash2 } from "react-feather";
 import UpdateAddressInput from "./UpdateAddressInput/UpdateAddressInput";
 import { toast } from "react-toastify";
+import ProfileDetails from "./ProfileDetails";
+import ProfileAddresses from "./ProfileAddresses";
+import AddressInput from "../../components/AddressInput/AddressInput";
+
 const Profile = () => {
   const { loggedInUser } = useContext(authContext);
   const [userDetails, setUserDetails] = useState();
   const [selectedAddress, setSelectedAddress] = useState("");
   const [profileToggle, setProfileToggle] = useState(false);
   const [showUpdateAddressForm, setShowUpdateAddressForm] = useState(false);
+  const [showInputAddress, setShowInputAddress] = useState(false);
   const fetchUserDetails = async () => {
     try {
       const { data, success } = await getuserProfile(loggedInUser.user_id);
@@ -58,30 +62,25 @@ const Profile = () => {
   };
   return (
     <div className="profile-wrapper">
-      <section className="profile-details">
-        <h2>User Details</h2>
-        <p>name: {userDetails?.firstName + " " + userDetails?.lastName}</p>
-        <p>contact: {userDetails?.phoneNo}</p>
-      </section>
-      <section className="profile-addresses">
-        <h2>Saved Address</h2>
-        {userDetails?.address.map((addressitem) => {
-          return (
-            <article className="profile-address-item" key={addressitem?.id}>
-              <p>{Object.values(addressitem).splice(1).join(", ")}</p>
-              <div>
-                <Edit2 size={14} onClick={() => editAddress(addressitem)} />
-                <Trash2 size={14} onClick={() => deleteAddress(addressitem)} />
-              </div>
-            </article>
-          );
-        })}
-      </section>
+      <ProfileDetails userDetails={userDetails} />
+      <ProfileAddresses
+        userDetails={userDetails}
+        deleteAddress={deleteAddress}
+        editAddress={editAddress}
+        setShowInputAddress={setShowInputAddress}
+      />
       {showUpdateAddressForm && (
         <UpdateAddressInput
           currentAddress={selectedAddress}
           setShowUpdateAddressForm={setShowUpdateAddressForm}
           userAddresses={userDetails?.address}
+          setProfileToggle={setProfileToggle}
+        />
+      )}
+      {showInputAddress && (
+        <AddressInput
+          setShowAddressInput={setShowInputAddress}
+          setcheckoutToggle={setProfileToggle}
         />
       )}
     </div>
