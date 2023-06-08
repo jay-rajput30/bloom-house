@@ -57,7 +57,7 @@ const AddressInput = ({ setShowAddressInput, setcheckoutToggle }) => {
           type="text"
           item={addressInput.flatNo}
           name="flatNo"
-          text="FlatNo/Building"
+          text="FlatNo"
         />
         <AddressInputFormItem
           inputChangeHandler={inputChangeHandler}

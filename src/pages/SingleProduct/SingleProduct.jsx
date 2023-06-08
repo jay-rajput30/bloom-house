@@ -17,7 +17,7 @@ const ProductDetails = ({ plantFound, from }) => {
   const { wishlistData, wishlistBtnClickHandler } = useWishlist();
   const singleProductAddToCart = (plant) => {
     if (cartData?.some((item) => item.id === plantFound.id)) {
-      console.log("plant found");
+      ("plant found");
       navigate("/cart");
     } else {
       cartAddBtnClickHandler(plant, from);
