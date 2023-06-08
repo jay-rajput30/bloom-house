@@ -1,3 +1,4 @@
 export const getAddress = (address) => {
-  return Object.values(address).splice(1).join(",  ");
+  console.log(address);
+  return `${address?.flatNo},${address?.area},${address?.city}, ${address?.state}: ${address?.pincode}`;
 };

@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import { useWishlist } from "../../../context/WishlistProvider";
 const CartCard = ({ cartItem }) => {
   const { loggedInUser, setCartToggle } = useContext(authContext);
-  const { wishlistBtnClickHandler } = useWishlist();
+  const { wishlistData, wishlistBtnClickHandler } = useWishlist();
   const { cartData } = useCart();
   const navigate = useNavigate();
   const location = useLocation();
@@ -92,7 +92,9 @@ const CartCard = ({ cartItem }) => {
           <button
             onClick={() => cartCardAddToWishlist(cartItem, { from: location })}
           >
-            wishlist
+            {wishlistData?.some((item) => item.id === cartItem.id)
+              ? "wishlist remove"
+              : "wishlist add"}
           </button>
         </div>
       </div>

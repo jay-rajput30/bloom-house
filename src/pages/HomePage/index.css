@@ -18,6 +18,7 @@
 
 .homepage-main h1 {
   font-size: var(--font-length-lg1);
+  color: var(--secondary-color);
 }
 .homepage-main button {
   background-color: var(--primary-color);
@@ -94,7 +95,9 @@ a {
     justify-content: space-evenly;
     width: 100%;
   }
-
+  .homepage-main h1 {
+    font-size: var(--font-length-lg2);
+  }
   .homepage-footer {
     flex-direction: row;
     gap: 32px;
