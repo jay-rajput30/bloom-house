@@ -2,6 +2,10 @@
   display: none;
   z-index: 100;
 }
+.desktop-navbar h2 {
+  color: var(--secondary-color);
+  cursor: pointer;
+}
 .product-search {
   display: none;
 }

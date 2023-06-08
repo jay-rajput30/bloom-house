@@ -42,8 +42,20 @@ const CheckoutOrderSummary = ({ selectedAdress }) => {
                 ).toFixed(2)}
           </p>
         </div>
-
-        <div className="checkout-order-summary-item">
+        <h2>Items</h2>
+        {cartData?.map((cartItem) => {
+          return (
+            <div key={cartItem.id} className="checkout-order-summary-item">
+              <p>
+                <strong>{cartItem.name}</strong>
+              </p>
+              <p>
+                qty <strong>{cartItem.quantity}</strong>
+              </p>
+            </div>
+          );
+        })}
+        <div className="checkout-order-summary-item address-details">
           <strong>Shipping Address </strong>
           <p>{selectedAdress}</p>
         </div>

@@ -14,8 +14,8 @@
   color: var(--primary-color);
 }
 .cart-item-quantity-wrapper button {
-  font-size: var(--font-length-sm3);
-  padding: 0.2rem;
+  font-size: var(--font-length-sm2);
+  padding: 0.2rem 0;
 }
 .cart-card-wrapper small {
   color: var(--color-font-label);

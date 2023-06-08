@@ -58,6 +58,13 @@
   font-size: var(--font-length-md1);
 }
 
+.checkout-order-summary-items .address-details {
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+  border-top: 2px solid var(--color-font-text);
+  padding-top: var(--space-2);
+}
 .checkout-order-summary-items button {
   background-color: var(--color-button-background);
   border: none;
@@ -77,13 +84,20 @@
 }
 
 .checkout-order-summary-item:last-of-type {
-  border-top: 2px solid var(--color-font-text);
 }
 
 .checkout-order-summary-address {
   font-size: var(--font-length-sm3);
   display: flex;
   justify-content: center;
+}
+
+.disabled-button {
+  opacity: 0.5;
+}
+
+.enabled-button {
+  opacity: 1;
 }
 @media screen and (min-width: 768px) {
   .checkout-page-wrapper {

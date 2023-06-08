@@ -1,6 +1,8 @@
 import React from "react";
 import "./index.css";
 import { Edit2, Trash2 } from "react-feather";
+import { getAddress } from "../Checkout/checkout.helper";
+
 const ProfileAddresses = ({
   userDetails,
   deleteAddress,
@@ -13,7 +15,7 @@ const ProfileAddresses = ({
       {userDetails?.address.map((addressitem) => {
         return (
           <article className="profile-address-item" key={addressitem?.id}>
-            <p>{Object.values(addressitem).splice(1).join(", ")}</p>
+            <p>{getAddress(addressitem)}</p>
             <div>
               <Edit2
                 size={14}

@@ -6,6 +6,7 @@ import AddressList from "./AddressList";
 import CartOrderSummary from "../Cart/CartOrderSummary";
 import Loading from "../../utils/Loading/Loading";
 import CheckoutOrderSummary from "./CheckoutOrderSummary";
+import { toast } from "react-toastify";
 const Checkout = () => {
   const { loggedInUser } = useContext(authContext);
   const [addresses, setAddresses] = useState([]);
@@ -27,6 +28,14 @@ const Checkout = () => {
     };
     fetchAddress();
   }, [checkoutToggle]);
+
+  const paymentClickHandler = () => {
+    toast.success("order placed successfully", {
+      position: toast.BOTTOM_CENTER,
+      theme: "colored",
+      autoClose: 1000,
+    });
+  };
   if (loading) return <Loading />;
   return (
     <div className="checkout-page-wrapper">
@@ -38,10 +47,17 @@ const Checkout = () => {
       />
       <div>
         <CheckoutOrderSummary selectedAdress={selectedAdress} />
-        {selectedAdress && <button>proceed to payment</button>}
+
+        <button
+          disabled={selectedAdress === false}
+          className={
+            selectedAdress.length !== 0 ? "enabled-button" : "disabled-button"
+          }
+          onClick={paymentClickHandler}
+        >
+          proceed to payment
+        </button>
       </div>
-      {/* <CheckoutOrderSummary selectedAdress={selectedAdress} />
-      {selectedAdress && <button>proceed to payment</button>} */}
     </div>
   );
 };
