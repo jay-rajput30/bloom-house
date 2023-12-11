@@ -1,5 +1,4 @@
 import { createContext, useEffect, useReducer, useState } from "react";
-import { fakeFetch } from "../api";
 import { productReducer } from "../reducers/productReducer";
 import { supabase } from "../backend/db-connect";
 
