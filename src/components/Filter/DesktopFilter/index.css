@@ -1,0 +1,21 @@
+.desktop-filter-wrapper {
+  display: none;
+}
+
+@media screen and (min-width: 790px) {
+  .desktop-filter-wrapper {
+    display: block;
+    /* flex-basis: 60px; */
+    padding: var(--space-2);
+    align-self: flex-start;
+    position: sticky;
+    top: 70px;
+    height: fit-content;
+    width: 25vw;
+  }
+  .desktop-filter-wrapper form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+}

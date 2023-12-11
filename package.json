@@ -1,14 +1,19 @@
 {
   "dependencies": {
+    "@supabase/supabase-js": "^2.22.0",
+    "axios": "^1.4.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-feather": "^2.0.10",
+    "react-router-dom": "^6.11.1",
+    "react-toastify": "^9.1.3"
   },
   "name": "bloom-house",
   "description": "An online platform to buy gardening plants and related items",
   "version": "1.0.0",
-  "main": "index.js",
   "devDependencies": {
     "parcel": "^2.8.3",
+    "path-browserify": "^1.0.1",
     "process": "^0.11.10"
   },
   "source": "src/index.html",

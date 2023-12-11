@@ -1,0 +1,117 @@
+.cart-wrapper {
+  padding: var(--space-2);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.cart-container {
+  margin-top: 5rem;
+}
+
+.cart-container h2 {
+  color: var(--primary-color);
+}
+.cart-items-wrapper {
+  gap: var(--space-2);
+  padding: 0;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cart-items-wrapper li {
+  width: 100%;
+}
+.order-summary-wrapper {
+  height: fit-content;
+  flex: 1;
+  border: solid var(--color-font-text);
+  padding: var(--space-1);
+}
+
+.order-summary-wrapper h2 {
+  color: var(--primary-color);
+  border-bottom: 1px solid var(--color-font-text);
+  margin-bottom: var(--space-1);
+}
+.order-summary-items {
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  font-size: var(--font-length-md1);
+}
+
+.order-summary-items button {
+  background-color: var(--color-button-background);
+  border: none;
+  padding: var(--space-1);
+  border-radius: 5px;
+}
+
+.cart-summary-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.order-summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-summary-item:last-of-type {
+  border-top: 2px solid var(--color-font-text);
+}
+
+.order-summary-address {
+  font-size: var(--font-length-sm3);
+  display: flex;
+  justify-content: center;
+}
+@media screen and (min-width: 690px) {
+  .order-summary-wrapper {
+    padding: var(--space-2);
+    margin-top: 0.69rem;
+  }
+  .cart-wrapper {
+    /* border: solid aqua; */
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+  .order-summary-items {
+    font-size: var(--font-length-sm3);
+  }
+  .order-summary-items h2 {
+    font-size: var(--font-length-sm3);
+  }
+}
+/* min-width: 790px and max-width:1200px */
+@media screen and (min-width: 800px) {
+  .cart-items-wrapper {
+    flex: 2;
+    margin-top: var(--space-1);
+  }
+  .cart-container {
+    width: 60vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cart-wrapper {
+    gap: 32px;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+  .cart-wrapper {
+    gap: 16px;
+  }
+}
+
+@media screen and (min-width: 880px) {
+  .cart-container {
+    max-width: 75vw;
+  }
+  .cart-wrapper {
+    gap: 40px;
+  }
+}

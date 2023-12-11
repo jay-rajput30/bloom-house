@@ -1,0 +1,105 @@
+.homepage-main {
+  height: 60vh;
+  width: 100%;
+  background-image: url(../../assets/homepage-cover-image.avif);
+  background-position: 100% 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.homepage-main > * {
+  text-align: center;
+}
+
+.homepage-main h1 {
+  font-size: var(--font-length-lg1);
+  color: var(--secondary-color);
+}
+.homepage-main button {
+  background-color: var(--primary-color);
+  border: 2px solid var(--secondary-color);
+  border-radius: 5px;
+  color: var(--secondary-color);
+  font-size: var(--font-length-md2);
+  padding: 0.3rem 0.5rem;
+  box-shadow: 2px 4px 4px var(--color-shadow) inset;
+}
+
+.homepage-categories h2 {
+  color: vaR(--primary-color);
+  font-size: var(--font-length-md3);
+  text-align: center;
+  margin: 1rem auto;
+}
+.homepage-categories-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  padding: var(--space-2);
+}
+
+.homepage-footer {
+  border: none;
+  padding: var(--space-2) var(--space-1) 0 var(--space-1);
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  margin: 0;
+}
+
+.footer-social-media {
+  display: flex;
+  width: 100%;
+  gap: 8px;
+  justify-content: space-evenly;
+}
+.homepage-footer-item {
+  margin-bottom: var(--space-2);
+}
+.homepage-footer-item h4 {
+  margin-bottom: var(--space-1);
+
+  color: var(--color-button-background);
+}
+.homepage-wrapper small {
+  border: none;
+  width: 100%;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  background-color: var(--primary-color);
+  text-align: center;
+  color: var(--color-font-text);
+}
+a {
+  text-decoration: none;
+  color: var(--color-font-text);
+}
+
+.my-github-icon {
+  padding-top: 4px;
+  display: inline;
+  cursor: pointer;
+}
+@media screen and (width >= 690px) {
+  .homepage-categories-wrapper {
+    margin-top: 1rem;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  .homepage-main h1 {
+    font-size: var(--font-length-lg2);
+  }
+  .homepage-footer {
+    flex-direction: row;
+    gap: 32px;
+  }
+}

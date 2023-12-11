@@ -1,0 +1,16 @@
+.rating-filter-wrapper span {
+  padding: 0;
+  margin: 0;
+}
+.rating-filter-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 4px;
+}
+.rating-filter-wrapper div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 8px;
+}

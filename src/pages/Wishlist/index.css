@@ -1,0 +1,22 @@
+.wishlist-wrapper ul {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  /* justify-content: center; */
+  /* align-items: center; */
+  margin-top: var(--space-3);
+  width: 100%;
+}
+
+.wishlist-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 5rem;
+}
+
+.wishlist-wrapper h2 {
+  color: var(--primary-color);
+}

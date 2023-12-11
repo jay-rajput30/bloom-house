@@ -1,0 +1,11 @@
+.error-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.error-wrapper img {
+  max-width: 100%;
+}

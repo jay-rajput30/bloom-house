@@ -1,0 +1,111 @@
+.checkout-page-wrapper {
+  margin-top: 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 var(--space-2) var(--space-2) var(--space-2);
+  position: relative;
+}
+
+.checkout-page-wrapper > * {
+  flex: 1;
+}
+
+.checkout-page-wrapper div button {
+  margin-top: var(--space-2);
+}
+.addresslist-wrapper {
+  flex: 1;
+  padding: var(--space-2) var(--space-1);
+  color: var(--primary-color);
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.addresslist-wrapper form {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 12px;
+}
+.addresslist-item {
+  padding: 0 var(--space-2);
+  width: 100%;
+  background-color: var(--secondary-color);
+}
+
+.checkout-order-summary-wrapper {
+  height: fit-content;
+  flex: 1;
+  border: solid var(--color-font-text);
+  padding: var(--space-1);
+}
+
+.checkout-order-summary-wrapper h2 {
+  color: var(--primary-color);
+  border-bottom: 1px solid var(--color-font-text);
+  margin-bottom: var(--space-1);
+}
+.checkout-order-summary-items {
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  font-size: var(--font-length-md1);
+}
+
+.checkout-order-summary-items .address-details {
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+  border-top: 2px solid var(--color-font-text);
+  padding-top: var(--space-2);
+}
+.checkout-order-summary-items button {
+  background-color: var(--color-button-background);
+  border: none;
+  padding: var(--space-1);
+  border-radius: 5px;
+}
+
+.cart-summary-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.checkout-order-summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkout-order-summary-item:last-of-type {
+}
+
+.checkout-order-summary-address {
+  font-size: var(--font-length-sm3);
+  display: flex;
+  justify-content: center;
+}
+
+.disabled-button {
+  opacity: 0.5;
+}
+
+.enabled-button {
+  opacity: 1;
+}
+@media screen and (min-width: 768px) {
+  .checkout-page-wrapper {
+    width: 60vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .checkout-page-wrapper {
+    flex-direction: row;
+  }
+}

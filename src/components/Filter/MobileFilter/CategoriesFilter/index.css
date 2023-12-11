@@ -1,0 +1,19 @@
+.categories-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.categories-wrapper > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 8px;
+}
+.category-item {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 4px;
+}
